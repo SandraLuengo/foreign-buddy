@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require('passport');
-const router = express.Router();
+const authRoutes = express.Router();
 const User = require("../models/User");
 
 // Bcrypt to encrypt passwords
@@ -8,32 +8,63 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
+authRoutes.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, failureDetails) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({
+        message: 'Error in the authentication',
+      });
+      return;
+    }
+    if (!user) {
+      console.log('no existe');
+      res.status(500).json(failureDetails);
+      return;
+    }
+
+    req.login(user, (error) => {
+      console.log(error);
+      if (error) {
+        res.status(500).json({
+          message: 'Error in the authentication',
+        });
+        return;
+      }
+      res.status(200).json(user);
+    });
+  })(req, res, next);
 });
 
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
+authRoutes.post('/signup', (req, res) => {
+  const {
+    name,
+    surname,
+    email,
+    password,
+    age,
+    destination_country,
+    destination_city,
+    origin_country,
+    spoken_languages,
+    rol
+  } = req.body;
 
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
-
-router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+  if (name === '' || surname === '' || email === '' || password === '' || age === '' || destination_country === '' || destination_city === '' ||
+    origin_country === '' || spoken_languages === '' || rol === '') {
+    res.status(500).json({
+      message: 'Provide username and password',
+    });
     return;
   }
 
-  User.findOne({ username }, "username", (err, user) => {
+  User.findOne({
+    username,
+  }, 'username', (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.status(500).json({
+        message: 'Username taken',
+      });
       return;
     }
 
@@ -41,23 +72,67 @@ router.post("/signup", (req, res, next) => {
     const hashPass = bcrypt.hashSync(password, salt);
 
     const newUser = new User({
-      username,
-      password: hashPass
+      name,
+      surname,
+      email,
+      password: hashPass,
+      age,
+      destination_country,
+      destination_city,
+      origin_country,
+      spoken_languages,
+      rol,
+      image: '',
+      interests: '',
+      presentation: ''
     });
 
-    newUser.save()
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
+    newUser.save((er) => {
+      if (er) {
+        res.status(500).json({
+          message: 'Saving user to database went wrong.',
+        });
+      } else {
+        req.login(newUser, (e) => {
+          if (e) {
+            res.status(500).json({
+              message: 'Login after signup went bad.',
+            });
+            return;
+          }
+          res.status(200).json(newUser);
+        });
+      }
+    });
   });
 });
 
-router.get("/logout", (req, res) => {
+authRoutes.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
 
-module.exports = router;
+authRoutes.get('/loggedin', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.status(200).json(req.user);
+    return;
+  }
+  res.status(403).json({
+    message: 'Unauthorized',
+  });
+});
+
+// authRoutes.post('/edit', parser.single('picture'), (req, res) => {
+//   User.findOneAndUpdate({ _id: req.body.id }, {
+//     image: req.file.url,
+//   })
+//     .then(() => {
+//       res.json({
+//         success: true,
+//         image: req.file.url,
+//       });
+//     })
+//     .catch(err => console.log(err));
+// });
+
+module.exports = authRoutes;

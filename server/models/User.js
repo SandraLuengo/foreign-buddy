@@ -1,9 +1,22 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
+//Modelos de paises, ciudades e idiomas, usuario con el id de esos modelos
+
 const userSchema = new Schema({
-  username: String,
-  password: String
+  name:String,
+  aurname:String,
+  email:String,
+  password:String,
+  age:Date,
+  destination_country:String,
+  destination_city:String,
+  origin_country:String,
+  spoken_languages:Array,
+  rol:String,
+  image:String,
+  interests:String,
+  description:String
 }, {
   timestamps: {
     createdAt: 'created_at',

@@ -35,6 +35,7 @@
             "error",
             "always"
         ],
-        "no-unused-vars": [1, { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+        "no-unused-vars": [1, { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+        "parser": "babel-eslint"
     }
 }

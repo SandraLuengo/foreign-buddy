@@ -1,26 +1,40 @@
 import React, { Component } from "react";
 import Buttom from "../Buttom";
+import './Form2.css'
 
 export default class Form2 extends Component {
   constructor() {
     super();
     this.state = {
-		userType: "",
-		formNumber:3
+      userType: "",
+      formNumber: 3
     };
   }
-  chosenButton = userType => {
-	this.setState({...this.state,userType},()=>{
-		this.props.changeForm(this.state);
-	})
-	
+
+  sendInfo = e => {
+
+	let change = new Promise((res,rej)=>res(this.props.handleChange(e)))
+
+	change.then(()=>this.props.changeForm(3))
+    
   };
+
   render() {
     return (
-      <div>
-		  FORM 2
-        <button onClick={()=>this.chosenButton('buddy')}>SOY BUDDY</button>
-		<button onClick={()=>this.chosenButton('user')}>BUSCO BUDDY</button>
+      <div className='form2'>
+        FORM 2
+        <input
+          type="button"
+          name="userType"
+          value="buddy"
+          onClick={e => this.sendInfo(e)}
+        />
+        <input
+          type="button"
+          name="userType"
+          value="user"
+          onClick={e => this.sendInfo(e)}
+        />
       </div>
     );
   }

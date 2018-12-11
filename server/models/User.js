@@ -4,11 +4,11 @@ const Schema   = mongoose.Schema;
 //Modelos de paises, ciudades e idiomas, usuario con el id de esos modelos
 
 const userSchema = new Schema({
-  name:String,
-  aurname:String,
+  username:String,
+  surname:String,
   email:String,
   password:String,
-  age:Date,
+  age:Number,
   destination_country:String,
   destination_city:String,
   origin_country:String,

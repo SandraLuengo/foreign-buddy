@@ -38,7 +38,7 @@ authRoutes.post('/login', (req, res, next) => {
 
 authRoutes.post('/signup', (req, res) => {
   const {
-    name,
+    username,
     surname,
     email,
     password,
@@ -50,7 +50,7 @@ authRoutes.post('/signup', (req, res) => {
     rol
   } = req.body;
 
-  if (name === '' || surname === '' || email === '' || password === '' || age === '' || destination_country === '' || destination_city === '' ||
+  if (username === '' || surname === '' || email === '' || password === '' || age === '' || destination_country === '' || destination_city === '' ||
     origin_country === '' || spoken_languages === '' || rol === '') {
     res.status(500).json({
       message: 'Provide username and password',
@@ -72,7 +72,7 @@ authRoutes.post('/signup', (req, res) => {
     const hashPass = bcrypt.hashSync(password, salt);
 
     const newUser = new User({
-      name,
+      username,
       surname,
       email,
       password: hashPass,
@@ -84,9 +84,9 @@ authRoutes.post('/signup', (req, res) => {
       rol,
       image: '',
       interests: '',
-      presentation: ''
+      description: ''
     });
-
+    console.log(newUser);
     newUser.save((er) => {
       if (er) {
         res.status(500).json({
@@ -109,7 +109,9 @@ authRoutes.post('/signup', (req, res) => {
 
 authRoutes.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.status(200).json({
+    message: 'Log out success!',
+  });
 });
 
 authRoutes.get('/loggedin', (req, res) => {

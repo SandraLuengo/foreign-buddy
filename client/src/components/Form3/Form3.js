@@ -31,6 +31,7 @@ export default class Form3 extends Component {
 		return (
 			<div className='form3'>
         FORM 3
+		{/* ordenar alfabeticamente */}
 				<select onChange={e=>this.getSelectData(e)} size='1' name="destination_country">
 					<option key={-1} value=""> Destination Country </option>
 					{Object.keys(countries).map((countries,index) => {
@@ -47,7 +48,7 @@ export default class Form3 extends Component {
 					: ''}
 					
 				</select>
-			    <select onChange={e=>this.getSelectData(e)} size='1' name="destination_country">
+			    <select size='1' name="origin_country">
 					<option key={-1} value=""> Origin Country </option>
 					{Object.keys(countries).map((countries,index) => {
 						return <option key={index}  value={countries}>{countries}</option>;

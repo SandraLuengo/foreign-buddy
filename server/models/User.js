@@ -8,7 +8,6 @@ const userSchema = new Schema({
   surname:String,
   email:String,
   password:String,
-  age:Number,
   destination_country:String,
   destination_city:String,
   origin_country:String,

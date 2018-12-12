@@ -10,6 +10,10 @@ const bcryptSalt = 10;
 
 authRoutes.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, failureDetails) => {
+    console.log('holi');
+    console.log(req.user)
+    console.log('-----------');
+    console.log(user);
     if (err) {
       console.log(err);
       res.status(500).json({
@@ -37,20 +41,11 @@ authRoutes.post('/login', (req, res, next) => {
 });
 
 authRoutes.post('/signup', (req, res) => {
-  const {
-    username,
-    surname,
-    email,
-    password,
-    age,
-    destination_country,
-    destination_city,
-    origin_country,
-    spoken_languages,
-    rol
-  } = req.body;
+  console.log('entro');
+  console.log(req.body)
+  const { username, surname, email, password, destination_country, destination_city, origin_country, spoken_languages, rol  } = req.body;
 
-  if (username === '' || surname === '' || email === '' || password === '' || age === '' || destination_country === '' || destination_city === '' ||
+  if (username === '' || surname === '' || email === '' || password === '' || destination_country === '' || destination_city === '' ||
     origin_country === '' || spoken_languages === '' || rol === '') {
     res.status(500).json({
       message: 'Provide username and password',
@@ -76,7 +71,6 @@ authRoutes.post('/signup', (req, res) => {
       surname,
       email,
       password: hashPass,
-      age,
       destination_country,
       destination_city,
       origin_country,

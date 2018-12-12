@@ -38,7 +38,7 @@ export default class Form3 extends Component {
 						return <option key={index}  value={countries}>{countries}</option>;
 					})}
 				</select>
-				<select size='1' name="destination_city">
+				<select onChange={e => this.props.handleChange(e)} size='1' name="destination_city">
 					<option key={-1} value=""> Destination City </option>
 					{(this.state.cities)?
 						this.state.cities.map(city=>{
@@ -48,19 +48,19 @@ export default class Form3 extends Component {
 					: ''}
 					
 				</select>
-			    <select size='1' name="origin_country">
+			    <select onChange={e => this.props.handleChange(e)} size='1' name="origin_country">
 					<option key={-1} value=""> Origin Country </option>
 					{Object.keys(countries).map((countries,index) => {
 						return <option key={index}  value={countries}>{countries}</option>;
 					})}
 				</select>
-				<select  name="spoken_languages" size='1'>
+				<select onChange={e => this.props.addLanguage(e)}  name="spoken_languages" size='1'>
 					<option value="">Select your language</option>
 					{languages.map(language => {
 						return <option value={language.name}>{language.name}</option>;
 					})}
 				</select>
-				<select  name="spoken_languages" size='1'>
+				<select onChange={e => this.props.addLanguage(e)}  name="spoken_languages" size='1'>
 					<option value="">Select your language</option>
 					{languages.map(language => {
 						return <option value={language.name}>{language.name}</option>;

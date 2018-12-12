@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AuthService from "../Auth/AuthService";
 import Form1 from "../Form1";
 import Form2 from "../Form2";
 import Form3 from "../Form3";
@@ -13,15 +14,28 @@ export default class Signup extends Component {
       surname: "",
       email: "",
       password: "",
-      userType: "",
-      destination_country: ""
+      destination_country: "",
+      destination_city:" ",
+      origin_country:" ",
+      spoken_languages:[],
+      rol: "",
+      redirect:false
+
     };
+
+    this.authService = new AuthService();
   }
   changeForm = formNumber => {
     this.setState({ ...this.state, formNumber }, () => {
       if (this.state.formNumber === "end") {
-        console.log("envio axios");
-        console.log(this.state);
+        let {username, surname, email, password, destination_country, destination_city, origin_country, spoken_languages, rol}=this.state;
+        this.authService.signup(username, surname, email, password, destination_country, destination_city, origin_country, spoken_languages, rol)
+        .then(user => {
+           this.setState({username:' ', surname:' ', email:' ', password:' ', destination_country:' ',
+            destination_city:' ', origin_country:' ', spoken_languages:[], rol:' ',redirect:true });
+    
+        })
+        .catch(err=>console.log(err.message))
       }
     });
   };
@@ -31,8 +45,14 @@ export default class Signup extends Component {
       [name]: value
     });
   };
+
+  addLanguage = e => {
+    const {value} = e.target;
+    this.state.spoken_languages.push(value);
+  }
+
   render() {
-    return this.state.formNumber !== "end" ? (
+    return !this.state.redirect ? (
       <div>
         {this.state.formNumber === 1 ? (
           <Form1
@@ -48,6 +68,7 @@ export default class Signup extends Component {
           />
         ) : (
           <Form3
+            addLanguage={this.addLanguage}
             handleChange={this.handleChange}
             changeForm={this.changeForm}
             btn={"Enviar"}

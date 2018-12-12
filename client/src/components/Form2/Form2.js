@@ -6,7 +6,7 @@ export default class Form2 extends Component {
   constructor() {
     super();
     this.state = {
-      userType: "",
+      rol: "",
       formNumber: 3
     };
   }
@@ -25,13 +25,13 @@ export default class Form2 extends Component {
         FORM 2
         <input
           type="button"
-          name="userType"
+          name="rol"
           value="buddy"
           onClick={e => this.sendInfo(e)}
         />
         <input
           type="button"
-          name="userType"
+          name="rol"
           value="user"
           onClick={e => this.sendInfo(e)}
         />

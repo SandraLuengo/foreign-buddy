@@ -22,7 +22,6 @@ export default class Login extends Component {
     const { email, password } = this.state;
 
     this.authService.login(email, password).then(user => {
-      this.props.getUser(user);
       this.setState({ ...this.state, redirect: true });
     });
   };

@@ -28,7 +28,7 @@ authRoutes.post('/login', (req, res, next) => {
     }
 
     req.login(user, (error) => {
-      console.log(error);
+      //console.log(error);
       if (error) {
         res.status(500).json({
           message: 'Error in the authentication',

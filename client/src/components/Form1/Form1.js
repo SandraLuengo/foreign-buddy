@@ -5,12 +5,6 @@ import './Form1.css';
 export default class Form1 extends Component {
 	constructor() {
 		super();
-		this.state = {
-			username: '',
-			surname: '',
-			email: '',
-			password: ''
-		};
 	}
 
 	render() {
@@ -36,13 +30,11 @@ export default class Form1 extends Component {
 					placeholder="Password"
 					onChange={e => this.props.handleChange(e)}
 				/>
-				{/* <div>
-			<select name="day" size="5">
-				{days.map((day,index)=>{
-					return <option key={index} value={day}>{day}</option>
-				})}
-			</select>
-		</div> */}
+				<select onChange={e => this.props.handleChange(e)} name="gender">
+					<option value="">Select gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
 				<button onClick={() => this.props.changeForm(2)}>
 					{' '}
 					{this.props.btn}{' '}

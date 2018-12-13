@@ -42,6 +42,7 @@ export default class Signup extends Component {
               surname: " ",
               email: " ",
               password: " ",
+              gender:" ",
               destination_country: " ",
               destination_city: " ",
               origin_country: " ",

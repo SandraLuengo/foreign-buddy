@@ -80,13 +80,9 @@ authRoutes.post('/signup', (req, res) => {
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(userData.password, salt);
-    userData.passport = hashPass
-    
-    console.log(userData)
-    const newUser = new modelName(userData);
-    console.log('-------------------------')
-    console.log(newUser)
-    console.log('-------------------------')
+    const newUserData = Object.assign(userData,{password: hashPass});
+    const newUser = new modelName(newUserData);
+
     newUser.save((er) => {
       if (er) {
         res.status(500).json({
@@ -117,6 +113,7 @@ authRoutes.get("/logout", (req, res) => {
 });
 
 authRoutes.get('/loggedin', (req, res) => {
+  console.log(req.isAuthenticated())
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
     return;

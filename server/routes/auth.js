@@ -8,8 +8,6 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 authRoutes.post('/login', (req, res, next) => {
-  const {rol} = req.body.rol;
-  console.log(req.body.rol)
   passport.authenticate(req.body.rol, (err, user, failureDetails) => {
     console.log(user);
     if (err) {

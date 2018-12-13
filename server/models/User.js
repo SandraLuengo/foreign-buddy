@@ -17,7 +17,7 @@ const userSchema = new Schema({
   image:String,
   interests:String,
   description:String,
-  buddy:String
+  buddies:Array
 }, {
   timestamps: {
     createdAt: 'created_at',

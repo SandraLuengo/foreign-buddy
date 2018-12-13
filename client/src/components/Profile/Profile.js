@@ -6,8 +6,8 @@ export default class Profile extends Component {
   constructor() {
     super();
     this.state = {
-	  user: null,
-	  redirect:false
+      user: null,
+      redirect: false
     };
     this.authService = new AuthService();
   }
@@ -18,29 +18,30 @@ export default class Profile extends Component {
   };
 
   componentWillMount = () => {
-    this.authService.loggedin().then(user => {
-      console.log('Loged In')
-      console.log(user)
-	  this.setState({ ...this.state, user });
-    })
-    .catch(err=>{
-      console.log(err)
-    })
+    this.authService
+      .loggedin()
+      .then(user => {
+        console.log("Loged In");
+        console.log(user);
+        this.setState({ ...this.state, user });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
-    console.log()
+    console.log();
     return this.state.user && !this.state.redirect ? (
       <div>
         <h1> {this.state.user.username} </h1>
         <h1> {this.state.user.rol} </h1>
-        {/* <div>{this.props.buddies}</div>
-        {this.props.location.state.buddies.map(item=>{
-          console.log(item)
-          return <div>{item.username}</div>
-        })} */}
         <button onClick={this.logOut}> Loguot </button>
       </div>
-    ) :(this.state.redirect)?<Redirect to='/'/>:<p>Load</p>
+    ) : this.state.redirect ? (
+      <Redirect to="/" />
+    ) : (
+      <p>Load</p>
+    );
   }
 }

@@ -16,7 +16,11 @@ const buddySchema = new Schema({
   image:String,
   interests:String,
   description:String,
-  users:Array
+  users:Array,
+  professional:{
+    type:Boolean,
+    default:false
+  }
 }, {
   timestamps: {
     createdAt: 'created_at',

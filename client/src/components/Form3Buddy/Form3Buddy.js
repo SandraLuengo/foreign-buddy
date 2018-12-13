@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Buttom from "../Buttom";
-import "./Form3.css";
+import "./Form3Buddy.css";
 import languages from "../../languages.json";
 import countries from "../../countries.json";
 
-export default class Form3 extends Component {
+export default class Form3Buddy extends Component {
   constructor() {
     super();
     this.state = {
@@ -28,14 +28,14 @@ export default class Form3 extends Component {
   render() {
     return (
       <div className="form3">
-        FORM 3 {/* ordenar alfabeticamente */}
+        FORM BUDDY {/* ordenar alfabeticamente */}
         <select
           onChange={e => this.getSelectData(e)}
           size="1"
-          name="destination_country"
+          name="buddy_country"
         >
           <option key={-1} value="">
-            Destination Country
+            Country
           </option>
           {Object.keys(countries).map((countries, index) => {
             return (
@@ -48,32 +48,16 @@ export default class Form3 extends Component {
         <select
           onChange={e => this.props.handleChange(e)}
           size="1"
-          name="destination_city"
+          name="buddy_city"
         >
           <option key={-1} value="">
-            Destination City
+            City
           </option>
           {this.state.cities
             ? this.state.cities.map(city => {
                 return <option value={city}> {city} </option>;
               })
             : ""}
-        </select>
-        <select
-          onChange={e => this.props.handleChange(e)}
-          size="1"
-          name="origin_country"
-        >
-          <option key={-1} value="">
-            Origin Country
-          </option>
-          {Object.keys(countries).map((countries, index) => {
-            return (
-              <option key={index} value={countries}>
-                {countries}
-              </option>
-            );
-          })}
         </select>
         <select
           onChange={e => this.props.addLanguage(e)}

@@ -7,5 +7,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.use('/auth',require('./auth'));
+router.use('/profile',require('./profile'));
+router.use('/chat',require('./chat'));
+router.use('/services',require('./services'));
+router.use('/posts',require('./posts'));
 
 module.exports = router;

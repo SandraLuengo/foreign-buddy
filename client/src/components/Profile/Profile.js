@@ -19,16 +19,23 @@ export default class Profile extends Component {
 
   componentWillMount = () => {
     this.authService.loggedin().then(user => {
+      console.log(user)
 	  this.setState({ ...this.state, user });
     });
   };
 
   render() {
-	console.log(this.state.user)
+    console.log()
     return this.state.user && !this.state.redirect ? (
       <div>
-        <h1> {this.state.user.username} </h1>{" "}
-        <button onClick={this.logOut}> Loguot </button>{" "}
+        <h1> {this.state.user.username} </h1>
+        <h1> {this.state.user.rol} </h1>
+        {/* <div>{this.props.buddies}</div>
+        {this.props.location.state.buddies.map(item=>{
+          console.log(item)
+          return <div>{item.username}</div>
+        })} */}
+        <button onClick={this.logOut}> Loguot </button>
       </div>
     ) :(this.state.redirect)?<Redirect to='/'/>:<p>Load</p>
   }

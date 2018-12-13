@@ -2,60 +2,75 @@ const express = require("express");
 const passport = require('passport');
 const authRoutes = express.Router();
 const User = require("../models/User");
+const Buddy = require("../models/Buddy");
 
-// Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
 authRoutes.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, user, failureDetails) => {
-    console.log('holi');
-    console.log(req.user)
-    console.log('-----------');
+  const {rol} = req.body.rol;
+  console.log(req.body.rol)
+  passport.authenticate(req.body.rol, (err, user, failureDetails) => {
     console.log(user);
     if (err) {
-      console.log(err);
       res.status(500).json({
         message: 'Error in the authentication',
       });
       return;
     }
     if (!user) {
-      console.log('no existe');
       res.status(500).json(failureDetails);
       return;
     }
 
     req.login(user, (error) => {
-      //console.log(error);
       if (error) {
         res.status(500).json({
           message: 'Error in the authentication',
         });
         return;
       }
-      res.status(200).json(user);
+      res.status(200).json(
+        user
+      );
     });
   })(req, res, next);
 });
 
-authRoutes.post('/signup', (req, res) => {
-  console.log('entro');
-  console.log(req.body)
-  const { username, surname, email, password, destination_country, destination_city, origin_country, spoken_languages, rol  } = req.body;
 
-  if (username === '' || surname === '' || email === '' || password === '' || destination_country === '' || destination_city === '' ||
-    origin_country === '' || spoken_languages === '' || rol === '') {
+authRoutes.post('/signup', (req, res) => {
+  var userData = {};
+  var modelName = '';
+
+  for (const prop in req.body.state) {
+    if (req.body.state.rol == 'user') {
+      if (prop !== 'buddy_city' && prop !== 'buddy_country') {
+        userData[prop] = req.body.state[prop];
+      }
+      modelName = User;
+    } else {
+      if (prop != 'destination_city' && prop != 'destination_country' && prop != 'origin_country') {
+        userData[prop] = req.body.state[prop];
+      }
+      modelName = Buddy;
+    }
+  }
+  let emptyElemnts = Object.keys(userData).map(prop => {
+    if (prop === '' && prop !== 'image' && prop !== 'interests' && prop !== 'description') {
+      return true
+    }
+  });
+
+  if (emptyElemnts.includes(true)) {
     res.status(500).json({
-      message: 'Provide username and password',
+      message: 'Algun campo esta vacio',
     });
     return;
   }
 
-  User.findOne({
-    username,
-  }, 'username', (err, user) => {
+  modelName.findOne({
+    'username': userData.username,
+  }, (err, user) => {
     if (user !== null) {
       res.status(500).json({
         message: 'Username taken',
@@ -64,23 +79,14 @@ authRoutes.post('/signup', (req, res) => {
     }
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
-
-    const newUser = new User({
-      username,
-      surname,
-      email,
-      password: hashPass,
-      destination_country,
-      destination_city,
-      origin_country,
-      spoken_languages,
-      rol,
-      image: '',
-      interests: '',
-      description: ''
-    });
-    console.log(newUser);
+    const hashPass = bcrypt.hashSync(userData.password, salt);
+    userData.passport = hashPass
+    
+    console.log(userData)
+    const newUser = new modelName(userData);
+    console.log('-------------------------')
+    console.log(newUser)
+    console.log('-------------------------')
     newUser.save((er) => {
       if (er) {
         res.status(500).json({
@@ -94,7 +100,9 @@ authRoutes.post('/signup', (req, res) => {
             });
             return;
           }
-          res.status(200).json(newUser);
+          res.status(200).json(
+            newUser
+          );
         });
       }
     });
@@ -118,17 +126,6 @@ authRoutes.get('/loggedin', (req, res) => {
   });
 });
 
-// authRoutes.post('/edit', parser.single('picture'), (req, res) => {
-//   User.findOneAndUpdate({ _id: req.body.id }, {
-//     image: req.file.url,
-//   })
-//     .then(() => {
-//       res.json({
-//         success: true,
-//         image: req.file.url,
-//       });
-//     })
-//     .catch(err => console.log(err));
-// });
+
 
 module.exports = authRoutes;

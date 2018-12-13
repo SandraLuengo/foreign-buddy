@@ -8,6 +8,7 @@ const userSchema = new Schema({
   surname:String,
   email:String,
   password:String,
+  gender:String,
   destination_country:String,
   destination_city:String,
   origin_country:String,
@@ -15,7 +16,8 @@ const userSchema = new Schema({
   rol:String,
   image:String,
   interests:String,
-  description:String
+  description:String,
+  buddy:String
 }, {
   timestamps: {
     createdAt: 'created_at',

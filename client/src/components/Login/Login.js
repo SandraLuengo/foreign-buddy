@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import AuthService from "../Auth/AuthService";
 import { Redirect } from "react-router-dom";
-import Buttom from '../Buttom';
+import Buttom from "../Buttom";
 
 export default class Login extends Component {
   constructor() {
     super();
 
     this.state = {
-        email: "",
+      email: "",
       password: "",
+      rol: "",
       redirect: false
     };
 
@@ -19,9 +20,9 @@ export default class Login extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
 
-    const { email, password } = this.state;
+    const { email, password,rol } = this.state;
 
-    this.authService.login(email, password).then(user => {
+    this.authService.login(email, password,rol).then(user => {
       this.setState({ ...this.state, redirect: true });
     });
   };
@@ -51,6 +52,11 @@ export default class Login extends Component {
             name="password"
             onChange={e => this.handleChange(e)}
           />
+          <select onChange={e => this.handleChange(e)} name="rol">
+          <option value="">Choose your rol</option>
+            <option value="user">User</option>
+            <option value="buddy">Buddy</option>
+          </select>
           <button type="submit"> Login </button>
         </form>
       </div>

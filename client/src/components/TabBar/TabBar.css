@@ -1,0 +1,20 @@
+.welcomBody {
+    height: 50vh;
+    background-color: rgb(144, 228, 172);
+    display: flex;
+    align-items: flex-end;
+}
+
+.tabBar {
+    background-color: white;
+    width: 100%;
+}
+
+.tabBar ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    padding: 0;
+    margin-bottom: 10%;
+}
+

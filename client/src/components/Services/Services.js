@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
 import TabBar from "../TabBar";
 
-export default class Profile extends Component {
+export default class Services extends Component {
   constructor() {
     super();
     this.state = {
@@ -32,14 +32,9 @@ export default class Profile extends Component {
   };
 
   render() {
-    
     return this.state.user && !this.state.redirect ? (
       <div>
-        {/* <h1> {this.state.user.username} </h1>
-        <h1> {this.state.user.rol} </h1> */}
-        
-        <h3>{this.state.user.username}</h3>
-        <button onClick={this.logOut}> Loguot </button>
+        <h1>Services</h1>
         <div className="welcomBody">
           <TabBar />
         </div>

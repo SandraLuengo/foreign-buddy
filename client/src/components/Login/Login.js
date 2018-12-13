@@ -61,7 +61,7 @@ export default class Login extends Component {
         </form>
       </div>
     ) : (
-      <Redirect to={"/profile"} />
+      <Redirect to={"/chat"} />
     );
   }
 }

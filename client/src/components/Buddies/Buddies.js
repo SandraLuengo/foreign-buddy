@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
-import TabBar from "../TabBar";
+import TabBar from "../TabBar"
 
-export default class Profile extends Component {
+export default class Buddies extends Component {
   constructor() {
     super();
     this.state = {
@@ -35,14 +35,10 @@ export default class Profile extends Component {
     
     return this.state.user && !this.state.redirect ? (
       <div>
-        {/* <h1> {this.state.user.username} </h1>
-        <h1> {this.state.user.rol} </h1> */}
-        
-        <h3>{this.state.user.username}</h3>
-        <button onClick={this.logOut}> Loguot </button>
-        <div className="welcomBody">
-          <TabBar />
-        </div>
+		<h1>Buddies</h1>
+		<div className="welcomBody">
+		<TabBar/>
+		</div>
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />

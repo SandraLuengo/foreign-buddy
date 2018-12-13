@@ -5,30 +5,6 @@ const Buddy = require("../models/Buddy");
 
 //Exactamente igual que hacer un loggedin 
 
-buddiesRouter.get("/getAll", (req, res) => {
-    const {
-        id,
-        rol
-    } = req.body;
-    if (rol == 'user') {
-        User.findById({
-                id
-            })
-            .then(user => res.status(200).json(user))
-            .catch(err => res.status(500).json({
-                message: 'Error in the authentication',
-            }))
-    } else {
-        Buddy.findById({
-                id
-            })
-            .then(user => res.status(200).json(user))
-            .catch(err => res.status(500).json({
-                message: 'Error in the authentication',
-            }))
-    }
-});
-
 buddiesRouter.get("/getAllProfesional", (req, res) => {
 
     User.find({
@@ -40,4 +16,37 @@ buddiesRouter.get("/getAllProfesional", (req, res) => {
         }))
 });
 
-module.exports = chatRouter;
+
+//Ñapa solo para probar el chat
+
+buddiesRouter.post("/getMybuddies", (req, res) => {
+
+    findBuddy(req.body.user)
+    .then(buddies=>{
+        res.status(200).json(buddies)
+    })
+});
+
+
+function findBuddy(newUser) {
+    console.log('--------------------------------------')
+    console.log(newUser.destination_city)
+    return Buddy.find({
+      rol: "buddy",
+      buddy_city: newUser.destination_city,
+      spoken_languages: {
+        $in: newUser.spoken_languages
+      }
+    })
+      .then(buddies => {
+        console.log(buddies)
+        return buddies;
+      })
+      .catch(err => {
+        console.log("ERROR!");
+        return "";
+      });
+  }
+
+
+module.exports = buddiesRouter;

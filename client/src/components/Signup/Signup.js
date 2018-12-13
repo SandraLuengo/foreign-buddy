@@ -103,7 +103,7 @@ export default class Signup extends Component {
       </div>
     ) : (
       //  <Redirect to={{pathname:"/profile",state:{buddies:this.state.buddies}}} />
-      <Redirect to="/profile" />
+      <Redirect to="/chat" />
     );
   }
 }

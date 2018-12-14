@@ -28,7 +28,7 @@ export default class ChatWindow extends React.Component {
 			let invitedUser=this.props.location.chat_id.invitedUser;
 			this.setState({...this.state,chat_id,mainUser,invitedUser},()=>{
 				console.log(this.state);
-				this.socket = io('http://localhost:5000');
+				this.socket = io(`${process.env.REACT_APP_API_URL}`);
 				//escucho en mi id
 				this.socket.on(this.state.chat_id, (msg)=> {
 			

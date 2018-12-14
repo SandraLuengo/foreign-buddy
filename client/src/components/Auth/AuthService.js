@@ -18,6 +18,7 @@ export default class AuthService {
   };
 
   login = (email, password,rol) => {
+    console.log()
     return this.service
       .post("/login", {
         email,

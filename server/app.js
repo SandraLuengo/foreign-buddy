@@ -6,6 +6,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const cors = require('cors');
+const path = require('path')
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -28,7 +29,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(express.static(path.join(__dirname, 'public')))
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -50,10 +51,12 @@ app.use(cors({
 }));
 
 
+
 app.use('/', require('./routes/index'));
 
 app.use((req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);
-});
+}); 
+
 
 module.exports = app;

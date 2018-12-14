@@ -35,7 +35,6 @@ export default class Chat extends Component {
   };
 
   getChatData = user => {
-    console.log('SANDRAAAA');
     this.buddiesService.getBuddies(user)
     .then(buddies=>{
       this.setState({ ...this.state, buddies });

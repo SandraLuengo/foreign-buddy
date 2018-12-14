@@ -66,7 +66,7 @@ export default class Chat extends Component {
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />
-    ) : this.state.chat_id?<Redirect to={{pathname: '/newChat', chat_id: { referrer: this.state.chat_id }}}/>:(
+    ) : this.state.chat_id?<Redirect to={{pathname: '/newChat', chat_id: { chat_id: this.state.chat_id,mainUser:this.state.user._id,invitedUser:this.state.chatUsers[0]._id }}}/>:(
         <p>Load</p>
     );
   }

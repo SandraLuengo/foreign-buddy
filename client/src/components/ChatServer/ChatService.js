@@ -3,7 +3,7 @@ import axios from "axios";
 export default class ChatService {
     constructor() {
         let service = axios.create({
-            baseURL: "http://localhost:5000/chat",
+            baseURL: `${process.env.REACT_APP_API_URL}/chat`,
             withCredentials: true
         });
         this.service = service;

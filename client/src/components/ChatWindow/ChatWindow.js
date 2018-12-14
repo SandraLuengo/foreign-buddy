@@ -11,17 +11,23 @@ export default class ChatWindow extends React.Component {
 		this.state = {
 			messages:[],
 			input:'',
-			chat_id:''
+			chat_id:'',
+			mainUser:'',
+			invitedUser:''
 			
 		};
 	}
 
 	//escucha el servidor, y llama a la funcion de pintar le mensaje cada vez que lo recibe
 	componentDidMount(){
-		console.log('DidMount');
+
 		if(this.props.location.chat_id){
-			this.setState({...this.state,chat_id:this.props.location.chat_id.referrer},()=>{
-				console.log(this.state.chat_id);
+	
+			let chat_id=this.props.location.chat_id.chat_id;
+			let mainUser=this.props.location.chat_id.mainUser;
+			let invitedUser=this.props.location.chat_id.invitedUser;
+			this.setState({...this.state,chat_id,mainUser,invitedUser},()=>{
+				console.log(this.state);
 				this.socket = io('http://localhost:5000');
 				//escucho en mi id
 				this.socket.on(this.state.chat_id, (msg)=> {
@@ -49,7 +55,7 @@ export default class ChatWindow extends React.Component {
 		this.setState({
 			input:'',
 			messages: [...this.state.messages, {msg,type:'me'}]
-		}, ()=> this.socket.emit('message',{msg, timestamp:Date.now(),chat_id:this.state.chat_id}));
+		}, ()=> this.socket.emit('message',{msg, timestamp:Date.now(),chat_id:this.state.chat_id,mainUser:this.state.mainUser,invitedUser:this.state.invitedUser}));
         
 	}
     

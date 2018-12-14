@@ -3,7 +3,7 @@ import axios from "axios";
 export default class BuddiesService {
     constructor() {
         let service = axios.create({
-            baseURL: "http://localhost:5000/buddies",
+            baseURL: `${process.env.REACT_APP_API_URL}/buddies`,
             withCredentials: true
         });
         this.service = service;

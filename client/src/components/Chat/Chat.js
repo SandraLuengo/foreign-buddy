@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
 import BuddiesService from "../BuddiesServer/BuddiesService"
+import ChatService from "../ChatServer/ChatService"
 import TabBar from "../TabBar";
 
 export default class Chat extends Component {
@@ -10,10 +11,12 @@ export default class Chat extends Component {
     this.state = {
       user: null,
       redirect: false,
-      buddies:''
+      chatUsers:'',
+      chat_id:''
     };
     this.authService = new AuthService();
     this.buddiesService = new BuddiesService();
+    this.chatService = new ChatService();
   }
   logOut = () => {
     this.authService.logout().then(user => {
@@ -35,31 +38,55 @@ export default class Chat extends Component {
   };
 
   getChatData = user => {
-    this.buddiesService.getBuddies(user)
-    .then(buddies=>{
-      this.setState({ ...this.state, buddies });
+    this.buddiesService.getChatUsers(user)
+    .then(chatUsers=>{
+      this.setState({ ...this.state, chatUsers });
     })
   }
 
   openChat = (e,id) => {
-    let path = `/newChat/${id}`;
-    this.props.history.push(path)
-    console.log(id)
-  }
+  
+    this.chatService.createChatRoom(this.state.user._id,id)
+    .then(chat_id=>{
+      this.setState({...this.state,chat_id:chat_id.chat[0]._id})
+
+    })
+  };
+
 
   render() {
-    return this.state.user && !this.state.redirect  && this.state.buddies ? (
+ 
+    return this.state.user && !this.state.redirect && !this.state.chat_id ? (
       <div>
         <h1>Chats</h1>
-        {this.state.buddies.map(buddy=> <div onClick={e=>this.openChat(e,buddy._id)} style={{backgroundColor:'red'}}><div>{buddy.username}</div><div>{buddy._id}</div></div>)}
+        {this.state.chatUsers?this.state.chatUsers.map(user=> <div onClick={e=>this.openChat(e,user._id)} style={{backgroundColor:'red'}}><div>{user.username}</div><div>{user._id}</div></div>):<div>No hay chats</div>}
         <div className="welcomBody">
           <TabBar/>
         </div>
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />
-    ) : (
-      <p>Load</p>
+    ) : this.state.chat_id?<Redirect to={{pathname: '/newChat', chat_id: { referrer: this.state.chat_id }}}/>:(
+        <p>Load</p>
     );
   }
 }
+/*
+if(user && !redirigir)
+{
+  muestra pagina
+}
+else if(redirect)
+{
+  redirecciono a raiz
+}
+else if(chat_id)
+{
+  redirecciona a chat windiw
+}
+else
+{
+  load
+}
+
+*/

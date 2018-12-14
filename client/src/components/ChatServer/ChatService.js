@@ -11,11 +11,18 @@ export default class ChatService {
 
     getMessages = state => {
         return this.service
-            .post("/getMessages", {
+            .get("/getMessages", {
                 state
             })
             .then(response => response.data);
     };
-
+    createChatRoom = (mainUser, invitedUser) => {
+        return this.service
+            .post("/createChatRoom", {
+                mainUser,
+                invitedUser
+            })
+            .then(response => response.data);
+    }
 
 }

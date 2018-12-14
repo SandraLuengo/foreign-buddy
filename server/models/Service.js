@@ -7,7 +7,8 @@ const serviceSchema = new Schema({
   type:String,
   image:String,
   company_name:String,
-  address:String
+  address:String,
+  city:String
 
 }, {
     timestamps: {

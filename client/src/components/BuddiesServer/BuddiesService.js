@@ -9,10 +9,10 @@ export default class BuddiesService {
         this.service = service;
     }
 
-    getBuddies = user => {
-        console.log('getBuddies')
+    getChatUsers = user => {
+        //console.log(user)
         return this.service
-            .post("/getMybuddies", {
+            .post("/getChatUsers", {
                 user
             })
             .then(response => response.data);

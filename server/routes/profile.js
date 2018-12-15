@@ -57,7 +57,17 @@ profileRouter.post("/editDescription", (req, res, next) => {
 });
 
 profileRouter.post("/editInterests", (req, res, next) => {
-  //Cuando se complete esta parte se crearan los buddies -->Necesitamos recibir el usuario completo
+  console.log(req.body.interests)
+  console.log(req.body.user._id)
+  console.log(req.body.user.rol)
+  //actualizar user con sus intereses
+  //generar buddies
+
+  // Tank.findByIdAndUpdate(id, { $set: { size: 'large' }}, { new: true }, function (err, tank) {
+  //   if (err) return handleError(err);
+  //   res.send(tank);
+  // });
+
 });
 
 profileRouter.post("/editBasic", (req, res, next) => {

@@ -1,12 +1,12 @@
 .welcomBody {
-    height: 50vh;
+    /* height: 50vh; */
     background-color: rgb(144, 228, 172);
     display: flex;
     align-items: flex-end;
 }
 
 .tabBar {
-    background-color: white;
+    background-color: rgb(144, 228, 172);
     width: 100%;
 }
 
@@ -15,6 +15,9 @@
     list-style: none;
     justify-content: space-around;
     padding: 0;
-    margin-bottom: 10%;
 }
 
+.tabBar a{
+    color: white;
+    text-decoration: none;
+}

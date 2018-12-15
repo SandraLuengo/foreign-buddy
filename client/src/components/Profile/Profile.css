@@ -1,0 +1,34 @@
+.basicInformation,.interests,.photo {
+    border:solid 1px grey;
+    margin-bottom: 2%;
+    padding: 2% 0;
+}
+
+.interestList button {
+    pointer-events: none;
+    cursor: default;
+}
+
+.interestListActive button {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* .interestActive button {
+    pointer-events: auto;
+    cursor: pointer;
+} */
+
+.saveInterest {
+    display: none;
+}
+
+.photo img{
+    border-radius: 50%;
+    max-width: 20%;
+    border:solid 1px grey;
+}
+
+.interestActive {
+    background-color: rgba(134, 255, 215, 0.671);
+}

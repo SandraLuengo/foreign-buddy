@@ -11,7 +11,7 @@
     "socket.io-client": "^2.1.1"
   },
   "scripts": {
-    "start": "dotenv -e environments/.env.production react-scripts start",
+    "start": "dotenv -e environments/.env.development react-scripts start",
     "build-dev": "dotenv -e environments/.env.development react-scripts build",
     "build-prod": "dotenv -e environments/.env.production react-scripts build",
     "build": "react-scripts build",

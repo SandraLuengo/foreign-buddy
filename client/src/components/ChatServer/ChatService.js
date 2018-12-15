@@ -9,10 +9,11 @@ export default class ChatService {
         this.service = service;
     }
 
-    getMessages = state => {
+    getMessages = id_chat => {
+        console.log(`llamamos a getMessages: ${id_chat}`)
         return this.service
-            .get("/getMessages", {
-                state
+            .post("/getMessages", {
+                id_chat
             })
             .then(response => response.data);
     };

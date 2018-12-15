@@ -9,15 +9,19 @@ module.exports = (io) => {
   io.on('connection', (socket) => {
     console.log(`A user connected with id: ${socket.id}`);
     socket.on('message', (data) => {
-      //console.log(data)
       messageStorage(data)
-      socket.broadcast.emit(data.chat_id, data);
+        .then(allMsg => {
+          console.log(`allMessages: ${allMsg}`)
+          console.log(data)
+          socket.broadcast.emit(data.chat_id, allMsg);
+        })
+     
+      
     });
   });
 };
 
 function messageStorage(data) {
-  console.log(data)
   mongoose
     .connect(process.env.DB_URL, {
       useNewUrlParser: true
@@ -28,9 +32,25 @@ function messageStorage(data) {
     .catch((err) => {
       console.error('Error connecting to mongo', err);
     });
-  msg = data.msg;
-  chat_id = data.chat_id
-  console.log(msg, chat_id)
-  let newMessage = new Message();
+  message = data.msg;
+  chat_Id = data.chat_id;
+  author_Id = data.mainUser;
+  let newMessage = new Message({
+    author_Id,
+    chat_Id,
+    message
+  });
+  return newMessage.save()
+    .then(() => {
+      return Message.find({
+          chat_Id
+        })
+        .then(allMessages => {
+          return allMessages;
+        })
+    })
+    .catch(err => {
+      console.log(`error al crear un nuevo mensaje ${err}`)
+    })
 
 }

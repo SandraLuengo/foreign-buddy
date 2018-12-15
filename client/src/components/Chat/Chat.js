@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
-import BuddiesService from "../BuddiesServer/BuddiesService"
-import ChatService from "../ChatServer/ChatService"
+import BuddiesService from "../BuddiesServer/BuddiesService";
+import ChatService from "../ChatServer/ChatService";
 import TabBar from "../TabBar";
 
 export default class Chat extends Component {

@@ -1,0 +1,13 @@
+.mainUser {
+    background-color: rgba(110, 110, 255, 0.623);
+    margin-left: 80%;
+    width: 60px;
+    margin-bottom: 3%;
+}
+
+.invitedUser {
+    background-color: rgba(0, 128, 0, 0.562);
+    margin-left: 2%;
+    width: 60px;
+    margin-bottom: 3%;
+}

@@ -22,8 +22,6 @@ export default class Profile extends Component {
     this.authService
       .loggedin()
       .then(user => {
-        console.log("Loged In");
-        console.log(user);
         this.setState({ ...this.state, user });
       })
       .catch(err => {

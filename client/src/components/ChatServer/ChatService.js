@@ -26,4 +26,12 @@ export default class ChatService {
             .then(response => response.data);
     }
 
+    getChatUsers = user => {
+        //console.log(user)
+        return this.service
+            .post("/getChatUsers", {
+                user
+            })
+            .then(response => response.data);
+    };
 }

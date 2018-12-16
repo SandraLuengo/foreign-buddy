@@ -68,13 +68,14 @@ export default class Profile extends Component {
         <h1> {this.state.user.rol} </h1> */}
         
         <div className="photo">
-          <img src={this.state.user.image!==''?this.state.user.image:'https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}/>
+          <img src={this.state.user.image}/>
           <br/>
           <button onClick={e=>{this.editPhoto(e)}}>Edit</button>
         </div>
         <div className="basicInformation">
           <h3>{this.state.user.username}</h3>
           <p>{this.state.user.email}</p>
+          <p>{this.state.user.rol}</p>
           <p>{this.state.user.rol=='user'?this.state.user.destination_country:this.state.user.buddy_country}</p>
           <p>{this.state.user.rol=='user'?this.state.user.destination_city:this.state.user.buddy_city}</p>
           <button onClick={e=>{this.editBasic(e)}}>Edit</button>

@@ -10,7 +10,6 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      rol: "",
       redirect: false
     };
 
@@ -52,11 +51,6 @@ export default class Login extends Component {
             name="password"
             onChange={e => this.handleChange(e)}
           />
-          <select onChange={e => this.handleChange(e)} name="rol">
-          <option value="">Choose your rol</option>
-            <option value="user">User</option>
-            <option value="buddy">Buddy</option>
-          </select>
           <button type="submit"> Login </button>
         </form>
       </div>

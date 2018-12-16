@@ -2,6 +2,8 @@ const express = require('express');
 const chatRouter = express.Router();
 const Message = require("../models/Message");
 const Chat = require("../models/Chat");
+const User = require("../models/User");
+const Buddy = require("../models/Buddy");
 
 chatRouter.post("/getMessages", (req, res) => {
 
@@ -65,5 +67,55 @@ chatRouter.post("/createChatRoom", (req, res) => {
 
 })
 
+
+
+chatRouter.post("/getChatUsers", (req, res) => {
+  console.log(req.body.user)
+  findUsers(req.body.user)
+    .then(buddies => {
+      res.status(200).json(buddies)
+    })
+});
+
+
+
+function findUsers(newUser) {
+
+    if (newUser.rol == 'user') {
+      return Buddy.find({
+          rol: "buddy",
+          buddy_city: newUser.destination_city,
+          spoken_languages: {
+            $in: newUser.spoken_languages
+          }
+        })
+        .then(buddies => {
+          return buddies;
+        })
+        .catch(err => {
+          console.log("ERROR finding buddies!");
+          return "";
+        });
+    } else {
+      
+      return User.find({
+          rol: "user",
+          destination_city: newUser.buddy_city,
+          spoken_languages: {
+            $in: newUser.spoken_languages
+          }
+        })
+        .then(users => {
+          console.log(users)
+          return users;
+        })
+        .catch(err => {
+          console.log("ERROR finding users!");
+          return "";
+        });
+    }
+  
+  }
+  
 
 module.exports = chatRouter;

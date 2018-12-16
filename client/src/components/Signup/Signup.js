@@ -43,6 +43,9 @@ export default class Signup extends Component {
               email: " ",
               password: " ",
               gender:" ",
+              day:" ",
+              month: " ",
+              year: " ",
               destination_country: " ",
               destination_city: " ",
               origin_country: " ",
@@ -59,6 +62,7 @@ export default class Signup extends Component {
     });
   };
   handleChange = e => {
+
     const { name, value } = e.target;
     this.setState({
       [name]: value

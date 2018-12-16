@@ -17,15 +17,48 @@ buddiesRouter.get("/getAllProfesional", (req, res) => {
 });
 
 
-//Ñapa solo para probar el chat
-
-buddiesRouter.post("/getChatUsers", (req, res) => {
+buddiesRouter.post("/getBuddies",(req,res)=>{
   findUsers(req.body.user)
-    .then(buddies => {
-      res.status(200).json(buddies)
-    })
-});
+  .then(buddies => {
+    res.status(200).json(buddies)
+  })
+})
 
+buddiesRouter.post("/addNewBuddy",(req,res)=>{
+  console.log(req.body.id)
+  console.log(req.body.currentUser)
+  if(req.body.currentUser.rol=='user'){
+    User.findByIdAndUpdate({_id:req.body.currentUser._id},{$push:{buddies:{id:req.body.id,state:false}}})
+    .then(addedBuddy=> res.status(200).json(addedBuddy))
+    .catch(err =>  res.status(500).json({
+      message: 'Error adding buddy',
+    }))
+  }else{
+    Buddy.findByIdAndUpdate({_id:req.body.id},{$push:{users:{id:req.body.currentUser._id,state:false}}})
+    .then(addedUser=> res.status(200).json(addedUser))
+    .catch(err =>  res.status(500).json({
+      message: 'Error adding user',
+    }))
+  }
+})
+
+buddiesRouter.post("/deleteBuddy",(req,res)=>{
+  // console.log(req.body.id)
+  // console.log(req.body.currentUser)
+  // if(req.body.currentUser.rol=='user'){
+  //   User.findByIdAndUpdate({_id:req.body.currentUser._id},{$push:{buddies:req.body.id}})
+  //   .then(addedBuddy=> res.status(200).json(addedBuddy))
+  //   .catch(err =>  res.status(500).json({
+  //     message: 'Error adding buddy',
+  //   }))
+  // }else{
+  //   Buddy.findByIdAndUpdate({_id:req.body.id},{$push:{users:req.body.currentUser._id}})
+  //   .then(addedUser=> res.status(200).json(addedUser))
+  //   .catch(err =>  res.status(500).json({
+  //     message: 'Error adding user',
+  //   }))
+  // }
+})
 
 function findUsers(newUser) {
 

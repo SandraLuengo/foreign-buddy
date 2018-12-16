@@ -29,7 +29,7 @@ export default class Chat extends Component {
       .loggedin()
       .then(user => {
         this.setState({ ...this.state, user },()=>{
-          this.getChatData(user)
+        this.getChatData(user)
         })
       })
       .catch(err => {
@@ -38,7 +38,7 @@ export default class Chat extends Component {
   };
 
   getChatData = user => {
-    this.buddiesService.getChatUsers(user)
+    this.chatService.getChatUsers(user)
     .then(chatUsers=>{
       this.setState({ ...this.state, chatUsers });
     })

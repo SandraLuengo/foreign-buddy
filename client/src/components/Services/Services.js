@@ -10,7 +10,8 @@ export default class Services extends Component {
     this.state = {
       user: null,
       redirect: false,
-      services: ""
+      services: "",
+      newService:false
     };
 
     this.authService = new AuthService();
@@ -41,12 +42,19 @@ export default class Services extends Component {
     });
   };
 
+  newService = e => {
+    //this.props.history.push('/new-service');
+    console.log('entro');
+    this.setState({...this.state,newService:true})
+  }
+
   render() {
     console.log(this.state.services);
     return this.state.user && !this.state.redirect && this.state.services ? (
       <div>
         <h1>Services</h1>
         <div>
+          <button onClick={e=>this.newService(e)}><strong>Add New</strong></button>
           {this.state.services.map(service => {
             return (
               <div>
@@ -64,7 +72,7 @@ export default class Services extends Component {
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />
-    ) : (
+    ) : this.state.newService?<Redirect to="/new-service" user={this.state.user}/>: (
       <p>Load</p>
     );
   }

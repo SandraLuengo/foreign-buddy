@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import Chat from './components/Chat';
 import Services from './components/Services';
+import NewService from './components/NewService';
 import ChatWindow from './components/ChatWindow';
 import Buddies from './components/Buddies';
 import { Switch, Route } from 'react-router-dom';
@@ -23,6 +24,7 @@ class App extends Component {
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/profile" component={Profile} />
 					<Route path="/newChat" component={ChatWindow} />
+					<Route exact path="/new-service" component={NewService}/>
 					<Route exact path="/chat" component={Chat} />
 					<Route exact path="/buddies" component={Buddies} />
 					<Route exact path="/services" component={Services} />

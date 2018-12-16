@@ -8,33 +8,66 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 authRoutes.post('/login', (req, res, next) => {
-  passport.authenticate(req.body.rol, (err, user, failureDetails) => {
-    console.log(user);
-    if (err) {
-      res.status(500).json({
-        message: 'Error in the authentication',
-      });
-      return;
-    }
-    if (!user) {
-      res.status(500).json(failureDetails);
-      return;
-    }
+  getRol(req.body.email)
+    .then(rol => {
+      //console.log(rol)
+      passport.authenticate(rol, (err, user, failureDetails) => {
+        console.log(user);
+        if (err) {
+          res.status(500).json({
+            message: 'Error in the authentication',
+          });
+          return;
+        }
+        if (!user) {
+          res.status(500).json(failureDetails);
+          return;
+        }
 
-    req.login(user, (error) => {
-      if (error) {
-        res.status(500).json({
-          message: 'Error in the authentication',
+        req.login(user, (error) => {
+          if (error) {
+            res.status(500).json({
+              message: 'Error in the authentication',
+            });
+            return;
+          }
+          res.status(200).json(
+            user
+          );
         });
-        return;
-      }
-      res.status(200).json(
-        user
-      );
-    });
-  })(req, res, next);
+      })(req, res, next);
+    })
+    .catch(err=>console.log(err))
+
+
 });
 
+function getRol(email){
+  console.log(email)
+  return User.find({
+    email: email
+  })
+  .then(user => {
+    if (user.length <= 0) {
+      console.log(user)
+      console.log(`email: ${email}` )
+      return Buddy.find({
+          email: email
+        })
+        .then(user => {
+          console.log(user)
+          if (user.length > 0) {
+            return 'buddy'
+          }
+        })
+        .catch(err => console.log(err))
+    } else {
+      return 'user';
+    }
+  })
+  .catch(err => console.log(`error al buscar user en login ${err}`))
+
+}
 
 authRoutes.post('/signup', (req, res) => {
   var userData = {};
@@ -76,9 +109,13 @@ authRoutes.post('/signup', (req, res) => {
       return;
     }
 
+    let age = `${userData.day}-${userData.month}-${userData.year}`
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(userData.password, salt);
-    const newUserData = Object.assign(userData,{password: hashPass});
+    const newUserData = Object.assign(userData, {
+      password: hashPass,
+      age: age
+    });
     const newUser = new modelName(newUserData);
 
     newUser.save((er) => {

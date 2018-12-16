@@ -30,6 +30,11 @@ export default class Form1 extends Component {
 					placeholder="Password"
 					onChange={e => this.props.handleChange(e)}
 				/>
+				<div>
+					<input type="text" name="day" placeholder="Day"  onChange={e => this.props.handleChange(e)} />
+					<input type="text" name="month" placeholder="Month"  onChange={e => this.props.handleChange(e)} />
+					<input type="text" name="year" placeholder="Year"  onChange={e => this.props.handleChange(e)} />
+				</div>
 				<select onChange={e => this.props.handleChange(e)} name="gender">
 					<option value="">Select gender</option>
 					<option value="male">Male</option>

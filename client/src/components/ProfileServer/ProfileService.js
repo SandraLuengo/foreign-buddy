@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export default class ProfileService {
     constructor() {
         let service = axios.create({
@@ -9,22 +10,29 @@ export default class ProfileService {
         this.service = service;
     }
 
-    postPhoto = photo => {
+    postPhoto = (file, id,rol) => {
+        const formData = new FormData();
+        formData.append('picture', file);
+        formData.append('id', id);
+        formData.append('rol', rol);
+        console.log(formData)
         return this.service
-            .post("/upload_photo", {
-                photo
+            .post("/upload_photo", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             })
             .then(response => response.data);
     };
 
-    editInterests = (interests,user) => {
+    editInterests = (interests, user) => {
         console.log(interests)
         return this.service
-        .post("/editInterests",{
-            interests,
-            user
-        })
-        .then(response => response.data)
+            .post("/editInterests", {
+                interests,
+                user
+            })
+            .then(response => response.data)
     }
 
 }

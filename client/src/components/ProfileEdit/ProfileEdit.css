@@ -1,0 +1,14 @@
+.photo img{
+    border-radius: 50%;
+    max-width: 20%;
+    border:solid 1px grey;
+}
+
+textarea {
+    width: 95%;
+    height: 60px;
+}
+
+.birth input {
+    width: 30%
+}

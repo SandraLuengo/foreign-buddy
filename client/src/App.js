@@ -4,6 +4,8 @@ import HomePage from './components/HomePage';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Profile from './components/Profile';
+import ProfileEdit from './components/ProfileEdit';
+import ProfileInterests from './components/ProfileInterests';
 import Chat from './components/Chat';
 import Services from './components/Services';
 import NewService from './components/NewService';
@@ -23,6 +25,8 @@ class App extends Component {
 					<Route exact path="/signup" component={Signup} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/profile" component={Profile} />
+					<Route exact path="/edit-profile" component={ProfileEdit} />
+					<Route exact path="/edit-interests" component={ProfileInterests} />
 					<Route path="/newChat" component={ChatWindow} />
 					<Route exact path="/new-service" component={NewService}/>
 					<Route exact path="/chat" component={Chat} />

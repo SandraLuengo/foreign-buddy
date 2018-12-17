@@ -22,7 +22,6 @@ export default class Signup extends Component {
       buddy_city: "",
       buddy_country: "",
       rol: "",
-      image: "",
       interests: "",
       description: "",
       redirect: false,

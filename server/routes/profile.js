@@ -4,14 +4,16 @@ const parser = require("../configs/cloudinary");
 const Buddy = require("../models/Buddy");
 const User = require("../models/User");
 
-profileRouter.post("/upload_photo", parser.single("image"), (req, res) => {
-  //ROL ID IMAGEN
+profileRouter.post("/upload_photo", parser.single("picture"), (req, res) => {
+  console.log(req.body.id)
+  console.log(req.body.rol)
   let model = "";
   if (req.body.rol == "user") {
     model = User;
   } else {
     model = Buddy;
   }
+  console.log('SANDRAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
   model
     .findOneAndUpdate(
       {
@@ -21,7 +23,9 @@ profileRouter.post("/upload_photo", parser.single("image"), (req, res) => {
         image: req.file.url
       }
     )
-    .then(() => {
+    .then(user => {
+      console.log(user)
+      console.log('FOTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
       res.json({
         success: true,
         image: req.file.url

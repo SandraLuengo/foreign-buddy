@@ -42,6 +42,7 @@ buddiesRouter.post("/addNewBuddy", (req, res) => {
   if (req.body.currentUser.rol == 'user') {
     User.findByIdAndUpdate({
         _id: req.body.currentUser._id
+
       }, {
         $set: {
           buddies: {
@@ -50,24 +51,24 @@ buddiesRouter.post("/addNewBuddy", (req, res) => {
           }
         }
       })
-      .then(addedBuddy => res.status(200).json(addedBuddy))
+      .then(addedBuddy => {
+        Buddy.findByIdAndUpdate({
+            _id: req.body.id
+          }, {
+            $push: {
+              users: {
+                id: req.body.currentUser._id,
+                state: true
+              }
+            }
+          })
+          .then(addedUser => res.status(200).json(addedUser))
+          .catch(err => res.status(500).json({
+            message: 'Error adding user',
+          }))
+      })
       .catch(err => res.status(500).json({
         message: 'Error adding buddy',
-      }))
-  } else {
-    Buddy.findByIdAndUpdate({
-        _id: req.body.id
-      }, {
-        $push: {
-          users: {
-            id: req.body.currentUser._id,
-            state: false
-          }
-        }
-      })
-      .then(addedUser => res.status(200).json(addedUser))
-      .catch(err => res.status(500).json({
-        message: 'Error adding user',
       }))
   }
 })

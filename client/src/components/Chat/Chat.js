@@ -71,22 +71,3 @@ export default class Chat extends Component {
     );
   }
 }
-/*
-if(user && !redirigir)
-{
-  muestra pagina
-}
-else if(redirect)
-{
-  redirecciono a raiz
-}
-else if(chat_id)
-{
-  redirecciona a chat windiw
-}
-else
-{
-  load
-}
-
-*/

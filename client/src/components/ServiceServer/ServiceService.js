@@ -9,13 +9,13 @@ export default class ServiceService {
         this.service = service;
     }
 
-    getServices = state => {
-        console.log('pepito')
+    getPlaces = (user, place) => {
         return this.service
-            .get("/getServices", {
-                state
+            .post("/getServices", {
+                user,
+                place
             })
-            .then(response => response.data);
+            .then(response => response.data)
     };
 
 

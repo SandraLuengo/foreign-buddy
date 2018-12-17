@@ -5,10 +5,13 @@ const Chat = require("../models/Chat");
 const User = require("../models/User");
 const Buddy = require("../models/Buddy");
 
+
+var buddiesArray = [];
+
 chatRouter.post("/getMessages", (req, res) => {
 
     let chat_Id = req.body.id_chat;
-//, null,{ limit: 10 }
+    //, null,{ limit: 10 }
     Message.find({
             chat_Id
         })
@@ -70,52 +73,86 @@ chatRouter.post("/createChatRoom", (req, res) => {
 
 
 chatRouter.post("/getChatUsers", (req, res) => {
-  console.log(req.body.user)
-  findUsers(req.body.user)
-    .then(buddies => {
-      res.status(200).json(buddies)
-    })
+    //   console.log(req.body.user)
+    //   findUsers(req.body.user)
+    //     .then(buddies => {
+    //       res.status(200).json(buddies)
+    //     })
+    if (req.body.user.rol == 'user') {
+        User.findById(req.body.user._id)
+            .then(userData => {
+                buddiesArray = [];
+                userData.buddies.forEach(item => {
+                    console.log(item)
+                    if (item.state == true) {
+                        Buddy.findById(item.id)
+                            .then(buddy => {
+                                buddiesArray.push(buddy)
+                            })
+                    }
+                })
+                console.log(buddiesArray)
+            })
+        
+        res.status(200).json(buddiesArray)
+    } else {
+        Buddy.findById(req.body.user._id)
+            .then(userData => {
+                buddiesArray = [];
+                userData.users.forEach(item => {
+                    if (item.state == true) {
+                        User.findById(item.id)
+                            .then(user => {
+                                buddiesArray.push(user)
+                            })
+                    }
+                })
+            })
+        res.status(200).json(buddiesArray)
+
+    }
+
 });
 
 
 
-function findUsers(newUser) {
+// function findUsers(newUser) {
 
-    if (newUser.rol == 'user') {
-      return Buddy.find({
-          rol: "buddy",
-          buddy_city: newUser.destination_city,
-          spoken_languages: {
-            $in: newUser.spoken_languages
-          }
-        })
-        .then(buddies => {
-          return buddies;
-        })
-        .catch(err => {
-          console.log("ERROR finding buddies!");
-          return "";
-        });
-    } else {
-      
-      return User.find({
-          rol: "user",
-          destination_city: newUser.buddy_city,
-          spoken_languages: {
-            $in: newUser.spoken_languages
-          }
-        })
-        .then(users => {
-          console.log(users)
-          return users;
-        })
-        .catch(err => {
-          console.log("ERROR finding users!");
-          return "";
-        });
-    }
-  
-  }
-  
+//     if (newUser.rol == 'user') {
+//       return Buddy.find({
+//           rol: "buddy",
+//           buddy_city: newUser.destination_city,
+//           spoken_languages: {
+//             $in: newUser.spoken_languages
+//           }
+//         })
+//         .then(buddies => {
+//           return buddies;
+//         })
+//         .catch(err => {
+//           console.log("ERROR finding buddies!");
+//           return "";
+//         });
+//     } else {
+
+//       return User.find({
+//           rol: "user",
+//           destination_city: newUser.buddy_city,
+//           spoken_languages: {
+//             $in: newUser.spoken_languages
+//           }
+//         })
+//         .then(users => {
+//           console.log(users)
+//           return users;
+//         })
+//         .catch(err => {
+//           console.log("ERROR finding users!");
+//           return "";
+//         });
+//     }
+
+//   }
+
 
 module.exports = chatRouter;

@@ -11,6 +11,7 @@ import Services from './components/Services';
 import NewService from './components/NewService';
 import ChatWindow from './components/ChatWindow';
 import Buddies from './components/Buddies';
+import SpecificService from './components/SpecificService';
 import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -32,6 +33,11 @@ class App extends Component {
 					<Route exact path="/chat" component={Chat} />
 					<Route exact path="/buddies" component={Buddies} />
 					<Route exact path="/services" component={Services} />
+					<Route exact path="/museums" component={SpecificService} />
+					<Route exact path="/local" component={SpecificService} />
+					<Route exact path="/shops" component={SpecificService} />
+					<Route exact path="/places" component={SpecificService} />
+					<Route exact path="/restaurants" component={SpecificService} />
 				</Switch>
 			</div>
 		);

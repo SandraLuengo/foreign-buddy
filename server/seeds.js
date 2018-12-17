@@ -1,6 +1,11 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const Service = require('./models/Service');
+const Locales = require('./models/Locales');
+const Museos = require('./models/Museos');
+const Restaurantes = require('./models/Restaurantes');
+const Sitios = require('./models/Sitios');
+const Tiendas = require('./models/Tiendas');
+
 
 mongoose
   .connect(process.env.DB_URL, { useNewUrlParser: true })
@@ -11,76 +16,59 @@ mongoose
     console.error('Error connecting to mongo', err);
   });
 
-const services = [
+const locales = [
 
     {
-        tite:"Plumber",
-        description:"un gran fontanero lo super recomiendo",
-        type:"plumber",
-        image:"https://img.icons8.com/ios/1600/plumber.png",
-        company_name:"Super Plumbers",
-        address:"Calle del Hierro,23"
+        name:'Sandra',
+        type:'Pub',
+        address:'Sandra, 45',
+        city:'Berlin'
     },
     {
-        tite:"Plumber",
-        description:"El mejor fontanero de la ciudad",
-        type:"plumber",
-        image:"https://img.icons8.com/ios/1600/plumber.png",
-        company_name:"Plumberinos",
-        address:"Calle Aluminio,34"
+        name:'Angel',
+        type:'Night club',
+        address:'Angel 56',
+        city:'Berlin'
     },
     {
-        tite:"Electrical technician",
-        description:"Me encanto este electricista",
-        type:"electrical technician",
-        image:"https://image.flaticon.com/icons/svg/81/81652.svg",
-        company_name:"Chispas",
-        address:"Calle Amapola,56"
-    },
-    {
-        tite:"Electrical technician",
-        description:"Unos grandes profesionales",
-        type:"electrical technician",
-        image:"https://image.flaticon.com/icons/svg/81/81652.svg",
-        company_name:"Tormentosos",
-        address:"Avenida de la Rosa,34"
-    },
-    {
-        tite:"Locksmith",
-        description:"Menos mal que es un cerrajero 24h",
-        type:"locksmith",
-        image:"https://cdn3.iconfinder.com/data/icons/door-installation-repair-service/64/door-lock-repair-locksmith-10-512.png",
-        company_name:"Abre-Todo",
-        address:"Calle de la Cifra,45"
-    },
-    {
-        tite:"Locksmith",
-        description:"Los mejores cerrajeros de la ciudad",
-        type:"locksmith",
-        image:"https://cdn3.iconfinder.com/data/icons/door-installation-repair-service/64/door-lock-repair-locksmith-10-512.png",
-        company_name:"24h cerrajeros",
-        address:"Calle de la Memoria,78"
-    },
-    {
-        tite:"Doctor",
-        description:"Una gran doctora",
-        type:"doctor",
-        image:"https://cdn2.vectorstock.com/i/1000x1000/93/96/doctor-icon-medical-consultation-male-physician-vector-18769396.jpg",
-        company_name:"Dientes",
-        address:"Avenida mariposas,45"
-    },
-    {
-        tite:"Doctor",
-        description:"Los mejores profesionales de la zona",
-        type:"doctor",
-        image:"https://cdn2.vectorstock.com/i/1000x1000/93/96/doctor-icon-medical-consultation-male-physician-vector-18769396.jpg",
-        company_name:"Cura Pupas",
-        address:"Avenida Margarita,78"
+        name:'Jorge',
+        type:'Lounge',
+        address:'Jorge 32',
+        city:'Berlin'
     }
 ];
 
-Service.create(services, (err) => {
+const museos = [
+
+    {
+        name:'Plantas',
+        type:'Modern',
+        address:'Plantas, 45',
+        city:'Berlin'
+    },
+    {
+        name:'Cuencos',
+        type:'Classic',
+        address:'Cuencos 56',
+        city:'Berlin'
+    },
+    {
+        name:'Recipe',
+        type:'Alternative',
+        address:'Recipe 32',
+        city:'Berlin'
+    }
+];
+
+Locales.create(locales, (err) => {
     if (err) { throw (err) }
-    console.log(`Created ${services.length} books`)
+    console.log(`Created ${locales.length} locales`)
     mongoose.connection.close()
 });
+
+Museos.create(museos, (err) => {
+    if (err) { throw (err) }
+    console.log(`Created ${museos.length} locales`)
+    mongoose.connection.close()
+});
+

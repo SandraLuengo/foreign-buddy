@@ -91,10 +91,12 @@ profileRouter.post("/editInterests", (req, res, next) => {
 
 //Rellenamos el array de buddies, que luego se consultara desde buddies
 
+//Esto vale para users pero no para buddies
+
 
 function findBuddy(newUser,res) {
 
-  if (newUser.buddy_gender != '' && newUser.interests.length > 0 && newUser.buddies.length == 0) {
+  if (newUser.rol=='user' && newUser.buddy_gender != '' && newUser.interests.length > 0 && newUser.buddies.length == 0) {
     return Buddy.find({
         buddy_city: newUser.destination_city,
         spoken_languages: {
@@ -117,7 +119,7 @@ function generateBuddiesArray(newUser, buddies) {
 
   let buddiesArray=[];
 
-  if(buddies.length>10){
+  if(buddies.length>3){
     let buddy=orderBuddiesArray(buddies)
     buddy.forEach(buddy=>{
       buddiesArray .push({id:buddy._id,state:false})

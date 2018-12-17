@@ -24,29 +24,42 @@ export default class ProfileInterests extends Component {
         this.authService
             .loggedin()
             .then(user => {
-            this.setState({ ...this.state, user });
+            this.setState({ ...this.state, user },()=>{
+                this.state.user.interests.map(interest=>{
+                    var element = document.getElementsByName(interest);
+                    element[0].classList.toggle("interestActive");
+                })
+            });
             })
             .catch(err => {
             console.log(err);
             });
     };
-    editInterests = e =>{
-        document.querySelector('.interestList').className='interestListActive';
-        document.querySelector('.saveInterest').style.display = "block";
-    }
-
     addInterest = e => {
+       
         var element = document.getElementsByName(e.target.name);
         element[0].classList.toggle("interestActive");
         let interestsArray = this.state.interests;
         interestsArray.push(e.target.name);
-        this.setState({...this.state,interests:interestsArray})
+        this.setState({...this.state,interests:interestsArray},()=>{
+        })
     }
 
     saveInterests = e => {
+        let arrayInterest = [];
+        // if(this.state.interests.length!==0){
+        //     Object.values(document.getElementsByClassName("interestActive")).map(item=>arrayInterest.push(item)) 
+        // }else{
+        //     this.state.interests=this.state.user.interests; 
+        // }
+        Object.values(document.getElementsByClassName("interestActive")).map(item=>arrayInterest.push(item.value))
+        console.log(arrayInterest)
         this.profileService
-        .editInterests(this.state.interests,this.state.user)
-        .then(resp=>console.log('guardado correctamente en la bbdd'))
+        .editInterests(arrayInterest,this.state.user)
+        .then(resp=>{
+            console.log('SAVE')
+            this.props.history.push('/profile');
+        })
         .catch(err=>console.log(err))
     }
 	render() {
@@ -62,8 +75,9 @@ export default class ProfileInterests extends Component {
 						<button className="" name='science' value="science" onClick={e=>{this.addInterest(e);}}>Science</button>
 					</div>
 					<br/>
-					<button onClick={e=>{this.editInterests(e);}}>Edit</button>
 					<button className="saveInterest" onClick={e=>{this.saveInterests(e);}}>Save</button>
+                    <br/>
+                    <Link to='/profile'>Completar en otro momento</Link>
 				</div>
 				<div className="welcomBody">
 					<TabBar />

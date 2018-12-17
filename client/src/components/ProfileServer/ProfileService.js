@@ -25,14 +25,24 @@ export default class ProfileService {
             .then(response => response.data);
     };
 
-    editInterests = (interests, user) => {
-        console.log(interests)
+    editProfileData = (user, description,age,language1,language2,buddy_gender) => {
         return this.service
-            .post("/editInterests", {
-                interests,
-                user
+            .post("/editProfileData", {
+                user,
+                description,
+                age,
+                language1,
+                language2,
+                buddy_gender
             })
             .then(response => response.data)
     }
 
+    editInterests = (interests,user) =>{
+        return this.service
+        .post("/editInterests",{
+            interests,
+            user
+        }).then(response => response.data)
+    }
 }

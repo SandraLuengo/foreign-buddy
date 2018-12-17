@@ -5,27 +5,21 @@ const Buddy = require("../models/Buddy");
 const User = require("../models/User");
 
 profileRouter.post("/upload_photo", parser.single("picture"), (req, res) => {
-  console.log(req.body.id)
-  console.log(req.body.rol)
+
   let model = "";
   if (req.body.rol == "user") {
     model = User;
   } else {
     model = Buddy;
   }
-  console.log('SANDRAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+
   model
-    .findOneAndUpdate(
-      {
-        _id: req.body.id
-      },
-      {
-        image: req.file.url
-      }
-    )
+    .findOneAndUpdate({
+      _id: req.body.id
+    }, {
+      image: req.file.url
+    })
     .then(user => {
-      console.log(user)
-      console.log('FOTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
       res.json({
         success: true,
         image: req.file.url
@@ -34,144 +28,118 @@ profileRouter.post("/upload_photo", parser.single("picture"), (req, res) => {
     .catch(err => console.log(err));
 });
 
-profileRouter.post("/editDescription", (req, res, next) => {
-  const { id, rol, description } = req.body;
-  let model = "";
-  if (rol == "user") {
+profileRouter.post("/editProfileData", (req, res, next) => {
+
+  let spoken_languages = [req.body.language1, req.body.language2];
+  if (req.body.user.rol == "user") {
     model = User;
   } else {
     model = Buddy;
   }
-  model
-    .findOneAndUpdate(
-      {
-        _id: id
-      },
-      {
-        description
+  model.updateMany({
+      _id: req.body.user._id
+    }, {
+      $set: {
+        description: req.body.description,
+        age: req.body.age,
+        spoken_languages,
+        buddy_gender: req.body.buddy_gender
       }
-    )
-    .then(() => {
-      res.json({
-        success: true,
-        description
-      });
     })
-    .catch(err => console.log(err));
+    .then(user => {
+      if (model == User) {
+        findBuddy(req.body.user)
+          // .then(() => res.status(200).json(user))
+          // .catch(err => res.status(500).json({
+          //   message: 'Error creating buddies array',
+          // }))
+      }
+    })
+    .catch(err => console.log(err))
+
+
 });
 
 profileRouter.post("/editInterests", (req, res, next) => {
-  console.log(req.body.interests)
-  console.log(req.body.user._id)
-  console.log(req.body.user.rol)
-  //actualizar user con sus intereses
-  //generar buddies
 
-  // Tank.findByIdAndUpdate(id, { $set: { size: 'large' }}, { new: true }, function (err, tank) {
-  //   if (err) return handleError(err);
-  //   res.send(tank);
-  // });
-
-});
-
-profileRouter.post("/editBasic", (req, res, next) => {
-  if (req.body.rol == "user") {
-    const {
-      id,
-      rol,
-      username,
-      email,
-      password,
-      destination_country,
-      destination_city,
-      origin_country
-    } = req.body;
-    User.updateMany(
-      {
-        _id: id
-      },
-      {
-        username,
-        email,
-        password,
-        destination_country,
-        destination_city,
-        origin_country
-      }
-    )
-      .then(() => {
-        res.json({
-          success: true,
-          username,
-          email,
-          password,
-          destination_country,
-          destination_city,
-          origin_country
-        });
-      })
-      .catch(err => console.log(err));
+  if (req.body.user.rol == "user") {
+    model = User;
   } else {
-    const {
-      id,
-      rol,
-      username,
-      email,
-      password,
-      buddy_city,
-      buddy_country
-    } = req.body;
-    Buddy.updateMany(
-      {
-        _id: id
-      },
-      {
-        username,
-        email,
-        password,
-        buddy_city,
-        buddy_country
-      }
-    )
-      .then(() => {
-        res.json({
-          success: true,
-          username,
-          email,
-          password,
-          buddy_city,
-          buddy_country
-        });
-      })
-      .catch(err => console.log(err));
+    model = Buddy;
   }
+  model.findOneAndUpdate({
+      _id: req.body.user._id
+    }, {
+      $set: {
+        interests: req.body.interests
+      }
+    })
+    .then(() => {
+      if (model == User) {
+        findBuddy(req.body.user,res)
+          .then(user => res.status(200).json(user))
+          .catch(err => {
+            console.log(err)
+            res.status(500).json({
+            message: 'Error creating buddies array',
+          })})
+      }
+
+    })
+    .catch(err => console.log(err))
 });
 
-function findBuddy(newUser) {
-  return User.find({
-    rol: "buddy",
-    destination_city: newUser.destination_city,
-    spoken_languages: {
-      $in: newUser.spoken_languages
-    }
-  })
-    .then(buddies => {
-      //console.log(buddies + 'buddies encontrados')
-      if (buddies.length > 10) {
-        User.find({
-          rol: "buddy",
-          destination_city: newUser.destination_city,
-          spoken_languages: {
-            $in: newUser.spoken_languages
-          }
-        }).then(buddies=> buddies)
-      }
-      return buddies;
-    })
-    .catch(err => {
-      console.log("ERROR!");
-      return "";
-    });
+//Rellenamos el array de buddies, que luego se consultara desde buddies
+
+
+function findBuddy(newUser,res) {
+
+  if (newUser.buddy_gender != '' && newUser.interests.length > 0 && newUser.buddies.length == 0) {
+    return Buddy.find({
+        buddy_city: newUser.destination_city,
+        spoken_languages: {
+          $in: newUser.spoken_languages
+        }
+      })
+      .then(buddies => {
+        return generateBuddiesArray(newUser, buddies);
+      })
+      .catch(err => {
+        res.status(500).json({
+          message: 'Error creating buddies array',
+        })
+      });
+  }
+  res.status(200).json(newUser)
 }
+
+function generateBuddiesArray(newUser, buddies) {
+
+  let buddiesArray=[];
+
+  if(buddies.length>10){
+    let buddy=orderBuddiesArray(buddies)
+    buddy.forEach(buddy=>{
+      buddiesArray .push({id:buddy._id,state:false})
+    })
+  }else{
+    buddies.forEach(buddy=>{
+      buddiesArray .push({id:buddy._id,state:false})
+    })
+  } 
+  console.log(buddiesArray)
+  return User.findByIdAndUpdate({
+    _id:newUser._id
+  },{buddies:buddiesArray})
+  .then(user=>{
+    console.log(user)
+    return user;
+  })
+}
+
+function orderBuddiesArray(buddies){
+
+}
+
 
 module.exports = profileRouter;

@@ -55,7 +55,7 @@ export default class Profile extends Component {
           <button>Settings</button>
         </div>
         <div className="interestsInformation">
-          <div>{this.state.user.interests}</div>
+          {this.state.user.interests?this.state.user.interests.map(item=><div>{item}</div>):<p></p>}
           <button onClick={this.editInterests}>Add interests</button>
         </div>
         <div className="description">

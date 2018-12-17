@@ -22,7 +22,8 @@ export default class ProfileEdit extends Component {
             spoken_languages1:'',
             spoken_languages2:'',
             description:'',
-            friends:''
+            friends:'',
+            edit:''
         };
 
         this.authService = new AuthService();
@@ -71,6 +72,25 @@ export default class ProfileEdit extends Component {
                 this.setState({...this.state, user:newUser});
             });
         }  
+        let age = `${this.state.day}-${this.state.month}-${this.state.year}`;
+        
+        if(!this.state.spoken_languages1){
+            this.state.spoken_languages1=this.state.user.spoken_languages[0];
+        }
+        if(!this.state.spoken_languages2){
+            this.state.spoken_languages2=this.state.user.spoken_languages[1];
+        }
+         if(!this.state.friends){
+            this.state.friends=this.state.user.buddy_gender;
+        }
+        if(!this.state.description){
+            console.log(this.state.description)
+            this.state.description=this.state.user.description;
+        }
+        this.profileService.editProfileData(this.state.user,this.state.description,age,this.state.spoken_languages1,this.state.spoken_languages2,this.state.friends).then(user=>{
+                console.log('entro');
+                this.props.history.push('/profile');
+        })
     }
 
 	render() {
@@ -118,14 +138,16 @@ export default class ProfileEdit extends Component {
                         })}
                     </select>
                 </div>
-                <div>
+                {this.state.user.rol=='user'?<div>
                     <p>I like to make friends with</p>
                     <select name="friends" onChange={e => this.handleChange(e)}>
+                        <option>{this.state.user.buddy_gender}</option>
                         <option>Girls and Boys</option>
                         <option>Girls</option>
                         <option>Boys</option>
                     </select>
-                </div>
+                </div>:<p></p>}
+                
                 <div>
                     <br/>
                     <button type="submit" onClick={e=>this.save(e)}>Save</button>

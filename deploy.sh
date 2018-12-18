@@ -1,4 +1,5 @@
-cd client
+#!/bin/bash
+cd client/
 npm run build-prod
 cd ..
 rm -rf server/public

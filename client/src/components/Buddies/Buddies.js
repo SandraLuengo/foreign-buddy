@@ -22,7 +22,6 @@ export default class Buddies extends Component {
     });
   };
 
-  //Esto no tira bien
   componentDidMount () {
     this.authService
       .loggedin()
@@ -42,9 +41,11 @@ export default class Buddies extends Component {
     this.buddiesService.addNewBuddy(e.target.value,this.state.user)
     .then(user=>{
       this.setState({...this.state,user},()=>{
+        console.log(this.state.user)
         this.buddiesService.getBuddies(user)
         .then(buddies => {
             this.setState({ ...this.state, buddies },()=>{
+              console.log(this.state.buddies)
             });
         });
       }) 
@@ -53,6 +54,7 @@ export default class Buddies extends Component {
   }
 
   render() {
+    console.log(this.state.buddies)
     return this.state.user && !this.state.redirect && this.state.buddies ? (
       <div>
         <div className="navBuddy">

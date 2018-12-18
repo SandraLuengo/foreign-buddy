@@ -17,14 +17,6 @@ export default class BuddiesService {
             .then(response => response.data);
     }
 
-    getBuddiesTask = user => {
-        return this.service
-            .post("/getBuddiesTask", {
-                user
-            })
-            .then(response => response.data);
-    }
-
     addNewBuddy = (id, currentUser) => {
         return this.service
             .post("/addNewBuddy", {
@@ -34,12 +26,4 @@ export default class BuddiesService {
             .then(response =>response.data)
     }
 
-    deleteBuddy = (id, currentUser) => {
-        return this.service
-            .post("/deleteBuddy", {
-                id,
-                currentUser
-            })
-            .then(response => response.data)
-    }
 }

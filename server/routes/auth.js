@@ -7,9 +7,7 @@ const Buddy = require("../models/Buddy");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-const {
-  getRol
-} = require('../utils/authFunctions');
+const { getRol } = require('../utils/authFunctions');
 
 authRoutes.post('/login', (req, res, next) => {
 

@@ -62,7 +62,7 @@ chatRouter.post("/getChatUsers", (req, res) => {
         let arr = item.map((item)=> opositeModel.findById(item.id));
         return Promise.all(arr).then(res=>res)
     })
-    .then((buddiesArray)=>{console.log(buddiesArray); res.status(200).json(buddiesArray)})   
+    .then((buddiesArray)=> res.status(200).json(buddiesArray))   
     });
 
 

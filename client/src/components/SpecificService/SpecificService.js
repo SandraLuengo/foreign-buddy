@@ -75,8 +75,8 @@ export default class SpecificService extends Component {
 					</select>
 				</div>
 				{this.props.location.state.place?<h1>{this.props.location.state.place}</h1>:''}
-				{this.state.services.map(item=>{
-					return <div>
+				{this.state.services.map((item,i)=>{
+					return <div key={i}>
 						<h2>{item.name}</h2>
 						<div>{item.type}</div>
 						<div>{item.address}, {item.city}</div>

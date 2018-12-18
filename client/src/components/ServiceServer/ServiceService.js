@@ -18,5 +18,14 @@ export default class ServiceService {
             .then(response => response.data)
     };
 
+    getServicesFilter = (user,place,filter) => {
+        return this.service 
+            .post("/getServicesFilter",{
+                user,
+                place,
+                filter
+            })
+            .then(response => response.data)
+    }
 
 }

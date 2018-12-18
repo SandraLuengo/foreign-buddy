@@ -30,12 +30,9 @@ profileRouter.post("/upload_photo", parser.single("picture"), (req, res) => {
 
 profileRouter.post("/editProfileData", (req, res, next) => {
 
+  let mode='';
   let spoken_languages = [req.body.language1, req.body.language2];
-  if (req.body.user.rol == "user") {
-    model = User;
-  } else {
-    model = Buddy;
-  }
+  (req.body.user.rol == "user") ? model = User : model = Buddy;
   model.updateMany({
       _id: req.body.user._id
     }, {
@@ -48,11 +45,7 @@ profileRouter.post("/editProfileData", (req, res, next) => {
     })
     .then(user => {
       if (model == User) {
-        findBuddy(req.body.user)
-          // .then(() => res.status(200).json(user))
-          // .catch(err => res.status(500).json({
-          //   message: 'Error creating buddies array',
-          // }))
+        findBuddy(req.body.user,res)
       }
     })
     .catch(err => console.log(err))
@@ -76,17 +69,19 @@ profileRouter.post("/editInterests", (req, res, next) => {
     })
     .then(() => {
       if (model == User) {
-        findBuddy(req.body.user,res)
-          .then(user => res.status(200).json(user))
+        findBuddy(req.body.user, res)
+          .then(user => {
+            res.status(200).json(user)})
           .catch(err => {
-            console.log(err)
+            console.log(1)
             res.status(500).json({
-            message: 'Error creating buddies array',
-          })})
+              message: 'Error creating buddies array',
+            })
+          })
       }
 
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(2))
 });
 
 //Rellenamos el array de buddies, que luego se consultara desde buddies
@@ -94,9 +89,11 @@ profileRouter.post("/editInterests", (req, res, next) => {
 //Esto vale para users pero no para buddies
 
 
-function findBuddy(newUser,res) {
+const findBuddy = (newUser, res) => {
 
-  if (newUser.rol=='user' && newUser.buddy_gender != '' && newUser.interests.length > 0 && newUser.buddies.length == 0) {
+  console.log(res)
+
+  if (newUser.rol == 'user' && newUser.buddy_gender != '' && newUser.interests.length > 0 && newUser.buddies.length == 0) {
     return Buddy.find({
         buddy_city: newUser.destination_city,
         spoken_languages: {
@@ -104,42 +101,32 @@ function findBuddy(newUser,res) {
         }
       })
       .then(buddies => {
-        return generateBuddiesArray(newUser, buddies);
+        let buddiesArray = [];
+        buddies.forEach(buddy => {
+          buddiesArray.push({
+            id: buddy._id,
+            state: false
+          })
+        })
+        User.findByIdAndUpdate({
+            _id: newUser._id
+          }, {
+            buddies: buddiesArray
+          })
+          .then(user => {
+            res.status(200).json(user)
+          })
+          .catch(err => console.log('pppppppp'))
       })
       .catch(err => {
+        console.log(3)
         res.status(500).json({
           message: 'Error creating buddies array',
         })
       });
-  }
-  res.status(200).json(newUser)
-}
-
-function generateBuddiesArray(newUser, buddies) {
-
-  let buddiesArray=[];
-
-  if(buddies.length>3){
-    let buddy=orderBuddiesArray(buddies)
-    buddy.forEach(buddy=>{
-      buddiesArray .push({id:buddy._id,state:false})
-    })
   }else{
-    buddies.forEach(buddy=>{
-      buddiesArray .push({id:buddy._id,state:false})
-    })
-  } 
-  console.log(buddiesArray)
-  return User.findByIdAndUpdate({
-    _id:newUser._id
-  },{buddies:buddiesArray})
-  .then(user=>{
-    console.log(user)
-    return user;
-  })
-}
-
-function orderBuddiesArray(buddies){
+    res.status(200).json(newUser)
+  }
 
 }
 

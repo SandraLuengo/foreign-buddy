@@ -24,12 +24,15 @@ export default class Chat extends Component {
     });
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.authService
       .loggedin()
       .then(user => {
         this.setState({ ...this.state, user },()=>{
-        this.getChatData(user)
+          this.chatService.getChatUsers(user)
+          .then(chatUsers=>{
+            this.setState({ ...this.state, chatUsers });
+          })
         })
       })
       .catch(err => {
@@ -37,12 +40,6 @@ export default class Chat extends Component {
       });
   };
 
-  getChatData = user => {
-    this.chatService.getChatUsers(user)
-    .then(chatUsers=>{
-      this.setState({ ...this.state, chatUsers });
-    })
-  }
 
   openChat = (e,id) => {
   

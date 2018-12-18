@@ -91,6 +91,7 @@ export default class ProfileEdit extends Component {
                 console.log('entro');
                 this.props.history.push('/profile');
         })
+        .catch(err=>console.log(err))
     }
 
 	render() {

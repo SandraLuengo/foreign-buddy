@@ -47,11 +47,7 @@ export default class ProfileInterests extends Component {
 
     saveInterests = e => {
         let arrayInterest = [];
-        // if(this.state.interests.length!==0){
-        //     Object.values(document.getElementsByClassName("interestActive")).map(item=>arrayInterest.push(item)) 
-        // }else{
-        //     this.state.interests=this.state.user.interests; 
-        // }
+
         Object.values(document.getElementsByClassName("interestActive")).map(item=>arrayInterest.push(item.value))
         console.log(arrayInterest)
         this.profileService
@@ -60,7 +56,7 @@ export default class ProfileInterests extends Component {
             console.log('SAVE')
             this.props.history.push('/profile');
         })
-        .catch(err=>console.log(err))
+        .catch(err=>this.props.history.push('/profile'))
     }
 	render() {
 		return this.state.user?(

@@ -9,7 +9,8 @@ export default class SpecificService extends Component {
 		this.state={
 			user:null,
 			place:'',
-			services:''
+			services:'',
+			filter:''
 		}
 
 		this.authService = new AuthService();
@@ -23,6 +24,7 @@ export default class SpecificService extends Component {
 			this.setState({ ...this.state, user }, () => {
 				this.setState({...this.state,place:this.props.location.state.place},()=>{
 					this.getServices();
+					this.getAllFilters();
 				})
 			});
 		  })
@@ -34,21 +36,42 @@ export default class SpecificService extends Component {
 	getServices = () => {
 		this.serviceServer.getPlaces(this.state.user,this.state.place)
 		.then(services=>{
-			this.setState({...this.state,services})
+			this.setState({...this.state,services},()=>{
+				this.getAllFilters();
+			})
 		})
 		.catch(err=>console.log(err))
 	}
 
+	putFilter = e => {
+		this.serviceServer.getServicesFilter(this.state.user,this.state.place,e.target.value)
+		.then(services=>{
+			this.setState({...this.state,services})
+		})
+	}
+
+	getAllFilters = () => {
+		
+		let filters=[];
+
+		Object.values(this.state.services).map(service=>filters.push(service.type));
+
+		let uniqueArray = filters.filter((item, pos, self)=>self.indexOf(item) == pos);
+
+		this.setState({...this.state,filter:uniqueArray})
+	}
+
 	render() {
-		return this.state.user && this.state.place && this.state.services?(
+		return this.state.user && this.state.place && this.state.services &&this.state.filter?(
 			<div>
 				<Link to="/services">Places</Link>
 				<br/>
 				<Link to='/newPlace'>Add New</Link>
 				<div>
 					<div>Filtro</div>
-					<select>
-						<option></option>
+					<select name='filter' onChange={e=>this.putFilter(e)}>
+						<option key='-1' value='all'>All</option>
+						{this.state.filter.map((filtro,key)=><option key={key} value={filtro}>{filtro}</option>)}
 					</select>
 				</div>
 				{this.props.location.state.place?<h1>{this.props.location.state.place}</h1>:''}

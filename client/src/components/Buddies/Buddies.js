@@ -28,7 +28,9 @@ export default class Buddies extends Component {
       .loggedin()
       .then(user => {
         this.setState({ ...this.state, user }, () => {
-          this.getBuddiesData(user);
+          this.buddiesService.getBuddies(user).then(buddies => {
+            this.setState({ ...this.state, buddies });
+          });
         });
       })
       .catch(err => {
@@ -36,24 +38,31 @@ export default class Buddies extends Component {
       });
   };
 
-  getBuddiesData = user => {
-    this.buddiesService.getBuddies(user).then(buddies => {
-      console.log('holaaaaa')
-      console.log(buddies)
-     
-      this.setState({ ...this.state, buddies });
-    });
-  };
-
   generateBuddy = e => {
-    this.buddiesService.addNewBuddy(e.target.value,this.state.user).then(user=>{
-      // console.log(user)
-      // let selectedBuddy=user.buddies[user.buddies.length-1].id;
-      // console.log(selectedBuddy)     
+    this.buddiesService.addNewBuddy(e.target.value,this.state.user)
+    .then(user=>{
+      console.log('...........BIEN....................')
+      console.log(user)
+      console.log('...............................')
+      this.setState({...this.state,user},()=>{
+        this.buddiesService.getBuddies(user)
+        .then(buddies => {
+            console.log('*******************')
+            console.log(buddies)
+            console.log('*******************')
+            this.setState({ ...this.state, buddies },()=>{
+              console.log('---------------')
+              console.log(this.state.buddies)
+              console.log('-----------------')
+            });
+        });
+      }) 
     })
+    .catch(err=>console.log(err))
   }
 
   render() {
+    // console.log(this.state)
     return this.state.user && !this.state.redirect && this.state.buddies ? (
       <div>
         <div className="navBuddy">
@@ -61,6 +70,7 @@ export default class Buddies extends Component {
           <p>Task Buddies</p>
         </div>
         {this.state.user.rol=='user'?this.state.buddies.map(buddy=>{
+          console.log(buddy)
           return  <div className="buddyPanel">
             <div><img className="buddiesImg" src={buddy.image}/></div>
             <div><strong>{buddy.username} {buddy.surname}</strong></div>

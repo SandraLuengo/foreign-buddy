@@ -56,7 +56,7 @@ export default class SpecificService extends Component {
 
 		Object.values(this.state.services).map(service=>filters.push(service.type));
 
-		let uniqueArray = filters.filter((item, pos, self)=>self.indexOf(item) == pos);
+		let uniqueArray = filters.filter((item, pos, self)=>self.indexOf(item) === pos);
 
 		this.setState({...this.state,filter:uniqueArray})
 	}

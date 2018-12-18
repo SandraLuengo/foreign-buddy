@@ -7,12 +7,15 @@ const Buddy = require("../models/Buddy");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+const {
+  getRol
+} = require('../utils/authFunctions');
+
 authRoutes.post('/login', (req, res, next) => {
+
   getRol(req.body.email)
     .then(rol => {
-      //console.log(rol)
       passport.authenticate(rol, (err, user, failureDetails) => {
-        console.log(user);
         if (err) {
           res.status(500).json({
             message: 'Error in the authentication',
@@ -37,37 +40,8 @@ authRoutes.post('/login', (req, res, next) => {
         });
       })(req, res, next);
     })
-    .catch(err=>console.log(err))
-
-
+    .catch(err => console.log(err))
 });
-
-function getRol(email){
-  console.log(email)
-  return User.find({
-    email: email
-  })
-  .then(user => {
-    if (user.length <= 0) {
-      console.log(user)
-      console.log(`email: ${email}` )
-      return Buddy.find({
-          email: email
-        })
-        .then(user => {
-          console.log(user)
-          if (user.length > 0) {
-            return 'buddy'
-          }
-        })
-        .catch(err => console.log(err))
-    } else {
-      return 'user';
-    }
-  })
-  .catch(err => console.log(`error al buscar user en login ${err}`))
-
-}
 
 authRoutes.post('/signup', (req, res) => {
   var userData = {};
@@ -75,21 +49,14 @@ authRoutes.post('/signup', (req, res) => {
 
   for (const prop in req.body.state) {
     if (req.body.state.rol == 'user') {
-      if (prop !== 'buddy_city' && prop !== 'buddy_country') {
-        userData[prop] = req.body.state[prop];
-      }
-      modelName = User;
+      (prop !== 'buddy_city' && prop !== 'buddy_country') ? userData[prop] = req.body.state[prop]: modelName = User;
     } else {
-      if (prop != 'destination_city' && prop != 'destination_country' && prop != 'origin_country') {
-        userData[prop] = req.body.state[prop];
-      }
-      modelName = Buddy;
+      (prop != 'destination_city' && prop != 'destination_country' && prop != 'origin_country') ? userData[prop] = req.body.state[prop]: modelName = Buddy;
     }
   }
+
   let emptyElemnts = Object.keys(userData).map(prop => {
-    if (prop === '' && prop !== 'image' && prop !== 'interests' && prop !== 'description') {
-      return true
-    }
+    return (prop === '' && prop !== 'image' && prop !== 'interests' && prop !== 'description')
   });
 
   if (emptyElemnts.includes(true)) {
@@ -157,7 +124,5 @@ authRoutes.get('/loggedin', (req, res) => {
     message: 'Unauthorized',
   });
 });
-
-
 
 module.exports = authRoutes;

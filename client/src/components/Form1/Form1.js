@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import Buttom from '../Buttom';
 import './Form1.css';
 
 export default class Form1 extends Component {
-	constructor() {
-		super();
-	}
-
 	render() {
 		return (
 			<div className="form1">
@@ -18,7 +13,7 @@ export default class Form1 extends Component {
 					onChange={e => this.props.handleChange(e)}
 				/>
 				<input
-					type="text"
+					type="text"t
 					name="surname"
 					placeholder="Surname"
 					onChange={e => this.props.handleChange(e)}

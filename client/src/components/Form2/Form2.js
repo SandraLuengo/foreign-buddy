@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Buttom from "../Buttom";
 import './Form2.css'
 
 export default class Form2 extends Component {

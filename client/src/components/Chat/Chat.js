@@ -56,7 +56,7 @@ export default class Chat extends Component {
     return this.state.user && !this.state.redirect && !this.state.chat_id ? (
       <div>
         <h1>Chats</h1>
-        {this.state.chatUsers?this.state.chatUsers.map(user=> <div onClick={e=>this.openChat(e,user._id)} style={{backgroundColor:'red'}}><div>{user.username}</div><div>{user._id}</div></div>):<div>No hay chats</div>}
+        {this.state.chatUsers?this.state.chatUsers.map((user, i)=> <div key={i} onClick={e=>this.openChat(e,user._id)} style={{backgroundColor:'red'}}><div>{user.username}</div><div>{user._id}</div></div>):<div>No hay chats</div>}
         <div className="welcomBody">
           <TabBar/>
         </div>

@@ -6,30 +6,23 @@ const User = require("../models/User");
 const Buddy = require("../models/Buddy");
 
 
-var buddiesArray = [];
+let buddiesArray = [];
 
 chatRouter.post("/getMessages", (req, res) => {
 
-    let chat_Id = req.body.id_chat;
-    //, null,{ limit: 10 }
     Message.find({
-            chat_Id
+            chat_Id:req.body.id_chat
         })
-        .then(messages => {
-            res.status(200).json(messages)
-        })
-        .catch(err => res.status(500).json({
-            message: 'Error in the authentication',
-        }))
+        .then(messages => {res.status(200).json(messages)})
+        .catch(err => res.status(500).json({message: 'Error in the authentication',}))
 
 });
 
 
 chatRouter.post("/createChatRoom", (req, res) => {
-    const {
-        mainUser,
-        invitedUser
-    } = req.body;
+
+    const { mainUser, invitedUser } = req.body;
+
     Chat.find({
             $or: [{
                 mainUser: mainUser,
@@ -40,119 +33,37 @@ chatRouter.post("/createChatRoom", (req, res) => {
             }]
         })
         .then(chat => {
+
             if (chat.length > 0) {
-                console.log('abrimos chat');
-                res.status(200).json({
-                    chat
-                });
-                return;
+                return res.status(200).json({ chat });
             } else {
-                console.log('Creamos un nuevo chat');
-                let myChat = new Chat({
-                    mainUser,
-                    invitedUser
-                });
+                let myChat = new Chat({ mainUser, invitedUser });
                 return myChat.save()
-                    .then(chat => {
-                        res.status(200).json({
-                            chat
-                        });
+                    .then(chat => {res.status(200).json({chat});
                     })
-                    .catch(err => {
-                        console.log('error al crear chat');
-                    })
+                    .catch(err => res.status(500).json({message: 'Error in the authentication',}))
             }
         })
-        .catch(err => {
-            console.log('error al buscar chat');
-        })
-
-
+        .catch(err => res.status(500).json({message: 'Error in the authentication',}))
 })
 
 
-
 chatRouter.post("/getChatUsers", (req, res) => {
-    //   console.log(req.body.user)
-    //   findUsers(req.body.user)
-    //     .then(buddies => {
-    //       res.status(200).json(buddies)
-    //     })
-    if (req.body.user.rol == 'user') {
-        User.findById(req.body.user._id)
-            .then(userData => {
-                buddiesArray = [];
-                userData.buddies.forEach(item => {
-                    console.log(item)
-                    if (item.state == true) {
-                        Buddy.findById(item.id)
-                            .then(buddy => {
-                                buddiesArray.push(buddy)
-                            })
-                    }
-                })
-                console.log(buddiesArray)
-            })
-        
-        res.status(200).json(buddiesArray)
-    } else {
-        Buddy.findById(req.body.user._id)
-            .then(userData => {
-                buddiesArray = [];
-                userData.users.forEach(item => {
-                    if (item.state == true) {
-                        User.findById(item.id)
-                            .then(user => {
-                                buddiesArray.push(user)
-                            })
-                    }
-                })
-            })
-        res.status(200).json(buddiesArray)
 
-    }
+    let model = req.body.user.rol === "user" ? User : Buddy;
+    let opositeModel = req.body.user.rol === "user" ? Buddy : User ;
+    let userRol = req.body.user.rol === "user" ? 'buddies' : 'users';
 
-});
-
-
-
-// function findUsers(newUser) {
-
-//     if (newUser.rol == 'user') {
-//       return Buddy.find({
-//           rol: "buddy",
-//           buddy_city: newUser.destination_city,
-//           spoken_languages: {
-//             $in: newUser.spoken_languages
-//           }
-//         })
-//         .then(buddies => {
-//           return buddies;
-//         })
-//         .catch(err => {
-//           console.log("ERROR finding buddies!");
-//           return "";
-//         });
-//     } else {
-
-//       return User.find({
-//           rol: "user",
-//           destination_city: newUser.buddy_city,
-//           spoken_languages: {
-//             $in: newUser.spoken_languages
-//           }
-//         })
-//         .then(users => {
-//           console.log(users)
-//           return users;
-//         })
-//         .catch(err => {
-//           console.log("ERROR finding users!");
-//           return "";
-//         });
-//     }
-
-//   }
+    model.findById(req.body.user._id)
+    .then(userData => {
+        return userData[userRol].filter(item => (item.state === true))
+    })
+    .then((item)=> {
+        let arr = item.map((item)=> opositeModel.findById(item.id));
+        return Promise.all(arr).then(res=>res)
+    })
+    .then((buddiesArray)=>{console.log(buddiesArray); res.status(200).json(buddiesArray)})   
+    });
 
 
 module.exports = chatRouter;

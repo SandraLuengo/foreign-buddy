@@ -15,29 +15,24 @@ buddiesRouter.get("/getAllProfesional", (req, res) => {
     .catch(err => res.status(500).json({
       message: 'Error in the authentication',
     }))
+
 });
 
 
 buddiesRouter.post("/getBuddies", (req, res) => {
- console.log(req.body.user)
+
   User.findById(req.body.user._id)
     .then(userData => {
-      buddiesArray = [];
-      userData.buddies.forEach(item => {
-        if (item.state == false) {
-          console.log('ENTROOOOOOOO'+item.id)
-          Buddy.findById(item.id)
-            .then(buddy => {
-              buddiesArray.push(buddy)
-            })
-        }
-      })
+      return userData.buddies.filter(item => item.state === false)
     })
-  res.status(200).json(buddiesArray)
+    .then((item) => {
+      let arr = item.map((item) => Buddy.findById(item.id));
+      return Promise.all(arr).then(res => res)
+    })
+    .then((buddiesArray) => res.status(200).json(buddiesArray))
 })
 
 buddiesRouter.post("/addNewBuddy", (req, res) => {
-
 
   if (req.body.currentUser.rol == 'user') {
     User.findByIdAndUpdate({
@@ -51,38 +46,30 @@ buddiesRouter.post("/addNewBuddy", (req, res) => {
             return Object.assign(item.state, item.state = true);
           }
         })
-        User.findByIdAndUpdate({
-            _id: req.body.currentUser._id
-          }, {
-            $set: {
-              buddies: addedBuddy.buddies
+
+        return User.findByIdAndUpdate({
+          _id: req.body.currentUser._id
+        }, {
+          $set: {
+            buddies: addedBuddy.buddies
+          }
+        })
+      })
+      .then(() => {
+        Buddy.findByIdAndUpdate({
+          _id: req.body.id
+        }, {
+          $push: {
+            users: {
+              id: req.body.currentUser._id,
+              state: true
             }
-          })
-          .then(user => {
-            
-            Buddy.findByIdAndUpdate({
-                _id: req.body.id
-              }, {
-                $push: {
-                  users: {
-                    id: req.body.currentUser._id,
-                    state: true
-                  }
-                }
-              })
-              .catch(err => res.status(500).json({
-                message: 'Error adding user',
-              }))
-              .catch(err => res.status(500).json({
-                message: 'Error adding buddy',
-              }))
-          })
-          res.status(200).json(addedBuddy)
+          }
+        })
       })
       .catch(err => res.status(500).json({
         message: 'Error adding buddy',
       }))
-      
   }
 })
 

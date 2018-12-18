@@ -31,7 +31,6 @@ export default class Services extends Component {
   }
 
   render() {
-    console.log(this.state.place);
     return this.state.user && !this.state.redirect && !this.state.place ? (
       <div>
         <h1>Places</h1>

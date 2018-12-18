@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AuthService from "../Auth/AuthService";
 import { Redirect } from "react-router-dom";
-import Buttom from "../Buttom";
 
 export default class Login extends Component {
   constructor() {

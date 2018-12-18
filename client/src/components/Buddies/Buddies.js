@@ -41,19 +41,10 @@ export default class Buddies extends Component {
   generateBuddy = e => {
     this.buddiesService.addNewBuddy(e.target.value,this.state.user)
     .then(user=>{
-      console.log('...........BIEN....................')
-      console.log(user)
-      console.log('...............................')
       this.setState({...this.state,user},()=>{
         this.buddiesService.getBuddies(user)
         .then(buddies => {
-            console.log('*******************')
-            console.log(buddies)
-            console.log('*******************')
             this.setState({ ...this.state, buddies },()=>{
-              console.log('---------------')
-              console.log(this.state.buddies)
-              console.log('-----------------')
             });
         });
       }) 
@@ -62,17 +53,15 @@ export default class Buddies extends Component {
   }
 
   render() {
-    // console.log(this.state)
     return this.state.user && !this.state.redirect && this.state.buddies ? (
       <div>
         <div className="navBuddy">
-          {this.state.user.rol=='user'?<p><strong>Socia Buddies</strong></p>:''}
+          {this.state.user.rol === 'user'?<p><strong>Socia Buddies</strong></p>:''}
           <p>Task Buddies</p>
         </div>
-        {this.state.user.rol=='user'?this.state.buddies.map(buddy=>{
-          console.log(buddy)
-          return  <div className="buddyPanel">
-            <div><img className="buddiesImg" src={buddy.image}/></div>
+        {this.state.user.rol === 'user'?this.state.buddies.map((buddy,i)=>{
+          return  <div key={i} className="buddyPanel">
+            <div><img className="buddiesImg" src={buddy.image} alt='img'/></div>
             <div><strong>{buddy.username} {buddy.surname}</strong></div>
             <div>{buddy.description}</div>
             <div><button name="buddy_id" id={buddy._id} value={buddy._id} onClick={e=>this.generateBuddy(e)}>Contact</button></div>

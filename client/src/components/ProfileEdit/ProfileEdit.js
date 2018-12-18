@@ -35,7 +35,6 @@ export default class ProfileEdit extends Component {
             .loggedin()
             .then(user => {
             this.setState({ ...this.state, user },()=>{
-                console.log(user)
                 let day=this.state.user.age.split('-')[0];
                 let month=this.state.user.age.split('-')[1];
                 let year=this.state.user.age.split('-')[2];
@@ -84,11 +83,9 @@ export default class ProfileEdit extends Component {
             this.state.friends=this.state.user.buddy_gender;
         }
         if(!this.state.description){
-            console.log(this.state.description)
             this.state.description=this.state.user.description;
         }
         this.profileService.editProfileData(this.state.user,this.state.description,age,this.state.spoken_languages1,this.state.spoken_languages2,this.state.friends).then(user=>{
-                console.log('entro');
                 this.props.history.push('/profile');
         })
         .catch(err=>console.log(err))
@@ -99,14 +96,14 @@ export default class ProfileEdit extends Component {
 			<div>
 				<Link to='profile'>Back</Link>
                 <div className="photo">
-                    <img src={this.state.user.image}/>
+                    <img src={this.state.user.image} alt=''/>
                     <br/>
                     <input type="file" onChange={e=>{this.editPhoto(e)}}/>
                 </div>
 
                 <div className="descriptionEdit">
                     <p>About</p>
-                    <textarea name='description' onChange={e=>{this.handleChange(e)}}>{this.state.user.description}</textarea>
+                    <textarea name='description' onChange={e=>{this.handleChange(e)}} defaultValue={this.state.user.description}></textarea>
                 </div>
 
                 <div className="birth">
@@ -124,8 +121,8 @@ export default class ProfileEdit extends Component {
                         size="1"
                         >
                         <option value={this.state.user.spoken_languages[0]}>{this.state.user.spoken_languages[0]}</option>
-                        {languages.map(language => {
-                            return <option value={language.name}> {language.name} </option>;
+                        {languages.map((language, i) => {
+                            return <option key={i} value={language.name}> {language.name} </option>;
                         })}
                     </select>
                     <select
@@ -134,12 +131,12 @@ export default class ProfileEdit extends Component {
                         size="1"
                         >
                         <option value={this.state.user.spoken_languages[1]}>{this.state.user.spoken_languages[1]}</option>
-                        {languages.map(language => {
-                            return <option value={language.name}> {language.name} </option>;
+                        {languages.map((language, i) => {
+                            return <option key={i} value={language.name}> {language.name} </option>;
                         })}
                     </select>
                 </div>
-                {this.state.user.rol=='user'?<div>
+                {this.state.user.rol === 'user'?<div>
                     <p>I like to make friends with</p>
                     <select name="friends" onChange={e => this.handleChange(e)}>
                         <option>{this.state.user.buddy_gender}</option>

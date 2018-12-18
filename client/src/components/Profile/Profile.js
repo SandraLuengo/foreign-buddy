@@ -48,14 +48,14 @@ export default class Profile extends Component {
     return this.state.user && !this.state.redirect ? (
       <div>
         <div className="photo">
-          <img src={this.state.user.image}/>
+          <img src={this.state.user.image} alt='img'/>
           <div><span><strong>{this.state.user.username} </strong></span><span><strong>{this.state.user.surname}</strong></span></div>
           <p>{this.state.user.rol}</p>
           <button onClick={this.editProfile}>Edit</button>
           <button>Settings</button>
         </div>
         <div className="interestsInformation">
-          {this.state.user.interests?this.state.user.interests.map(item=><div>{item}</div>):<p></p>}
+          {this.state.user.interests?this.state.user.interests.map((item, i)=><div key={i}>{item}</div>):<p></p>}
           <button onClick={this.editInterests}>Add interests</button>
         </div>
         <div className="description">

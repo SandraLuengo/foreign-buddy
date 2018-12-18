@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Buttom from "../Buttom";
 import "./Form3Buddy.css";
 import languages from "../../languages.json";
 import countries from "../../countries.json";
@@ -14,9 +13,7 @@ export default class Form3Buddy extends Component {
   getCities = e => {
     let cities = countries[`${e.target.value}`];
     let cities_name = [];
-    Object.values(cities).map(item => {
-      cities_name.push(item.city);
-    });
+    Object.values(cities).map(item => cities_name.push(item.city));
     this.setState({ ...this.state, cities: cities_name });
   };
 

@@ -25,10 +25,14 @@ export default class ProfileInterests extends Component {
             .loggedin()
             .then(user => {
             this.setState({ ...this.state, user },()=>{
+                console.log(this.state.user.interests.length)
+                if(this.state.user.interests.length>1){
                 this.state.user.interests.map(interest=>{
                     var element = document.getElementsByName(interest);
                     element[0].classList.toggle("interestActive");
+                    return ;
                 })
+                }
             });
             })
             .catch(err => {

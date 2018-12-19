@@ -18,9 +18,9 @@ export default class ServiceService {
             .then(response => response.data)
     };
 
-    getServicesFilter = (user,place,filter) => {
-        return this.service 
-            .post("/getServicesFilter",{
+    getServicesFilter = (user, place, filter) => {
+        return this.service
+            .post("/getServicesFilter", {
                 user,
                 place,
                 filter
@@ -28,4 +28,24 @@ export default class ServiceService {
             .then(response => response.data)
     }
 
+    newService = (place, name, address, city, type) => {
+
+        return this.service
+            .post("/newService", {
+                place,
+                name,
+                address,
+                city,
+                type
+            })
+            .then(response => response.data)
+    }
+
+    getTypes = (place) => {
+        return this.service
+            .post("/getTypes", {
+                place
+            })
+            .then(response => response.data)
+    }
 }

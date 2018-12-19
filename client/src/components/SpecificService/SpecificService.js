@@ -17,15 +17,15 @@ export default class SpecificService extends Component {
 		this.serviceServer = new ServiceServer();
 	}
 
+	//SACAR AL PADRE
+
 	componentWillMount = () => {
 		this.authService
 		  .loggedin()
 		  .then(user => {
-			this.setState({ ...this.state, user }, () => {
-				this.setState({...this.state,place:this.props.location.state.place},()=>{
-					this.getServices();
-					this.getAllFilters();
-				})
+			this.setState({ ...this.state, user, place:this.props.location.state.place }, () => {
+				this.getServices();
+				this.getAllFilters();
 			});
 		  })
 		  .catch(err => {
@@ -43,6 +43,14 @@ export default class SpecificService extends Component {
 		.catch(err=>console.log(err))
 	}
 
+	getAllFilters = () => {
+		
+		this.serviceServer.getTypes(this.state.place)
+		.then(types=>{
+			this.setState({...this.state,filter:types})
+		})
+	}
+
 	putFilter = e => {
 		this.serviceServer.getServicesFilter(this.state.user,this.state.place,e.target.value)
 		.then(services=>{
@@ -50,23 +58,14 @@ export default class SpecificService extends Component {
 		})
 	}
 
-	getAllFilters = () => {
-		
-		let filters=[];
-
-		Object.values(this.state.services).map(service=>filters.push(service.type));
-
-		let uniqueArray = filters.filter((item, pos, self)=>self.indexOf(item) === pos);
-
-		this.setState({...this.state,filter:uniqueArray})
-	}
 
 	render() {
 		return this.state.user && this.state.place && this.state.services &&this.state.filter?(
 			<div>
 				<Link to="/services">Places</Link>
 				<br/>
-				<Link to='/newPlace'>Add New</Link>
+				<Link  to={{ pathname:'/new-service', state:{ place: this.state.place }}}>Add New</Link>
+				
 				<div>
 					<div>Filtro</div>
 					<select name='filter' onChange={e=>this.putFilter(e)}>

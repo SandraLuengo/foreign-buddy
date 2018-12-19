@@ -5,6 +5,7 @@ const Sitios = require('../models/Sitios');
 const Tiendas = require('../models/Tiendas');
 
 function getModel(place) {
+
     switch (place) {
         case 'museums':
             return Museos;
@@ -40,4 +41,7 @@ function getAll(req, res, model) {
     }
 }
 
-module.exports = { getModel,getAll };
+module.exports = {
+    getModel,
+    getAll
+};

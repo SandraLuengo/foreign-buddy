@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
 import BuddiesService from "../BuddiesServer/BuddiesService";
 import ChatService from "../ChatServer/ChatService";
-import TabBar from "../TabBar";
 
 export default class Chat extends Component {
   constructor() {
@@ -57,9 +56,7 @@ export default class Chat extends Component {
       <div>
         <h1>Chats</h1>
         {this.state.chatUsers?this.state.chatUsers.map((user, i)=> <div key={i} onClick={e=>this.openChat(e,user._id)} style={{backgroundColor:'red'}}><div>{user.username}</div><div>{user._id}</div></div>):<div>No hay chats</div>}
-        <div className="welcomBody">
-          <TabBar/>
-        </div>
+
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />

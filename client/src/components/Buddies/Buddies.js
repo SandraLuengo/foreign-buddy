@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
 import BuddiesService from "../BuddiesServer/BuddiesService";
-import TabBar from "../TabBar";
 import "./Buddies.css"
 
 export default class Buddies extends Component {
@@ -54,7 +53,6 @@ export default class Buddies extends Component {
   }
 
   render() {
-    console.log(this.state.buddies)
     return this.state.user && !this.state.redirect && this.state.buddies ? (
       <div>
         <div className="navBuddy">
@@ -69,9 +67,7 @@ export default class Buddies extends Component {
             <div><button name="buddy_id" id={buddy._id} value={buddy._id} onClick={e=>this.generateBuddy(e)}>Contact</button></div>
           </div>
         }):<p></p>}
-        <div className="welcomBody">
-          <TabBar />
-        </div>
+        
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />

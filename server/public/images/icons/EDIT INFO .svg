@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>EDIT INFO </title>
+    <desc>Created with Sketch.</desc>
+    <g id="High---UserFlow----SANDRA" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01---Profile-" transform="translate(-86.000000, -305.000000)">
+            <g id="Nombre---info---settings" transform="translate(60.000000, 133.000000)">
+                <g id="Edit-Info" transform="translate(0.000000, 172.000000)">
+                    <g id="EDIT-INFO-" transform="translate(26.000000, 0.000000)">
+                        <circle id="Oval-Copy" fill="#E6E9E9" cx="12" cy="12" r="12"></circle>
+                        <g id="Editar-Copy" transform="translate(5.142857, 5.142857)" fill="#485A5A">
+                            <polygon id="Rectangle" transform="translate(11.756682, 2.144636) rotate(-45.008103) translate(-11.756682, -2.144636) " points="11.4247069 -0.288707735 12.049131 -0.283631105 12.0886562 4.57797889 11.4642321 4.57290226"></polygon>
+                            <path d="M0.224824356,13.0949309 L1.34894614,8.93640553 C1.37142857,8.82580645 1.46135831,8.73732719 1.57377049,8.71520737 C1.68618267,8.69308756 1.79859485,8.71520737 1.88852459,8.80368664 L4.9911007,11.8562212 C5.08103044,11.9447005 5.10351288,12.0552995 5.08103044,12.1658986 C5.05854801,12.2764977 4.96861827,12.364977 4.85620609,12.3870968 L0.629508197,13.4930876 C0.607025761,13.4930876 0.584543326,13.4930876 0.539578454,13.4930876 C0.449648712,13.4930876 0.382201405,13.4709677 0.314754098,13.4046083 C0.247306792,13.316129 0.20234192,13.20553 0.224824356,13.0949309 Z" id="Path"></path>
+                            <polygon id="Rectangle" transform="translate(9.038998, 7.726445) rotate(-45.000000) translate(-9.038998, -7.726445) " points="4.55343253 7.31088652 13.5183991 7.38377243 13.5245635 8.14200343 4.55959701 8.06911752"></polygon>
+                            <polygon id="Path" points="9.01545667 1.39354839 9.57751756 1.94654378 9.55503513 1.94654378 3.17002342 8.22857143 2.63044496 7.69769585"></polygon>
+                            <polygon id="Rectangle" transform="translate(7.585299, 6.273160) rotate(-44.995949) translate(-7.585299, -6.273160) " points="3.09941163 5.85757241 12.0650224 5.93046347 12.0711873 6.68874722 3.10557655 6.61585616"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

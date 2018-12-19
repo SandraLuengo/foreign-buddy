@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Shopping</title>
+    <desc>Created with Sketch.</desc>
+    <g id="High---UserFlow----SANDRA" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16_-Places" transform="translate(-32.000000, -342.000000)">
+            <g id="Shopping" transform="translate(32.000000, 342.000000)">
+                <circle id="Oval" fill="#F45A84" cx="64" cy="64" r="64"></circle>
+                <text font-family="Montserrat-Medium, Montserrat" font-size="15" font-weight="400" letter-spacing="-0.36">
+                    <tspan x="28.7725" y="98" fill="#FFFFFF">Shopping</tspan>
+                    <tspan x="99.2275" y="98" font-family="Montserrat-Regular, Montserrat" font-weight="normal" fill="#E6E9E9"> </tspan>
+                </text>
+                <path d="M88.3,56.4 L64.5,56.4 L64.5,58.9 L88.3,58.9 L88.3,56.4 Z M93.8,43 L93.8,40.3 C93.8,37.4 91.4,35 88.5,35 L39.3,35 C36.4,35 34,37.4 34,40.3 L34,44 L34,48.2 L34,68.6 C34,71.5 36.4,73.9 39.3,73.9 L88.5,73.9 C91.4,73.9 93.8,71.5 93.8,68.6 L93.8,49.3 L93.8,43 Z M36.5,44.1 L91.4,44.1 L91.4,48.3 L36.5,48.3 L36.5,44.1 Z M91.3,68.7 C91.3,70.3 90,71.5 88.5,71.5 L39.3,71.5 C37.7,71.5 36.5,70.2 36.4,68.7 L36.4,50.7 L91.3,50.7 L91.3,68.7 Z M91.3,41.6 L36.5,41.6 L36.5,40.3 C36.5,38.8 37.8,37.5 39.4,37.5 L88.6,37.5 C90.2,37.5 91.4,38.8 91.4,40.3 L91.4,41.6 L91.3,41.6 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

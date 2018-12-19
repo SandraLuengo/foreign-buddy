@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="270px" height="301px" viewBox="0 0 270 301" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Ilustracion</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="1.8189894e-12" y="5.68434189e-14" width="32" height="65" rx="4.59156952"></rect>
+        <filter x="-26.6%" y="-6.9%" width="146.9%" height="123.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="-1" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="High---UserFlow----SANDRA" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Chat-_-empty-state_-Buddy" transform="translate(-49.000000, -246.000000)">
+            <g id="Ilustracion" transform="translate(49.000000, 240.000000)">
+                <g id="Background" opacity="0.2" transform="translate(0.544554, 0.000000)">
+                    <ellipse id="Oval" fill="#2C8B8C" cx="142.227723" cy="188.142151" rx="115.227723" ry="115.142151"></ellipse>
+                    <ellipse id="Oval" fill="#F0225B" cx="20.5405941" cy="285.52534" rx="20.5405941" ry="20.5253399"></ellipse>
+                    <polygon id="Polygon" fill="#F0225B" transform="translate(233.548515, 30.530284) rotate(-15.000000) translate(-233.548515, -30.530284) " points="233.548515 6 258.09703 30.5302843 233.548515 55.0605686 209 30.5302843"></polygon>
+                    <polygon id="Polygon" fill="#F0225B" points="257.023762 271 269.047525 283.014833 257.023762 295.029666 245 283.014833"></polygon>
+                    <polygon id="Polygon" fill="#F0225B" points="20.0118812 93 26.0237624 99.0074166 20.0118812 105.014833 14 99.0074166"></polygon>
+                </g>
+                <g id="Group-4" transform="translate(149.000000, 265.566131)">
+                    <g id="Group" transform="translate(19.474257, 8.093325) scale(-1, 1) translate(-19.474257, -8.093325) translate(0.974257, 0.593325)">
+                        <g id="Body/Long-Sleeve-1" transform="translate(18.342638, 7.177451) rotate(-14.000000) translate(-18.342638, -7.177451) translate(0.842638, 4.177451)"></g>
+                    </g>
+                </g>
+                <text id="We-would-let-you-kno" font-family="Montserrat-Light, Montserrat" font-size="15" font-weight="300" letter-spacing="-0.408" fill="#859191">
+                    <tspan x="39.7065" y="222">We would let you know when </tspan>
+                    <tspan x="70.9185" y="241">a Buddy contact you </tspan>
+                </text>
+                <text id="You-don’t-have-any-c" font-family="Montserrat-Medium, Montserrat" font-size="17" font-weight="400" letter-spacing="-0.408" fill="#F790AD">
+                    <tspan x="33.136" y="188">You don’t have any chat yet </tspan>
+                </text>
+                <g id="Mobile-" transform="translate(142.000000, 123.500000) rotate(-19.000000) translate(-142.000000, -123.500000) translate(126.000000, 91.000000)">
+                    <g id="base">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#F2F2F2" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <path d="M8.15936255,1.38565891 L8.15936255,1.89596394 C8.15936255,2.85395317 8.93596626,3.63055687 9.89395548,3.63055687 L22.1014066,3.63055687 C23.0593959,3.63055687 23.8359996,2.85395317 23.8359996,1.89596394 L23.8359996,1.38565891 L27.4440118,1.38565891 C29.1345811,1.38565891 30.5050582,2.75613605 30.5050582,4.44670526 L30.5050582,60.4674697 C30.5050582,62.1580389 29.1345811,63.5285161 27.4440118,63.5285161 L4.46343679,63.5285161 C2.77286757,63.5285161 1.40239044,62.1580389 1.40239044,60.4674697 L1.40239044,4.44670526 C1.40239044,2.75613605 2.77286757,1.38565891 4.46343679,1.38565891 L8.15936255,1.38565891 Z" id="Screen" fill="#F790AD"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="270px" height="324px" viewBox="0 0 270 324" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Background</title>
+    <desc>Created with Sketch.</desc>
+    <g id="High---UserFlow----SANDRA" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.2">
+        <g id="Chat-_-empty-state_-Buddy-modal-" transform="translate(-49.000000, -246.000000)" fill="#F0225B">
+            <g id="Ilustracion" transform="translate(49.000000, 240.000000)">
+                <g id="Background" transform="translate(0.544554, 0.000000)">
+                    <ellipse id="Oval" cx="20.5405941" cy="308.52534" rx="20.5405941" ry="20.5253399"></ellipse>
+                    <polygon id="Polygon" transform="translate(233.548515, 30.530284) rotate(-15.000000) translate(-233.548515, -30.530284) " points="233.548515 6 258.09703 30.5302843 233.548515 55.0605686 209 30.5302843"></polygon>
+                    <polygon id="Polygon" points="257.023762 271 269.047525 283.014833 257.023762 295.029666 245 283.014833"></polygon>
+                    <polygon id="Polygon" points="20.0118812 93 26.0237624 99.0074166 20.0118812 105.014833 14 99.0074166"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

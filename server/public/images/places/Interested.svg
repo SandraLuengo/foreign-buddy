@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Interested</title>
+    <desc>Created with Sketch.</desc>
+    <g id="High---UserFlow----SANDRA" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16_-Places" transform="translate(-124.000000, -518.000000)">
+            <g id="Interested" transform="translate(124.000000, 518.000000)">
+                <circle id="Oval" fill="#F45A84" cx="64" cy="64" r="64"></circle>
+                <text id="Interesting-Places" font-family="Montserrat-Medium, Montserrat" font-size="15" font-weight="400" letter-spacing="-0.36">
+                    <tspan x="24.9925" y="94" fill="#FFFFFF">Interesting</tspan>
+                    <tspan x="41.185" y="113" fill="#FFFFFF">Places</tspan>
+                    <tspan x="86.815" y="113" font-family="Montserrat-Regular, Montserrat" font-weight="normal" fill="#E6E9E9"> </tspan>
+                </text>
+                <g id="Inf" transform="translate(37.000000, 20.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <path d="M0,27 C0,12.06 12.06,0 27,0 L27,1.17 L27,2.34 C13.32,2.34 2.34,13.32 2.25,27 C2.25,40.68 13.32,51.66 27,51.75 C40.68,51.75 51.66,40.68 51.75,27 C51.66,13.32 40.68,2.34 27,2.25 L27,1.17 L27,0 C41.94,0 54,12.06 54,27 C54,41.94 41.94,54 27,54 C12.06,54 0,41.94 0,27 Z M17.82,46.71 L17.82,39.96 L20.79,39.96 L20.79,25.2 L16.29,25.2 L16.38,18.81 L25.02,18.81 C22.32,17.91 20.34,15.39 20.34,12.42 C20.34,8.73 23.31,5.76 27,5.76 L27,6.93 L27,8.1 C24.57,8.1 22.59,10.08 22.59,12.51 C22.59,14.94 24.57,16.92 27,16.92 C29.43,16.92 31.41,14.94 31.41,12.51 C31.41,10.08 29.43,8.1 27,8.1 L27,7.02 L27,5.85 C30.69,5.85 33.66,8.82 33.66,12.51 C33.66,15.48 31.68,18 28.98,18.9 L32.22,18.9 L32.22,40.05 L36.63,40.05 L36.63,45.63 L36.63,46.8 L17.82,46.8 L17.82,46.71 Z M35.64,45.63 L35.64,44.46 L35.64,45.63 Z M20.07,44.46 L34.47,44.46 L34.47,42.3 L30.06,42.3 L30.06,21.15 L18.54,21.15 L18.54,22.95 L23.04,22.95 L23.04,42.3 L20.07,42.3 L20.07,44.46 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

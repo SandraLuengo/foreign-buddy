@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="232px" height="309px" viewBox="0 0 232 309" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Ilustracion</title>
+    <desc>Created with Sketch.</desc>
+    <g id="High---UserFlow----SANDRA" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="12_Buddys-_-Usuario_-No-info" transform="translate(-72.000000, -311.000000)">
+            <g id="Ilustracion" transform="translate(72.000000, 311.000000)">
+                <g id="Background" opacity="0.2" transform="translate(0.544554, 0.000000)">
+                    <ellipse id="Oval" fill="#2C8B8C" cx="115.227723" cy="145.142151" rx="115.227723" ry="115.142151"></ellipse>
+                    <ellipse id="Oval" fill="#F0225B" cx="210.540594" cy="263.52534" rx="20.5405941" ry="20.5253399"></ellipse>
+                    <polygon id="Polygon" fill="#F0225B" points="39.5485149 0 64.0970297 24.5302843 39.5485149 49.0605686 15 24.5302843"></polygon>
+                    <polygon id="Polygon" fill="#F0225B" points="28.0554455 284.426452 40.0792079 296.441286 28.0554455 308.456119 16.0316832 296.441286"></polygon>
+                    <polygon id="Polygon" fill="#F0225B" points="201.89901 29.538937 207.910891 35.5463535 201.89901 41.5537701 195.887129 35.5463535"></polygon>
+                </g>
+                <text id="No-Buddys-yet-to-see" font-family="Montserrat-Regular, Montserrat" font-size="17" font-weight="normal" letter-spacing="-0.408" fill="#F790AD">
+                    <tspan x="12.0805" y="149">No Buddys yet to see here</tspan>
+                </text>
+                <text id="Go-to-perfil-and-com" font-family="Montserrat-Light, Montserrat" font-size="15" font-weight="300" letter-spacing="-0.36" fill="#859191">
+                    <tspan x="25.6275" y="194">Go to perfil and complete </tspan>
+                    <tspan x="85.425" y="213">your info</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
 import ProfileService from "../ProfileServer/ProfileService";
-import TabBar from "../TabBar";
-import './Profile.css'
+import Loading from "../Loading";
+import NavBar from "../NavBar";
+import "./Profile.css";
 
 export default class Profile extends Component {
   constructor() {
@@ -47,29 +48,30 @@ export default class Profile extends Component {
 
     return this.state.user && !this.state.redirect ? (
       <div>
-        <div className="photo">
-          <img src={this.state.user.image} alt='img'/>
-          <div><span><strong>{this.state.user.username} </strong></span><span><strong>{this.state.user.surname}</strong></span></div>
-          <p>{this.state.user.rol}</p>
-          <button onClick={this.editProfile}>Edit</button>
-          <button>Settings</button>
-        </div>
-        <div className="interestsInformation">
-          {this.state.user.interests?this.state.user.interests.map((item, i)=><div key={i}>{item}</div>):<p></p>}
-          <button onClick={this.editInterests}>Add interests</button>
-        </div>
-        <div className="description">
-          <div>{this.state.user.description}</div>
-        </div>
-        <button onClick={this.logOut}> Loguot </button>
-        <div className="welcomBody">
-          <TabBar />
+        <NavBar menuName={'Profile'} style={'pink'}/>
+        <div className="profileContainer">
+          <div className="photo">
+            <img src={this.state.user.image} alt='img'/>
+            <div><span><strong>{this.state.user.username} </strong></span><span><strong>{this.state.user.surname}</strong></span></div>
+            <p>{this.state.user.rol}</p>
+            <button onClick={this.editProfile}>Edit</button>
+            <button>Settings</button>
+          </div>
+          <div className="interestsInformation">
+            {this.state.user.interests?this.state.user.interests.map((item, i)=><div key={i}>{item}</div>):<p></p>}
+            <button onClick={this.editInterests}>Add interests</button>
+          </div>
+          <div className="description">
+            <div>{this.state.user.description}</div>
+          </div>
+          <button onClick={this.logOut}> Loguot </button>
         </div>
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />
     ) : (
-      <p>Load</p>
+      <Loading/>
     );
+    // return <Loading/>
   }
 }

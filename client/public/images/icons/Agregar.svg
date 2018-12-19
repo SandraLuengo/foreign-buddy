@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Agregar </title>
+    <desc>Created with Sketch.</desc>
+    <g id="High---UserFlow----SANDRA" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="17_Places-_Restaurantes-" transform="translate(-330.000000, -100.000000)" fill="#485A5A">
+            <g id="FILTRO-+-BUSQUEDA-+-AÑADIR-" transform="translate(0.000000, 92.000000)">
+                <g id="Agregar-" transform="translate(330.000000, 8.000000)">
+                    <polygon id="Path" points="12.8 5.4 11.24 5.4 11.2 11.2 5.36 11.2 5.36 12.76 11.2 12.8 11.2 18.64 12.76 18.64 12.76 12.8 18.6 12.8 18.6 11.2 12.8 11.2"></polygon>
+                    <path d="M12,24 C18.64,24 24,18.64 24,12 C24,5.36 18.64,0 12,0 C5.36,0 0,5.36 0,12 C0,18.64 5.36,24 12,24 Z M12,1.44 C17.84,1.44 22.56,6.16 22.56,12 C22.56,17.84 17.84,22.56 12,22.56 C6.16,22.56 1.44,17.84 1.44,12 C1.44,6.16 6.16,1.48 12,1.44 Z" id="Shape" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

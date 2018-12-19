@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../Auth/AuthService';
 import ProfileService from '../ProfileServer/ProfileService';
-import TabBar from '../TabBar';
+import Loading from "../Loading"
 import './ProfileInterests.css';
 
 export default class ProfileInterests extends Component {
@@ -79,10 +79,7 @@ export default class ProfileInterests extends Component {
                     <br/>
                     <Link to='/profile'>Completar en otro momento</Link>
 				</div>
-				<div className="welcomBody">
-					<TabBar />
-				</div>
 			</div>
-		):<p>load</p>;
+		):<Loading/>;
 	}
 }

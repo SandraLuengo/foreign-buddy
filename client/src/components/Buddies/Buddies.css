@@ -1,9 +1,16 @@
+.buddiesContainer {
+
+    position: relative;
+    top:9vh;
+}
+
 .navBuddy {
+
     width: 100%;
-    background-color: rgb(150, 150, 150);
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-top:3%;
 }
 
 .buddiesImg {
@@ -22,3 +29,40 @@
 .buddyHidden {
     display: none;
 }
+
+.buddyCircle{
+
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgb(97,168,169);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.buddyCircle.lead{
+    background-color: rgb(194 200 200);
+
+}
+.buddyCircle p {
+    
+    text-align: center;
+    color:white;
+    font-weight: bold;
+}
+
+.underlineBuddy {
+    width: 100%;
+    height:4px;
+}
+
+.underlineBuddy .first{
+
+    background-color: rgb(97,168,169);
+    width: 50%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height:4px;
+}   

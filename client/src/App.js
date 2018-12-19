@@ -15,6 +15,7 @@ import SpecificService from './components/SpecificService';
 import { Switch, Route } from 'react-router-dom';
 import TabBar from "./components/TabBar";
 
+
 class App extends Component {
 	constructor(){
 		super()
@@ -23,13 +24,7 @@ class App extends Component {
 		}
 	}
 
-	toggleTabBar = (bool) => {
-
-		// this.setState({...this.state,hide:bool})
-	}
-	
 	render() {
-		console.log(window.location.pathname)
 		return (
 			<div className="App">
 				<Switch>
@@ -43,7 +38,7 @@ class App extends Component {
 					<Route exact path="/new-service" component={NewService} />
 					<Route exact path="/chat" component={Chat} />
 					<Route exact path="/buddies" component={Buddies} />
-					<Route exact path="/services" component={Services} />
+					<Route exact path="/place" component={Services} />
 					<Route exact path="/museums" component={SpecificService} />
 					<Route exact path="/local" component={SpecificService} />
 					<Route exact path="/shops" component={SpecificService} />
@@ -52,7 +47,7 @@ class App extends Component {
 				</Switch>
 				<TabBar showHide={window.location.pathname==='/signup' || window.location.pathname==='/login' 
 				||  window.location.pathname==='/'
-				?'hiddenTabBar':'showTabBar'}/>
+				?'hiddenTabBar':'showTabBar'} path={window.location.pathname}/>
 			</div>
 		);
 	}

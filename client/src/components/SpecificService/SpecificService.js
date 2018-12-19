@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from "../Loading"
 import AuthService from '../Auth/AuthService';
 import ServiceServer from '../ServiceServer/ServiceService';
 
@@ -62,7 +63,7 @@ export default class SpecificService extends Component {
 	render() {
 		return this.state.user && this.state.place && this.state.services &&this.state.filter?(
 			<div>
-				<Link to="/services">Places</Link>
+				<Link to="/place">Places</Link>
 				<br/>
 				<Link  to={{ pathname:'/new-service', state:{ place: this.state.place }}}>Add New</Link>
 				
@@ -82,6 +83,6 @@ export default class SpecificService extends Component {
 					</div>
 				})}
 			</div>
-		):<p>load</p>;
+		):<Loading/>;
 	}
 }

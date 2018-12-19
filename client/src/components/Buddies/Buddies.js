@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
+import Loading from "../Loading";
+import NavBar from "../NavBar";
 import BuddiesService from "../BuddiesServer/BuddiesService";
 import "./Buddies.css"
+
 
 export default class Buddies extends Component {
   constructor() {
@@ -44,7 +47,7 @@ export default class Buddies extends Component {
         this.buddiesService.getBuddies(user)
         .then(buddies => {
             this.setState({ ...this.state, buddies },()=>{
-              console.log(this.state.buddies)
+              this.props.history.push('/chat');
             });
         });
       }) 
@@ -55,24 +58,28 @@ export default class Buddies extends Component {
   render() {
     return this.state.user && !this.state.redirect && this.state.buddies ? (
       <div>
-        <div className="navBuddy">
-          {this.state.user.rol === 'user'?<p><strong>Socia Buddies</strong></p>:''}
-          <p>Task Buddies</p>
-        </div>
-        {this.state.user.rol === 'user'?this.state.buddies.map((buddy,i)=>{
-          return  <div key={i} className="buddyPanel">
-            <div><img className="buddiesImg" src={buddy.image} alt='img'/></div>
-            <div><strong>{buddy.username} {buddy.surname}</strong></div>
-            <div>{buddy.description}</div>
-            <div><button name="buddy_id" id={buddy._id} value={buddy._id} onClick={e=>this.generateBuddy(e)}>Contact</button></div>
+        <NavBar menuName={'Buddys'} style={'pink'}/>
+        <div className="buddiesContainer">
+          <div className="navBuddy">
+            {this.state.user.rol === 'user'?<div className="buddyCircle"><p>Socia Buddies</p></div>:''}
+            <div className="buddyCircle lead"><p>Task Buddies</p></div>
           </div>
-        }):<p></p>}
-        
+          <div className="underlineBuddy"><div className="first"></div><div className="second"></div></div>
+
+          {this.state.user.rol === 'user'?this.state.buddies.map((buddy,i)=>{
+            return  <div key={i} className="buddyPanel">
+              <div><img className="buddiesImg" src={buddy.image} alt='img'/></div>
+              <div><strong>{buddy.username} {buddy.surname}</strong></div>
+              <div>{buddy.description}</div>
+              <div><button name="buddy_id" id={buddy._id} value={buddy._id} onClick={e=>this.generateBuddy(e)}>Contact</button></div>
+            </div>
+          }):<p></p>}
+          </div>
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />
     ) : (
-      <p>Load</p>
+      <Loading/>
     );
   }
 }

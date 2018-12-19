@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
 import ProfileService from "../ProfileServer/ProfileService";
 import languages from "../../languages.json";
-import TabBar from "../TabBar";
+import Loading from "../Loading"
 import './ProfileEdit.css';
 
 export default class ProfileEdit extends Component {
@@ -150,10 +150,8 @@ export default class ProfileEdit extends Component {
                     <br/>
                     <button type="submit" onClick={e=>this.save(e)}>Save</button>
                 </div>
-                <div className="welcomBody">
-                <TabBar />
-                </div>
+               
 			</div>
-		):<p>load</p>;
+		):<Loading/>;
 	}
 }

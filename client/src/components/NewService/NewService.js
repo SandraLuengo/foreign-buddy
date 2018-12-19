@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../Auth/AuthService';
 import ServiceServer from '../ServiceServer/ServiceService';
+import Loading from '../Loading';
 
 
 export default class NewService extends Component {
@@ -99,6 +100,6 @@ export default class NewService extends Component {
 				<br/>
 				<Link  to={{ pathname:`/${this.state.place}`, state:{ place: this.state.place }}}>Back</Link>
 			</div>
-		):<p>load</p>;
+		):<Loading/>;
 	}
 }

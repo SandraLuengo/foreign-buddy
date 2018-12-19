@@ -1,3 +1,9 @@
+.profileContainer {
+
+    position: relative;
+    top:8vh;
+}
+
 .description,.interestsInformation,.photo {
     border:solid 1px grey;
     margin-bottom: 2%;

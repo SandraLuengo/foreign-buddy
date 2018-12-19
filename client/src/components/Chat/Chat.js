@@ -3,6 +3,9 @@ import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
 import BuddiesService from "../BuddiesServer/BuddiesService";
 import ChatService from "../ChatServer/ChatService";
+import Loading from "../Loading";
+import NavBar from "../NavBar";
+import './Chat.scss';
 
 export default class Chat extends Component {
   constructor() {
@@ -11,7 +14,8 @@ export default class Chat extends Component {
       user: null,
       redirect: false,
       chatUsers:'',
-      chat_id:''
+      chat_id:'',
+      invited:''
     };
     this.authService = new AuthService();
     this.buddiesService = new BuddiesService();
@@ -39,12 +43,11 @@ export default class Chat extends Component {
       });
   };
 
-
   openChat = (e,id) => {
   
     this.chatService.createChatRoom(this.state.user._id,id)
     .then(chat_id=>{
-      this.setState({...this.state,chat_id:chat_id.chat[0]._id})
+      this.setState({...this.state,chat_id:chat_id.chat[0]._id,invited:id})
 
     })
   };
@@ -53,15 +56,26 @@ export default class Chat extends Component {
   render() {
  
     return this.state.user && !this.state.redirect && !this.state.chat_id ? (
-      <div>
-        <h1>Chats</h1>
-        {this.state.chatUsers?this.state.chatUsers.map((user, i)=> <div key={i} onClick={e=>this.openChat(e,user._id)} style={{backgroundColor:'red'}}><div>{user.username}</div><div>{user._id}</div></div>):<div>No hay chats</div>}
+      <div className="allChats">
+        <NavBar menuName={'Chat'} style={'pink'}/>
+        {this.state.chatUsers && this.state.chatUsers.length>0 ? this.state.chatUsers.map((user, i)=> {
+          return <div key={i} onClick={e=>this.openChat(e,user._id)} className="chatBox">
+            <div className="imgContainer"><img src={user.image}/></div>
+              <div className="chat">
+                <div><b>{user.username}</b></div>
+                <div className="userDescription">{user.description}</div>
+            </div>
+          </div>
+        }):<div className="imgNoChat"><img src="/images/ilustraciones/Ilustracion1-Chat.svg"/></div>}
 
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />
-    ) : this.state.chat_id?<Redirect to={{pathname: '/newChat', chat_id: { chat_id: this.state.chat_id,mainUser:this.state.user._id,invitedUser:this.state.chatUsers[0]._id }}}/>:(
-        <p>Load</p>
+    ) : this.state.chat_id?<Redirect to={{pathname: '/newChat', chat_id: { 
+      chat_id: this.state.chat_id,mainUser:this.state.user._id,
+      invitedUser:this.state.invited,
+      invited:this.state.chatUsers}}}/>:(
+        <Loading/>
     );
   }
 }

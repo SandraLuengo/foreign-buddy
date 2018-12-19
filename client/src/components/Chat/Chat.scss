@@ -1,0 +1,55 @@
+.chatBox {
+
+    height: 19vh;
+    margin-bottom: 3%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top:8vh;
+    padding: 0 8%;
+}
+
+.chatBox:last-child {
+
+    margin-bottom: 10vh!important;
+}
+
+.chatBox .chat {
+
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+
+}
+
+.imgContainer {
+
+    width: 60px;
+    height: 60px;
+    margin-right: 8%
+}
+
+.imgContainer img {
+
+    max-width: 100%;
+}
+
+.userDescription {
+
+    overflow-y: -webkit-paged-y;
+    height: 8vh;
+}
+
+.imgNoChat{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    img {
+        max-width: 100%;
+    }
+}

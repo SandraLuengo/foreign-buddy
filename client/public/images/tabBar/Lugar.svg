@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="24px" viewBox="0 0 16 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Lugar </title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Tab-Bar-" transform="translate(-220.000000, -9.000000)" fill="#485A5A">
+            <g id="Places">
+                <g transform="translate(206.000000, 9.000000)">
+                    <g id="Lugar-" transform="translate(14.000000, 0.000000)">
+                        <g id="Shape">
+                            <path d="M8,0 C3.72,0 0.28,3.48 0.28,7.72 C0.32,9.96 2.12,13.72 3.96,17.12 C5.76,20.44 7.56,23.28 7.6,23.28 L8,24 L8.44,23.28 C8.44,23.28 10.24,20.44 12.08,17.12 C13.88,13.76 15.72,10 15.76,7.72 C15.72,3.48 12.28,0 8,0 Z M11.12,16.6 C9.88,18.92 8.64,20.96 8,22 C7.36,20.96 6.12,18.92 4.88,16.6 C3.08,13.32 1.32,9.44 1.36,7.72 C1.36,4.04 4.36,1.04 8.04,1.04 C11.72,1.04 14.72,4.04 14.72,7.72 C14.68,9.48 12.92,13.32 11.12,16.6 Z M8,4.04 C5.96,4.04 4.32,5.68 4.32,7.72 C4.32,9.76 5.96,11.4 8,11.4 C10.04,11.4 11.68,9.76 11.68,7.72 C11.68,5.72 10.04,4.04 8,4.04 Z M8,10.36 C6.56,10.36 5.4,9.2 5.36,7.76 C5.36,6.32 6.52,5.16 8,5.16 C9.44,5.16 10.6,6.32 10.6,7.76 C10.6,9.2 9.44,10.36 8,10.36 Z" fill-rule="nonzero"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

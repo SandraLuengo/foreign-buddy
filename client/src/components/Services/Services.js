@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../Auth/AuthService";
-import TabBar from "../TabBar";
+import Loading from "../Loading";
+import NavBar from "../NavBar";
+import './Services.css'
 
 export default class Services extends Component {
   constructor() {
@@ -33,21 +35,19 @@ export default class Services extends Component {
   render() {
     return this.state.user && !this.state.redirect && !this.state.place ? (
       <div>
-        <h1>Places</h1>
-        <button value="museums" onClick={e=>this.openPlace(e)}>Museums</button>
-        <button value="local" onClick={e=>this.openPlace(e)}>Local</button>
-        <button value="shops" onClick={e=>this.openPlace(e)}>Shops</button>
-        <button value="places" onClick={e=>this.openPlace(e)}>Places</button>
-        <button value="restaurants" onClick={e=>this.openPlace(e)}>Restaurants</button>
-        <div className="welcomBody">
-          <TabBar />
+        <NavBar menuName={'Places'} style={'pink'}/>
+        <div className="placesContainer">
+          <button value="museums" onClick={e=>this.openPlace(e)}>Museums</button>
+          <button value="local" onClick={e=>this.openPlace(e)}>Local</button>
+          <button value="shops" onClick={e=>this.openPlace(e)}>Shops</button>
+          <button value="places" onClick={e=>this.openPlace(e)}>Places</button>
+          <button value="restaurants" onClick={e=>this.openPlace(e)}>Restaurants</button>
         </div>
       </div>
     ) : this.state.redirect ? (
       <Redirect to="/" />
     ) : this.state.place?<Redirect  to={{ pathname:`/${this.state.place}`, state:{ place: this.state.place }}}/> : (
-      <p>Load</p>
+      <Loading/>
     );
-    // return <p>hola</p>
   }
 }

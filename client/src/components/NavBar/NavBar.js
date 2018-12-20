@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './NavBar.scss';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default class NavBar extends Component {
   constructor() {
@@ -16,7 +16,7 @@ export default class NavBar extends Component {
           :<div className={`secondNav ${this.props.style}`}><div className="imgContainer"><img src={this.props.userImg}/></div><div>{this.props.menuName}</div></div>
           }
           
-          <div className="thirdNav"></div>
+          <div  className={`thirdNav ${this.props.style2}`} onClick={e=>this.props.save(e)}>{this.props.arrow}</div>
         </nav>
       </div>
     )

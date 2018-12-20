@@ -16,6 +16,7 @@
     justify-content: space-around;
     position: fixed;
     top: 90vh;
+    z-index: 200;
     box-shadow: 0px 5px 14px 2px grey;
 }
 
@@ -42,6 +43,11 @@
     &.chat .chat,
     &.buddies .buddies,
     &.place .places,
+    &.restaurants .restaurants,
+    &.places .places,
+    &.local .local,
+    &.shops .shops,
+    &.museums .museums
     &.profile .profile {
 
         img.hidden {

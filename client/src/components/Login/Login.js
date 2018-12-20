@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AuthService from "../Auth/AuthService";
 import { Redirect } from "react-router-dom";
+import './Login.css'
 
 export default class Login extends Component {
   constructor() {
@@ -35,8 +36,8 @@ export default class Login extends Component {
 
   render() {
     return !this.state.redirect ? (
-      <div>
-        <h2> Login </h2>
+      <div className="loginContainer">
+        <div><img src="/images/ilustraciones/loginBackground.svg"/></div>  
         <form onSubmit={this.handleFormSubmit}>
           <label> Email </label>
           <input

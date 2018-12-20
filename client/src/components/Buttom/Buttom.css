@@ -1,5 +1,15 @@
-.initButtom {
-    padding: 20px;
-    margin-bottom: 25px;
-    background-color: red;
+
+
+.Sigup {
+    background-color: rgb(240,34,91);
+    color:white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.Login {
+    background-color:white ;
+    color:rgb(240,34,91);
+    font-weight: bold;
+    font-size: 1.2em;
 }

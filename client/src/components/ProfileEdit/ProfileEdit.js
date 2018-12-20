@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import AuthService from "../Auth/AuthService";
-import ProfileService from "../ProfileServer/ProfileService";
-import languages from "../../languages.json";
-import Loading from "../Loading"
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import AuthService from '../Auth/AuthService';
+import ProfileService from '../ProfileServer/ProfileService';
+import languages from '../../languages.json';
+import Loading from '../Loading';
+import NavBar from '../NavBar';
 import './ProfileEdit.css';
 
 export default class ProfileEdit extends Component {
@@ -94,63 +95,65 @@ export default class ProfileEdit extends Component {
 	render() {
 		return this.state.user ?(
 			<div>
-				<Link to='profile'>Back</Link>
-                <div className="photo">
-                    <img src={this.state.user.image} alt=''/>
-                    <br/>
-                    <input type="file" onChange={e=>{this.editPhoto(e)}}/>
-                </div>
+                <NavBar arrow={'Done'} style2={'pink'} redirect={'/profile'} back={true}  menuName={'Edit Profile'} save={e=>this.save(e)}/>
+                <div className="editProfileContainer">
+                    <div className="photo">
+                        <div className="profilePhotoContainer"><img src={this.state.user.image} alt=''/></div>
+                        <div><input type="file" onChange={e=>{this.editPhoto(e)}}/></div>
+                    </div>
 
-                <div className="descriptionEdit">
-                    <p>About</p>
-                    <textarea name='description' onChange={e=>{this.handleChange(e)}} defaultValue={this.state.user.description}></textarea>
-                </div>
+                    <div className="descriptionEdit">
+                        <div className="titulitos">About me</div>
+                        <textarea name='description' onChange={e=>{this.handleChange(e)}} defaultValue={this.state.user.description}></textarea>
+                    </div>
 
-                <div className="birth">
-                    <p>Birth</p>
-                    <input type="text" value={this.state.day} name="day" placeholder="Day"  onChange={e => this.handleChange(e)} />
-					<input type="text" value={this.state.month} name="month" placeholder="Month"  onChange={e => this.handleChange(e)} />
-					<input type="text" value={this.state.year} name="year" placeholder="Year"  onChange={e => this.handleChange(e)} />
-                </div>
+                    <div className="birth">
+                        <p className="titulitos">Birth</p>
+                        <div className="ageContainer">
+                            <input type="text" value={this.state.day} name="day" placeholder="Day"  onChange={e => this.handleChange(e)} />
+                            <input type="text" value={this.state.month} name="month" placeholder="Month"  onChange={e => this.handleChange(e)} />
+                            <input type="text" value={this.state.year} name="year" placeholder="Year"  onChange={e => this.handleChange(e)} />
+                        </div>
+                    </div>
 
-                <div className="languagesEdit">
-                    <p>Languages</p>
-                    <select
-                        onChange={e => this.handleChange(e)}
-                        name="spoken_languages1"
-                        size="1"
-                        >
-                        <option value={this.state.user.spoken_languages[0]}>{this.state.user.spoken_languages[0]}</option>
-                        {languages.map((language, i) => {
-                            return <option key={i} value={language.name}> {language.name} </option>;
-                        })}
-                    </select>
-                    <select
-                        onChange={e => this.handleChange(e)}
-                        name="spoken_languages2"
-                        size="1"
-                        >
-                        <option value={this.state.user.spoken_languages[1]}>{this.state.user.spoken_languages[1]}</option>
-                        {languages.map((language, i) => {
-                            return <option key={i} value={language.name}> {language.name} </option>;
-                        })}
-                    </select>
+                    <div className="languagesEdit">
+                        <p className="titulitos">Languages</p>
+                        <select
+                            onChange={e => this.handleChange(e)}
+                            name="spoken_languages1"
+                            size="1"
+                            >
+                            <option value={this.state.user.spoken_languages[0]}>{this.state.user.spoken_languages[0]}</option>
+                            {languages.map((language, i) => {
+                                return <option key={i} value={language.name}> {language.name} </option>;
+                            })}
+                        </select>
+                        <select
+                            onChange={e => this.handleChange(e)}
+                            name="spoken_languages2"
+                            size="1"
+                            >
+                            <option value={this.state.user.spoken_languages[1]}>{this.state.user.spoken_languages[1]}</option>
+                            {languages.map((language, i) => {
+                                return <option key={i} value={language.name}> {language.name} </option>;
+                            })}
+                        </select>
+                    </div>
+                    {this.state.user.rol === 'user'?<div className="friendsProfile">
+                        <p  className="titulitos">I like to make friends with</p>
+                        <select name="friends" onChange={e => this.handleChange(e)}>
+                            <option>{this.state.user.buddy_gender}</option>
+                            <option>Girls and Boys</option>
+                            <option>Girls</option>
+                            <option>Boys</option>
+                        </select>
+                    </div>:<p></p>}
+                    
+                    <div>
+                        <br/>
+                        <button type="submit" onClick={e=>this.save(e)}>Save</button>
+                    </div>
                 </div>
-                {this.state.user.rol === 'user'?<div>
-                    <p>I like to make friends with</p>
-                    <select name="friends" onChange={e => this.handleChange(e)}>
-                        <option>{this.state.user.buddy_gender}</option>
-                        <option>Girls and Boys</option>
-                        <option>Girls</option>
-                        <option>Boys</option>
-                    </select>
-                </div>:<p></p>}
-                
-                <div>
-                    <br/>
-                    <button type="submit" onClick={e=>this.save(e)}>Save</button>
-                </div>
-               
 			</div>
 		):<Loading/>;
 	}

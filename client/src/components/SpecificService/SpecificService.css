@@ -1,0 +1,90 @@
+.specificServicePlace {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+.specificServicePlace:last-child {
+
+    margin-bottom: 11vh;
+}
+
+.specificInformation {
+    width: 80%;
+}
+
+.filtersServices {
+    width: 100%;
+    height: 6vh;
+    position: fixed;
+    top: 8vh;
+    background-color: rgb(230, 233, 233);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3% 0 1% 0;
+    z-index: 99;
+}
+
+.specificServicePlace:first-child{
+    margin-top: 3%;
+    
+}
+
+.filtersServices a {
+    margin-right: 5%;
+}
+
+
+.servicesContainer {
+
+    position: relative;
+    top: 16vh;
+}
+
+.filterPlaces {
+    position: absolute;
+    top: 8vh;
+    width: 0%;
+    background-color: white;
+    height: 82vh;
+    z-index: 199;
+    transition: 0.5s;
+
+}
+
+.filterPlaces .filterItems {
+    position: absolute;
+    top: 36px;
+    right: 55px;
+    line-height: 2.3em;
+    font-size: 25px;
+    color: #434343;
+    float: left;
+}
+
+#filterMenuOptions {
+    margin-left: 5%;
+}
+
+.filterClose {
+
+    float: right;
+    font-size: 25px;
+    padding: 4%;
+    color: #4a4a4a;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect,Link } from 'react-router-dom';
 import AuthService from '../Auth/AuthService';
 import ServiceServer from '../ServiceServer/ServiceService';
 import Loading from '../Loading';
+import NavBar from '../NavBar';
+import './NewService.css'
 
 
 export default class NewService extends Component {
@@ -19,7 +21,8 @@ export default class NewService extends Component {
 			company:'',
 			address:'',
 			city:'',
-			type:''
+			type:'',
+			redirect:false
 		}
 
 		this.authService = new AuthService();
@@ -32,13 +35,12 @@ export default class NewService extends Component {
 		
 		this.authService
 		  .loggedin()
-		  .then(user => {
-			if(this.props.location.state.place){
+		  .then(user => {			
 				this.setState({ ...this.state, user, place:this.props.location.state.place}, () => {
 					this.getServices();
 					this.getAllFilters();
 				});
-			}
+			
 		  })
 		  .catch(err => {
 			console.log(err);
@@ -77,7 +79,10 @@ export default class NewService extends Component {
 
 		this.serviceServer.newService(this.state.place,this.state.company,this.state.address,city,this.state.type)
 		.then(service=>{
-			this.props.history.push(`/${this.state.place}`)
+			
+			this.setState({...this.state,redirect:true},()=>{
+				console.log(this.state.redirect)
+			})
 		})
 
 	}	
@@ -86,19 +91,21 @@ export default class NewService extends Component {
 		
 		return this.state.filter && this.state.user? (
 			<div>
-				<h1>Add new {this.props.location.state.place}</h1>
-				<div><input onChange={e=>this.putFilter(e)} name="company" placeholder="Company name"/></div>
-				<div><input onChange={e=>this.putFilter(e)} name="address" placeholder="Adress"/></div>
-				<div><input onChange={e=>this.putFilter(e)} name="city" disabled value={this.state.user.rol==='user'?this.state.user.destination_city:this.state.user.buddy_city} name="city" placeholder=""/></div>
-				<div>
-					{this.state.filter&&<select name='type' onChange={e=>this.putFilter(e)}>
-					<option key='-1' value='all'>Select type</option>
-					{this.state.filter.map((filtro,key)=><option key={key} value={filtro}>{filtro}</option>)}
-				</select>}
+				<NavBar redirect={`/${this.props.location.state.place}`} back={true}  menuName={`Add new ${this.props.location.state.place.slice(0, -1)}`}/>
+				<div className="newContainer">
+					<div><input className="inputsNew" onChange={e=>this.putFilter(e)} name="company" placeholder="Company name"/></div>
+					<div><input className="inputsNew" onChange={e=>this.putFilter(e)} name="address" placeholder="Adress"/></div>
+					<div><input className="inputsNew" onChange={e=>this.putFilter(e)} name="city" disabled value={this.state.user.rol==='user'?this.state.user.destination_city:this.state.user.buddy_city} name="city" placeholder=""/></div>
+					<div>
+						{this.state.filter&&<select className="inputsNew" name='type' onChange={e=>this.putFilter(e)}>
+						<option key='-1' value='all'>Select type</option>
+						{this.state.filter.map((filtro,key)=><option key={key} value={filtro}>{filtro}</option>)}
+					</select>}
+					</div>
+					<div className="btnContainer"><button className="inputsNew btn" onClick={e=>this.saveService()}>Save</button></div>
 				</div>
-				<button onClick={e=>this.saveService()}>Save</button>
-				<br/>
-				<Link  to={{ pathname:`/${this.state.place}`, state:{ place: this.state.place }}}>Back</Link>
+				{this.state.redirect&&<Redirect  to={{ pathname:`/${this.state.place}`, state:{ place: this.state.place }}}/>}
+				
 			</div>
 		):<Loading/>;
 	}

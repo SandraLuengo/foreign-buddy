@@ -8,6 +8,7 @@ export default class TabBar extends Component {
   }
   render() {
     let activePage = this.props.path && this.props.path.replace("/", "");
+    console.log(activePage)
     return activePage ? (
       <nav className={`${this.props.showHide} ${activePage}`}>
         <div className="tabBar">
@@ -30,7 +31,7 @@ export default class TabBar extends Component {
               </div>
             </Link>
           </div>
-          <div className="places">
+          <div className="places restaurants places shops local">
             <Link to="/place">
               <div className="icon">
                 <img className="hidden" src="/images/tabBar/Lugar.svg" />

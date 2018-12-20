@@ -2,3 +2,35 @@
 .interestActive {
     background-color: rgba(134, 255, 215, 0.671);
 }
+
+.interestImaContainer {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+
+.interestImaContainer img {
+
+    object-fit: cover;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.uno {
+    margin-top: 8vh;
+}
+
+.row1,.row2,.row3,.row4 {
+    margin-top: 10%;
+}
+
+.row5 {
+    margin-bottom: 5vh;
+}
+
+.row1,.row2,.row3,.row4,.row5 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}

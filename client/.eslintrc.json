@@ -17,24 +17,10 @@
         "react"
     ],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "no-undef": [1, { "typeof": true }],
         "no-console": [1, { "allow": ["warn", "error"] }],
-        "linebreak-style": [
-            2,
-            "windows"
-        ],
-        "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
         "quotes": [
             "error",
             "single"
-        ],
-        "semi": [
-            "error",
-            "always"
         ],
         "no-unused-vars": [1, { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
         "parser": "babel-eslint"

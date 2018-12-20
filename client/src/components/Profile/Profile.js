@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import AuthService from "../Auth/AuthService";
-import ProfileService from "../ProfileServer/ProfileService";
-import Loading from "../Loading";
-import NavBar from "../NavBar";
-import "./Profile.css";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import AuthService from '../Auth/AuthService';
+import ProfileService from '../ProfileServer/ProfileService';
+import Loading from '../Loading';
+import NavBar from '../NavBar';
+import './Profile.css';
 
 export default class Profile extends Component {
   constructor() {
@@ -50,21 +50,25 @@ export default class Profile extends Component {
       <div>
         <NavBar menuName={'Profile'} style={'pink'}/>
         <div className="profileContainer">
-          <div className="photo">
-            <img src={this.state.user.image} alt='img'/>
+          <div className="photos">
+            <div className="imgContainer"><img src={this.state.user.image} alt='img'/></div>
             <div><span><strong>{this.state.user.username} </strong></span><span><strong>{this.state.user.surname}</strong></span></div>
-            <p>{this.state.user.rol}</p>
-            <button onClick={this.editProfile}>Edit</button>
-            <button>Settings</button>
+            <div className="profileBtn">
+              <div className="btnEdit1" onClick={this.editProfile}><div><img src="images/icons/EDITINFO.svg"/></div><div>Edit Info</div></div>
+              <div className="btnEdit1"><div><img src="images/icons/SETTINGS.svg"/></div><div>Settings</div></div>
+            </div>
           </div>
           <div className="interestsInformation">
-            {this.state.user.interests?this.state.user.interests.map((item, i)=><div key={i}>{item}</div>):<p></p>}
-            <button onClick={this.editInterests}>Add interests</button>
+            {/* {this.state.user.interests?this.state.user.interests.map((item, i)=><div key={i}>{item}</div>):<p></p>} */}
+            <div className="porcentajeContainer"><img src="/images/ñapa.png"/></div>
+            <div className="editInterest" onClick={this.editInterests}>Edit Interests</div>
           </div>
           <div className="description">
-            <div>{this.state.user.description}</div>
+            <div className="descriptionContainer">{this.state.user.description}</div>
           </div>
-          <button onClick={this.logOut}> Loguot </button>
+          <div className="divBtnContainer">
+            <button className="Loguot" onClick={this.logOut}>Log Out</button>
+          </div>
         </div>
       </div>
     ) : this.state.redirect ? (

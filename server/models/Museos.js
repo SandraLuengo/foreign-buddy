@@ -8,7 +8,11 @@ const museosSchema = new Schema({
       enum:['Modern','Classic','Alternative']
   },
   address:String,
-  city:String
+  city:String,
+  image:{
+    type:String,
+    default:'/images/icons/Museum.svg'
+  }
 
 }, {
     timestamps: {

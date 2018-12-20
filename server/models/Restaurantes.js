@@ -8,7 +8,11 @@ const restaurantesSchema = new Schema({
         enum: ['Mediterranean', 'Asian', 'American','Italian','Mexican','Others']
     },
     address: String,
-    city: String
+    city: String,
+    image:{
+        type:String,
+        default:'/images/icons/Restaurants.svg'
+    }
 
 }, {
     timestamps: {

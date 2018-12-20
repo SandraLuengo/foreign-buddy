@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="126px" height="178px" viewBox="0 0 126 178" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
-    <title>Atras </title>
-    <desc>Created with Sketch.</desc>
-    <g id="High---UserFlow----SANDRA" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="17_Places-_Restaurantes-">
-            <rect fill="#FFFFFF" x="0" y="0" width="375" height="812"></rect>
-            <g id="nav-Bar-" transform="translate(0.000000, 58.000000)" fill="#8B8183">
-                <g id="Atras-" transform="translate(16.000000, 4.000000)">
-                    <g id="SVGID_1_">
-                        <path d="M8.03703704,16 L0.259259259,8.08 C0.207407407,8.02666667 0.207407407,7.94666667 0.259259259,7.89333333 L8.03703704,0 L9.28148148,1.25333333 L2.74814815,8 L9.28148148,14.7466667 L8.03703704,16"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 14 24" style="enable-background:new 0 0 14 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#8B8183;}
+</style>
+<title>SVGID_1_</title>
+<desc>Created with Sketch.</desc>
+<g id="Symbols">
+	<g id="Atras-">
+		<g id="SVGID_1_">
+			<path class="st0" d="M0.4,12.1c-0.1-0.1-0.1-0.2,0-0.3L12.1,0l1.9,1.9L4.1,12l9.8,10.1L12.1,24L0.4,12.1z"/>
+		</g>
+	</g>
+</g>
 </svg>

@@ -44,6 +44,8 @@ class App extends Component {
 					<Route exact path="/shops" component={SpecificService} />
 					<Route exact path="/places" component={SpecificService} />
 					<Route exact path="/restaurants" component={SpecificService} />
+					{/* <Route exact path="/lead-buddy" component={Buddies} />
+					<Route exact path="/social-buddy" component={Buddies} /> */}
 				</Switch>
 				<TabBar showHide={window.location.pathname==='/signup' || window.location.pathname==='/login' 
 				||  window.location.pathname==='/'

@@ -1,7 +1,7 @@
 .buddiesContainer {
 
     position: relative;
-    top:9vh;
+    top:25vh;
 }
 
 .navBuddy {
@@ -22,6 +22,10 @@
     padding: 0 4%;
 }
 
+.buddyPanel:last-child {
+    margin-bottom: 11vh;
+}
+
 .none {
     display: none;
 }
@@ -40,6 +44,10 @@
     justify-content: center;
     align-items: center;
     
+}
+
+.navBuddy a {
+    text-decoration: none;
 }
 
 .buddyCircle.lead{
@@ -66,3 +74,38 @@
     margin-bottom: 2%;
     height:4px;
 }   
+
+.underlineBuddy .second{
+
+    background-color: rgb(194 200 200);
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 50%;
+    margin-bottom: 2%;
+    height:4px;
+}   
+
+.active {
+
+    display: block;
+}
+
+.disabled {
+
+    display: none;
+}
+
+.leadBuddy img {
+
+    margin-top: 12%;
+}
+
+.buddyTypeNavBar {
+
+    position: fixed;
+    top: 8vh;
+    width: 100%;
+    z-index: 99;
+    background-color: white;
+    height: 16vh;
+}

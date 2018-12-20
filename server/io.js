@@ -4,22 +4,20 @@ const Message = require('./models/Message');
 
 
 module.exports = (io) => {
-  console.log('1.SERVIDOR')
-
   io.on('connection', (socket) => {
-    console.log(`A user connected with id: ${socket.id}`);
     socket.on('message', (data) => {
       messageStorage(data)
         .then(allMsg => {
-          console.log(`allMessages: ${allMsg}`)
-          console.log(data)
           socket.broadcast.emit(data.chat_id, allMsg);
         })
-     
-      
+
+
     });
   });
 };
+
+
+
 
 function messageStorage(data) {
   mongoose

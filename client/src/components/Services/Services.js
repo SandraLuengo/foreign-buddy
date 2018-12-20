@@ -28,8 +28,8 @@ export default class Services extends Component {
         console.log(err);
       });
   };
-  openPlace = e => {
-    this.setState({...this.state,place:e.target.value})
+  openPlace = place => {
+    this.setState({...this.state,place})
   }
 
   render() {
@@ -37,11 +37,11 @@ export default class Services extends Component {
       <div>
         <NavBar menuName={'Places'} style={'pink'}/>
         <div className="placesContainer">
-          <button value="museums" onClick={e=>this.openPlace(e)}>Museums</button>
-          <button value="local" onClick={e=>this.openPlace(e)}>Local</button>
-          <button value="shops" onClick={e=>this.openPlace(e)}>Shops</button>
-          <button value="places" onClick={e=>this.openPlace(e)}>Places</button>
-          <button value="restaurants" onClick={e=>this.openPlace(e)}>Restaurants</button>
+          <div className="place" onClick={e=>this.openPlace('restaurants')}><img src="/images/places/Restaurants.svg"/></div>
+          <div className="place" onClick={e=>this.openPlace('museums')}><img src="/images/places/Museum.svg"/></div>
+          <div className="place" onClick={e=>this.openPlace('shops')}><img src="/images/places/Shopping.svg"/></div>
+          <div className="place" onClick={e=>this.openPlace('local')}><img src="/images/places/Locals.svg"/></div>
+          <div className="place" onClick={e=>this.openPlace('places')}><img src="/images/places/Interested.svg"/></div>
         </div>
       </div>
     ) : this.state.redirect ? (

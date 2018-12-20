@@ -60,7 +60,7 @@ export default class Chat extends Component {
         <NavBar menuName={'Chat'} style={'pink'}/>
         {this.state.chatUsers && this.state.chatUsers.length>0 ? this.state.chatUsers.map((user, i)=> {
           return <div key={i} onClick={e=>this.openChat(e,user._id)} className="chatBox">
-            <div className="imgContainer"><img src={user.image}/></div>
+            <div className="imgContainerChat"><img src={user.image}/></div>
               <div className="chat">
                 <div><b>{user.username}</b></div>
                 <div className="userDescription">{user.description}</div>

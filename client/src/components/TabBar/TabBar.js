@@ -34,7 +34,7 @@ export default class TabBar extends Component {
             <Link to="/place">
               <div className="icon">
                 <img className="hidden" src="/images/tabBar/Lugar.svg" />
-                <img className="show" src="/images/tabBar/Lugar_on.svg" />
+                <img className="show" src="/images/tabBar/Places_ok.svg" />
                 <div>Places</div>
               </div>
             </Link>

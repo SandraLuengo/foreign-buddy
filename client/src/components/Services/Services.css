@@ -1,4 +1,16 @@
 .placesContainer {
     position: relative;
     top:8vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 80vh;
+}
+
+.place {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

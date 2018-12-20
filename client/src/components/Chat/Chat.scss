@@ -24,16 +24,22 @@
 
 }
 
-.imgContainer {
 
+.imgContainerChat {
+
+    border-radius: 50%;
     width: 60px;
     height: 60px;
-    margin-right: 8%
+    overflow: hidden;
+    margin-right: 10px;
+
 }
 
-.imgContainer img {
+.imgContainerChat img {
 
     max-width: 100%;
+    object-fit: contain;
+   
 }
 
 .userDescription {

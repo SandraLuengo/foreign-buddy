@@ -81,7 +81,6 @@ export default class NewService extends Component {
 		.then(service=>{
 			
 			this.setState({...this.state,redirect:true},()=>{
-				console.log(this.state.redirect)
 			})
 		})
 

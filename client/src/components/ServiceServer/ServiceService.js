@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default class ServiceService {
     constructor() {
@@ -11,7 +11,7 @@ export default class ServiceService {
 
     getPlaces = (user, place) => {
         return this.service
-            .post("/getServices", {
+            .post('/getServices', {
                 user,
                 place
             })
@@ -20,7 +20,7 @@ export default class ServiceService {
 
     getServicesFilter = (user, place, filter) => {
         return this.service
-            .post("/getServicesFilter", {
+            .post('/getServicesFilter', {
                 user,
                 place,
                 filter
@@ -31,7 +31,7 @@ export default class ServiceService {
     newService = (place, name, address, city, type) => {
 
         return this.service
-            .post("/newService", {
+            .post('/newService', {
                 place,
                 name,
                 address,
@@ -43,7 +43,7 @@ export default class ServiceService {
 
     getTypes = (place) => {
         return this.service
-            .post("/getTypes", {
+            .post('/getTypes', {
                 place
             })
             .then(response => response.data)

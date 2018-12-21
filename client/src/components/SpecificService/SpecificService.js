@@ -26,6 +26,7 @@ export default class SpecificService extends Component {
 		this.authService
 		.loggedin()
 		.then(user => {
+				console.log(this.props)
 				this.setState({ ...this.state, user, place:this.props.location.state.place }, () => {
 					this.getServices();
 					this.getAllFilters();

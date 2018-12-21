@@ -91,7 +91,7 @@ export default class NewService extends Component {
 		
 		return this.state.filter && this.state.user? (
 			<div>
-				<NavBar redirect={`/${this.props.location.state.place}`} back={true}  menuName={`Add new ${this.props.location.state.place.slice(0, -1)}`}/>
+				<NavBar redirect={`/${this.props.location.state.place}`}  placeData={this.state.place} back={true}  menuName={`Add new ${this.props.location.state.place.slice(0, -1)}`}/>
 				<div className="newContainer">
 					<div><input className="inputsNew" onChange={e=>this.putFilter(e)} name="company" placeholder="Company name"/></div>
 					<div><input className="inputsNew" onChange={e=>this.putFilter(e)} name="address" placeholder="Adress"/></div>

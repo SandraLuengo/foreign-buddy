@@ -26,7 +26,7 @@ export default class ProfileInterests extends Component {
             .loggedin()
             .then(user => {
             this.setState({ ...this.state, user },()=>{
-                if(this.state.user.interests.length > 0){
+                if(this.state.user.interests.length > 1){
 
                 this.state.user.interests.map(interest=>{
                     var element = document.getElementById(interest);

@@ -1,6 +1,6 @@
 
 .interestActive {
-    background-color: rgba(134, 255, 215, 0.671);
+    border:solid rgb(240,34,91) 4px;
 }
 
 .interestImaContainer {
@@ -17,20 +17,45 @@
 }
 
 .uno {
-    margin-top: 8vh;
+    margin-top: 9vh;
 }
 
 .row1,.row2,.row3,.row4 {
     margin-top: 10%;
 }
 
-.row5 {
-    margin-bottom: 5vh;
-}
-
 .row1,.row2,.row3,.row4,.row5 {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 2%
     
+}
+
+.interests {
+
+    margin-top:8%;
+}
+
+.botonInteressave {
+
+    display:flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -10%
+}
+
+.backInt a{
+
+    margin-top: 13px;
+    font-weight: bold;
+    color:black;
+    
+}
+
+.titleClass {
+    margin-left: 5%;
+    font-weight: bold;
 }

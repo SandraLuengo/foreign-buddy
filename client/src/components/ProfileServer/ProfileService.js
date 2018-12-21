@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 
 export default class ProfileService {
@@ -15,9 +15,9 @@ export default class ProfileService {
         formData.append('picture', file);
         formData.append('id', id);
         formData.append('rol', rol);
-        console.log(formData)
+
         return this.service
-            .post("/upload_photo", formData, {
+            .post('/upload_photo', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -27,7 +27,7 @@ export default class ProfileService {
 
     editProfileData = (user, description,age,language1,language2,buddy_gender) => {
         return this.service
-            .post("/editProfileData", {
+            .post('/editProfileData', {
                 user,
                 description,
                 age,
@@ -40,7 +40,7 @@ export default class ProfileService {
 
     editInterests = (interests,user) =>{
         return this.service
-        .post("/editInterests",{
+        .post('/editInterests',{
             interests,
             user
         }).then(response => response.data)

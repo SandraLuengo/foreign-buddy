@@ -82,7 +82,7 @@
     border: none;
     box-shadow: none;
     padding: 4%;
-    margin-bottom: 5%;
+    margin-bottom: 12vh;
     background-color: #f0225b;
     width: 90%;
     border-radius: 50px;
@@ -99,3 +99,36 @@
     justify-content: center;
 
 }
+
+.ruedaFuera {
+    width: 100%;
+    height: 30px;
+    background-color: blue;
+}
+
+.ruedaDentro {
+    
+    height: 30px;
+    background-color: red;
+}
+
+.circular-chart {
+    display: block;
+    margin: 10px auto;
+    max-width: 32%;
+    max-height: 250px;
+  }
+  
+  .circle {
+    stroke: #4CC790;
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+  }
+  
+  @keyframes progress {
+    0% {
+      stroke-dasharray: 0 100;
+    }
+  }

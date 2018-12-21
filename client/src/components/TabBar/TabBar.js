@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./TabBar.scss";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './TabBar.scss';
 
 export default class TabBar extends Component {
   constructor() {
     super();
   }
   render() {
-    let activePage = this.props.path && this.props.path.replace("/", "");
+    let activePage = this.props.path && this.props.path.replace('/', '');
     console.log(activePage)
     return activePage ? (
       <nav className={`${this.props.showHide} ${activePage}`}>

@@ -8,3 +8,35 @@ svg text {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
 }
+
+.loginContainer input {
+    background-color: rgb(230,233,233);
+    padding: 5%;
+    margin-bottom: 8%;
+}
+
+label {
+    margin-left: 5%;
+    font-weight: bold;
+}
+
+.btnContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+
+    width: 90%;
+    padding: 3%;
+    border-radius: 50px;
+    border: none;
+    box-shadow: none;
+    background-color: rgb(240,34,91);
+    color:white;
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-top: 14%
+}

@@ -1,29 +1,29 @@
-import React, { Component } from "react";
-import AuthService from "../Auth/AuthService";
-import Form1 from "../Form1";
-import Form2 from "../Form2";
-import Form3 from "../Form3";
-import Form3Buddy from "../Form3Buddy";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import AuthService from '../Auth/AuthService';
+import Form1 from '../Form1';
+import Form2 from '../Form2';
+import Form3 from '../Form3';
+import Form3Buddy from '../Form3Buddy';
+import { Redirect } from 'react-router-dom';
 
 export default class Signup extends Component {
   constructor() {
     super();
     this.state = {
       formNumber: 1,
-      username: "",
-      surname: "",
-      email: "",
-      password: "",
-      destination_country: "",
-      destination_city: " ",
-      origin_country: " ",
+      username: '',
+      surname: '',
+      email: '',
+      password: '',
+      destination_country: '',
+      destination_city: ' ',
+      origin_country: ' ',
       spoken_languages: [],
-      buddy_city: "",
-      buddy_country: "",
-      rol: "",
-      interests: "",
-      description: "",
+      buddy_city: '',
+      buddy_country: '',
+      rol: '',
+      interests: '',
+      description: '',
       redirect: false,
       buddies: []
     };
@@ -32,26 +32,26 @@ export default class Signup extends Component {
   }
   changeForm = formNumber => {
     this.setState({ ...this.state, formNumber }, () => {
-      if (this.state.formNumber === "end") {
+      if (this.state.formNumber === 'end') {
         this.authService
           .signup({ ...this.state })
           .then(user => {
             this.setState({
-              username: " ",
-              surname: " ",
-              email: " ",
-              password: " ",
-              gender:" ",
-              day:" ",
-              month: " ",
-              year: " ",
-              destination_country: " ",
-              destination_city: " ",
-              origin_country: " ",
+              username: ' ',
+              surname: ' ',
+              email: ' ',
+              password: ' ',
+              gender:' ',
+              day:' ',
+              month: ' ',
+              year: ' ',
+              destination_country: ' ',
+              destination_city: ' ',
+              origin_country: ' ',
               spoken_languages: [],
-              buddy_city: "",
-              buddy_country: "",
-              rol: " ",
+              buddy_city: '',
+              buddy_country: '',
+              rol: ' ',
               redirect: true,
               buddies: []
             });
@@ -80,29 +80,29 @@ export default class Signup extends Component {
           <Form1
             handleChange={this.handleChange}
             changeForm={this.changeForm}
-            btn={"Siguiente"}
+            btn={'Siguiente'}
           />
         ) : this.state.formNumber === 2 ? (
           <Form2
             changeForm={this.changeForm}
             handleChange={this.handleChange}
-            btn={"Siguiente"}
+            btn={'Siguiente'}
           />
-        ) : this.state.rol === "user" ? (
+        ) : this.state.rol === 'user' ? (
           <Form3
             addLanguage={this.addLanguage}
             handleChange={this.handleChange}
             changeForm={this.changeForm}
-            btn={"Enviar"}
+            btn={'Enviar'}
           />
         ) : (
           <Form3Buddy
             addLanguage={this.addLanguage}
             handleChange={this.handleChange}
             changeForm={this.changeForm}
-            btn={"Enviar"}
+            btn={'Enviar'}
           />
-        )}{" "}
+        )}{' '}
       </div>
     ) : (
       //  <Redirect to={{pathname:"/profile",state:{buddies:this.state.buddies}}} />

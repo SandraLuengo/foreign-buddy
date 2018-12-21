@@ -1,21 +1,21 @@
-import React from "react";
-import io from "socket.io-client";
-import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
-import ChatService from "../ChatServer/ChatService";
-import NavBar from "../NavBar";
-import "./ChatWindow.scss";
+import React from 'react';
+import io from 'socket.io-client';
+import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import ChatService from '../ChatServer/ChatService';
+import NavBar from '../NavBar';
+import './ChatWindow.scss';
 
 export default class ChatWindow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: { msg: [], type: "" },
-      input: "",
-      chat_id: "",
-      mainUser: "",
-      invitedUser: "",
-	  messagesLoad: "",
+      messages: { msg: [], type: '' },
+      input: '',
+      chat_id: '',
+      mainUser: '',
+      invitedUser: '',
+	  messagesLoad: '',
 	  otherUser:null
     };
 
@@ -27,11 +27,10 @@ export default class ChatWindow extends React.Component {
       let chat_id = this.props.location.chat_id.chat_id;
       let mainUser = this.props.location.chat_id.mainUser;
 	  let invitedUser = this.props.location.chat_id.invitedUser;
-	  console.log(invitedUser)
+
 	  this.paintAllMessages(chat_id);
       this.setState({ ...this.state, chat_id, mainUser, invitedUser }, () => {
 		this.userData();
-		console.log(this.props.location.chat_id.invited)
         this.socket = io(`${process.env.REACT_APP_API_URL}`);
         this.socket.on(this.state.chat_id, msg => {
           this.receiveMessage(msg);
@@ -42,8 +41,8 @@ export default class ChatWindow extends React.Component {
 
   receiveMessage = msg => {
     this.setState({
-      input: "",
-      messages: { ...this.state.messages, msg, type: "me" }
+      input: '',
+      messages: { ...this.state.messages, msg, type: 'me' }
     });
   };
 
@@ -74,11 +73,11 @@ export default class ChatWindow extends React.Component {
 
     this.setState(
       {
-        input: "",
-        messages: { ...this.state.messages, msg: msgArray, type: "me" }
+        input: '',
+        messages: { ...this.state.messages, msg: msgArray, type: 'me' }
       },
       () =>
-        this.socket.emit("message", {
+        this.socket.emit('message', {
           msg,
           timestamp: Date.now(),
           chat_id: this.state.chat_id,
@@ -91,8 +90,8 @@ export default class ChatWindow extends React.Component {
   paintAllMessages = id_chat => {
     this.chatService.getMessages(id_chat).then(msg => {
       this.setState({
-        input: "",
-        messages: { ...this.state.messages, msg, type: "me" }
+        input: '',
+        messages: { ...this.state.messages, msg, type: 'me' }
       });
     });
   };
@@ -101,17 +100,16 @@ export default class ChatWindow extends React.Component {
   render() {
 	
     let { messages, input } = this.state;
-    return typeof this.props.location.chat_id !== "undefined" && this.state.otherUser? (
+    return typeof this.props.location.chat_id !== 'undefined' && this.state.otherUser? (
       
       <div>
-        <NavBar redirect={'/chat'} chat={true} back={true} menuName={this.state.otherUser[0].username} userImg={this.state.otherUser[0].image}/>
+        <NavBar chatImg={'chatImg'} redirect={'/chat'} chat={true} back={true} menuName={this.state.otherUser[0].username} userImg={this.state.otherUser[0].image}/>
         <div
           ref={el => {
             this.messagesContainer = el;
           }}
           id="chatContainer"
-          style={{ border: "1px solid green", padding: "10px" }}
-          onKeyDown={e => (e.keyCode === 13 ? this.submitChat() : null)}
+         
         >
           <div className="messages">
             {messages.msg.map((message, i) => {
@@ -119,8 +117,8 @@ export default class ChatWindow extends React.Component {
                 <div
                   className={
                     message.author_Id === this.state.mainUser
-                      ? "mainUser"
-                      : "invitedUser"
+                      ? 'mainUser'
+                      : 'invitedUser'
                   }
                   key={i}
                 >
@@ -130,10 +128,14 @@ export default class ChatWindow extends React.Component {
             })}
           </div>
           <div>{this.props.chat_id}</div>
-          <input
-            value={input}
-            onChange={e => this.setState({ input: e.currentTarget.value })}
-          />
+          <div className="containerEscribir">
+            <input
+              className="escribirChat"
+              value={input}
+              onChange={e => this.setState({ input: e.currentTarget.value })}
+            />
+            <img  onClick={e =>  this.submitChat() } className="enviar" src="/images/icons/send.svg"/>
+          </div>
         </div>
       </div>
     ) : (

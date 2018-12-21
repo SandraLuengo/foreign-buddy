@@ -109,3 +109,17 @@
     background-color: white;
     height: 16vh;
 }
+
+.noBuddys {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ .noBuddys img {
+    width: 70%;
+ } 
+
+ .leadBuddy2 {
+     margin-top:30vh
+ }

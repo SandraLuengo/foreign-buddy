@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import "./Form3.css";
-import languages from "../../languages.json";
-import countries from "../../countries.json";
+import React, { Component } from 'react';
+import './Form3.css';
+import languages from '../../languages.json';
+import countries from '../../countries.json';
+import NavBar from '../NavBar';
 
 export default class Form3 extends Component {
   constructor() {
@@ -25,7 +26,8 @@ export default class Form3 extends Component {
   render() {
     return (
       <div className="form3">
-        FORM 3 {/* ordenar alfabeticamente */}
+        <NavBar redirect={'/'} back={true} />
+        <div className="containerForm3">
         <select
           onChange={e => this.getSelectData(e)}
           size="1"
@@ -54,7 +56,7 @@ export default class Form3 extends Component {
             ? this.state.cities.map(city => {
                 return <option value={city}> {city} </option>;
               })
-            : ""}
+            : ''}
         </select>
         <select
           onChange={e => this.props.handleChange(e)}
@@ -92,7 +94,8 @@ export default class Form3 extends Component {
             return <option value={language.name}> {language.name} </option>;
           })}
         </select>
-        <button onClick={() => this.props.changeForm("end")}>Enviar </button>
+        <button onClick={() => this.props.changeForm('end')}>Enviar </button>
+          </div>
       </div>
     );
   }

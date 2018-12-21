@@ -23,12 +23,16 @@ export default class Profile extends Component {
     this.authService
         .loggedin()
         .then(user => {
-        this.setState({ ...this.state, user });
+        this.setState({ ...this.state, user },()=>{
+          console.log(this.state.user)
+        });
         })
         .catch(err => {
         console.log(err);
         });
   };
+
+
 
   logOut = () => {
     this.authService.logout().then(user => {
@@ -43,6 +47,7 @@ export default class Profile extends Component {
   editProfile = () => {
     this.props.history.push('/edit-profile');
   }
+
 
   render() {
 
@@ -59,8 +64,18 @@ export default class Profile extends Component {
             </div>
           </div>
           <div className="interestsInformation">
-            {/* {this.state.user.interests?this.state.user.interests.map((item, i)=><div key={i}>{item}</div>):<p></p>} */}
-            <div className="porcentajeContainer"><img src="/images/ñapa.png"/></div>
+            
+            {/* <div className="porcentajeContainer"><img src="/images/ñapa.png"/></div>
+            <div className="editInterest" onClick={this.editInterests}>Edit Interests</div> */}
+            {/* <div className="ruedaFuera"><div style={{width:`${((this.state.user.interests.length/12)*100)}%`}} className="ruedaDentro"></div></div> */}
+            <svg viewBox="0 0 36 36" class="circular-chart">
+              <path class="circle"
+                stroke-dasharray={`${((this.state.user.interests.length/12)*100)},100`}
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+            </svg>
             <div className="editInterest" onClick={this.editInterests}>Edit Interests</div>
           </div>
           <div className="description">

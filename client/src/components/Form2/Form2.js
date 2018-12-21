@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import './Form2.css'
+import React, { Component } from 'react';
+import './Form2.css';
+import NavBar from '../NavBar';
 
 export default class Form2 extends Component {
   constructor() {
     super();
     this.state = {
-      rol: "",
+      rol: '',
       formNumber: 3
     };
   }
@@ -21,19 +22,23 @@ export default class Form2 extends Component {
   render() {
     return (
       <div className='form2'>
-        FORM 2
-        <input
-          type="button"
-          name="rol"
-          value="buddy"
-          onClick={e => this.sendInfo(e)}
-        />
-        <input
-          type="button"
-          name="rol"
-          value="user"
-          onClick={e => this.sendInfo(e)}
-        />
+        <NavBar redirect={'/'} back={true} />
+        <div className="containerForm2">
+          <input
+            className="botonUsuario"
+            type="button"
+            name="rol"
+            value="buddy"
+            onClick={e => this.sendInfo(e)}
+          />
+          <input
+            className="botonBuddy"
+            type="button"
+            name="rol"
+            value="user"
+            onClick={e => this.sendInfo(e)}
+          />
+          </div>
       </div>
     );
   }

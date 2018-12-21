@@ -3,6 +3,37 @@
     flex-direction: column;
 }
 
-.form2 input {
-    border:solid 1px black;
+.containerForm2 {
+    position: relative;
+    top: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.botonUsuario,.botonBuddy {
+    width: 90%;
+    border:none;
+    box-shadow: none;
+    padding: 3%;
+    border-radius: 50px;
+    color:white;
+    font-weight: bold;
+    font-size: 1.3em;
+   
+}
+
+
+.botonUsuario {
+
+    background-color: rgb(240,34,91)
+
+}
+
+.botonBuddy {
+
+    background-color: rgb(97,168,169)
+
 }

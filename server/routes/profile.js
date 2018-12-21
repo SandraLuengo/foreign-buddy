@@ -8,9 +8,10 @@ const {findBuddy} = require('../utils/profileFunctions');
 
 
 profileRouter.post("/upload_photo", parser.single("picture"), (req, res) => {
+  
 
-  console.log(req.body.user)
-  let model = req.body.user.rol === "user" ? User : Buddy;
+  console.log(req.body)
+  let model = req.body.rol === "user" ? User : Buddy;
 
   model
     .findOneAndUpdate({

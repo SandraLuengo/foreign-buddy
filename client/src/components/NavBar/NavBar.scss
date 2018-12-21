@@ -44,6 +44,8 @@
 
 }
 
+
+
 .imgContainer img {
 
     max-width: 100%;
@@ -54,4 +56,13 @@
 .backArrow {
     width:25px;
     height: 25px;
+}
+
+.transparent {
+    background-color: transparent!important;
+}
+
+.chatImg {
+    width: 3rem!important;
+    height: 3rem!important;
 }

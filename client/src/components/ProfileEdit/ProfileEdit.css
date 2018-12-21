@@ -105,3 +105,36 @@ select {
    
     width: 100%;
 }
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    
+  }
+  
+  .btnGiorgio {
+    margin-top: 5%;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    width: 44px!important;
+    background-color: transparent!important;
+    height: 44px;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    background-image: url(/images/icons/editFoto.svg);
+    background-size: contain;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }

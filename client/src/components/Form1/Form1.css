@@ -6,3 +6,41 @@
 .form1 input {
     border:solid 1px black;
 }
+
+.form1Container{
+    position: relative;
+    top: 11vh;
+}
+
+.form1Container input{
+    border: none;
+    padding: 5%;
+    background-color: rgb(230,233,233);
+    margin-bottom: 6%;
+}
+
+.cumple {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cumple input {
+    width: 30%;
+}
+
+select {
+    width: 100%;
+}
+
+.btnForm1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.btnForm1 button{
+    width: 90%;
+    margin-bottom: 5vh;
+    margin-top:2%;
+}

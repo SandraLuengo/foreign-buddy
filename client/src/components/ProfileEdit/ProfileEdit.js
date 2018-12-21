@@ -99,7 +99,10 @@ export default class ProfileEdit extends Component {
                 <div className="editProfileContainer">
                     <div className="photo">
                         <div className="profilePhotoContainer"><img src={this.state.user.image} alt=''/></div>
-                        <div><input type="file" onChange={e=>{this.editPhoto(e)}}/></div>
+                        <div class="upload-btn-wrapper">
+                            <button class="btnGiorgio"></button>
+                            <input onChange={e=>{this.editPhoto(e)}} type="file"/>
+                        </div>
                     </div>
 
                     <div className="descriptionEdit">

@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import AuthService from "../Auth/AuthService";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import AuthService from '../Auth/AuthService';
+import { Redirect } from 'react-router-dom';
+import NavBar from '../NavBar';
 import './Login.css'
 
 export default class Login extends Component {
@@ -8,8 +9,8 @@ export default class Login extends Component {
     super();
 
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       redirect: false
     };
 
@@ -36,26 +37,30 @@ export default class Login extends Component {
 
   render() {
     return !this.state.redirect ? (
+    
       <div className="loginContainer">
+        <NavBar redirect={'/'} back={true} background={'transparent'}/>
         <div><img src="/images/ilustraciones/loginBackground.svg"/></div>  
         <form onSubmit={this.handleFormSubmit}>
           <label> Email </label>
           <input
+            required
             type="email"
             name="email"
             onChange={e => this.handleChange(e)}
           />
           <label> Password </label>
           <input
+            required
             type="password"
             name="password"
             onChange={e => this.handleChange(e)}
           />
-          <button type="submit"> Login </button>
+          <div className="btnContainer"><button type="submit"> Login </button></div>
         </form>
       </div>
     ) : (
-      <Redirect to={"/chat"} />
+      <Redirect to={'/chat'} />
     );
   }
 }

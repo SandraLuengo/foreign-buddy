@@ -11,7 +11,7 @@ profileRouter.post("/upload_photo", parser.single("picture"), (req, res) => {
   
 
   console.log(req.body)
-  let model = req.body.rol === "user" ? User : Buddy;
+  let model = req.body.user.rol === "user" ? User : Buddy;
 
   model
     .findOneAndUpdate({

@@ -55,7 +55,6 @@ button {
     height: 30vh;
     position: absolute;
     top: 8vh;
-    z-index: 99;
     width: 100%;
 }
 

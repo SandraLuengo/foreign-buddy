@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default class ChatService {
     constructor() {
@@ -10,16 +10,16 @@ export default class ChatService {
     }
 
     getMessages = id_chat => {
-        console.log(`llamamos a getMessages: ${id_chat}`)
+        
         return this.service
-            .post("/getMessages", {
+            .post('/getMessages', {
                 id_chat
             })
             .then(response => response.data);
     };
     createChatRoom = (mainUser, invitedUser) => {
         return this.service
-            .post("/createChatRoom", {
+            .post('/createChatRoom', {
                 mainUser,
                 invitedUser
             })
@@ -27,9 +27,9 @@ export default class ChatService {
     }
 
     getChatUsers = user => {
-        //console.log(user)
+       
         return this.service
-            .post("/getChatUsers", {
+            .post('/getChatUsers', {
                 user
             })
             .then(response => response.data);

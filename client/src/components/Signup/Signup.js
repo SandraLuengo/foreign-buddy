@@ -76,6 +76,15 @@ export default class Signup extends Component {
   render() {
     return !this.state.redirect ? (
       <div>
+        <div className="loginHeader">
+          <div className="loginText">Sing Up</div>
+        </div>
+        <div className="loginImg">
+          <img id="pluma" src="/images/loginBackground/leaf.svg"/>
+          <img id="rama" src="/images/loginBackground/leafTop.svg"/>
+          <img id="oval" src="/images/loginBackground/oval.svg"/>
+          <img id="cuadrado" src="/images/loginBackground/polygon.svg"/>
+        </div>
         {this.state.formNumber === 1 ? (
           <Form1
             handleChange={this.handleChange}
@@ -105,7 +114,6 @@ export default class Signup extends Component {
         )}{' '}
       </div>
     ) : (
-      //  <Redirect to={{pathname:"/profile",state:{buddies:this.state.buddies}}} />
       <Redirect to="/chat" />
     );
   }

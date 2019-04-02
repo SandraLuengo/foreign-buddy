@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default class AuthService {
   constructor() {
@@ -11,16 +11,15 @@ export default class AuthService {
 
   signup = state => {
     return this.service
-      .post("/signup", {
+      .post('/signup', {
         state
       })
       .then(response => response.data);
   };
 
   login = (email, password,rol) => {
-    console.log()
     return this.service
-      .post("/login", {
+      .post('/login', {
         email,
         password,
         rol
@@ -29,10 +28,10 @@ export default class AuthService {
   };
 
   loggedin = () => {
-    return this.service.get("/loggedin").then(response => response.data);
+    return this.service.get('/loggedin').then(response => response.data);
   };
 
   logout = () => {
-    return this.service.get("/logout").then(response => response.data);
+    return this.service.get('/logout').then(response => response.data);
   };
 }

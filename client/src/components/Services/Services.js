@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import AuthService from "../Auth/AuthService";
-import Loading from "../Loading";
-import NavBar from "../NavBar";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import AuthService from '../Auth/AuthService';
+import Loading from '../Loading';
+import NavBar from '../NavBar';
 import './Services.css'
 
 export default class Services extends Component {
@@ -24,9 +24,7 @@ export default class Services extends Component {
         this.setState({ ...this.state, user }, () => {
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch();
   };
   openPlace = place => {
     this.setState({...this.state,place})

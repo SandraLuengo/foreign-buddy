@@ -13,6 +13,7 @@ svg text {
     background-color: rgb(230,233,233);
     padding: 5%;
     margin-bottom: 8%;
+   
 }
 
 label {
@@ -27,6 +28,13 @@ label {
     align-items: center;
 }
 
+.logginError {
+
+    text-align: center;
+    color:rgb(240,34,91);
+    font-style: italic;
+}
+
 button {
 
     width: 90%;
@@ -38,5 +46,132 @@ button {
     color:white;
     font-weight: bold;
     font-size: 1.3em;
-    margin-top: 14%
+    margin-top: 8%
+}
+
+
+.loginHeader {
+
+    height: 30vh;
+    position: absolute;
+    top: 8vh;
+    z-index: 99;
+    width: 100%;
+}
+
+.loginImg {
+    position: relative;
+    top: 0;
+    height: 30vh;
+    margin-top: 8vh;
+}
+
+.loginText {
+
+    text-align: center;
+    color: rgb(240,34,91);
+    font-weight: bold;
+    font-size: 1.7em;
+    margin-top: 20%;
+}
+
+#pluma {
+    position: relative;
+    left: 0;
+    top: 250%;
+    z-index: -7;
+    animation: pluma-animation 16s infinite;
+    opacity: 0.6;
+   
+}
+
+@keyframes pluma-animation {
+    0% {
+        left: 0%;
+    }
+
+    60% {
+        left: 40%;
+        top: 5%;
+    }
+
+    100% {
+        left: 0%;
+        transform: rotate(360deg);
+    }
+}
+
+ #rama {
+    position: relative;
+    left: 0;
+    bottom: -132%;
+    z-index: -7;
+    animation: rama-animation 12s infinite;
+   
+}
+
+@keyframes rama-animation {
+    0% {
+        left: 0%;
+        bottom: -132%;
+        transform: rotate(240deg);
+        opacity: 1;
+    }
+
+    60% {
+        left: -50%;
+        bottom: 5%;
+    }
+
+    100% {
+        left: -90%;
+        bottom: 9%;
+        opacity: 0;
+    }
+}
+
+#oval {
+    position: relative;
+    left: 7%;
+    top: -10%;
+    z-index: -7;
+    animation: oval-animation 12s infinite;
+   
+}
+
+@keyframes oval-animation {
+    0% {
+        left: 7%;
+        top: -50%;
+        opacity: 1;
+    }
+
+    100% {
+        left: 30%;
+        top: 300%;
+        opacity: 0;
+    }
+}
+
+#cuadrado {
+    position: relative;
+    left: -30%;
+    bottom: 28%;
+    z-index: -7;
+    animation: cuadrado-animation 12s infinite;
+    
+}
+
+@keyframes cuadrado-animation {
+    0% {
+        left: -30%;
+        bottom: 48%;
+        opacity: 1;
+    }
+
+    100% {
+        left: 80%;
+        opacity: 0;
+        bottom: 8%;
+    }
 }

@@ -31,14 +31,12 @@ export default class ProfileInterests extends Component {
                 this.state.user.interests.map(interest=>{
                     var element = document.getElementById(interest);
                     element.classList.toggle('interestActive');
-                    return ;
+                    return true;
                 })
                 }
             });
             })
-            .catch(err => {
-            console.log(err);
-            });
+            .catch();
     };
     addInterest = val => {
        
@@ -51,13 +49,14 @@ export default class ProfileInterests extends Component {
     }
 
     saveInterests = e => {
-
+      
         let arrayInterest = Object.values(document.getElementsByClassName('interestActive')).map(item=>{
             return item.id
         })
         this.profileService
         .editInterests(arrayInterest,this.state.user)
         .then(resp=>{
+            // loading.classList.toggle('loadinOff');
             this.props.history.push('/profile');
         })
         .catch(err=>this.props.history.push('/profile'))
@@ -94,6 +93,7 @@ export default class ProfileInterests extends Component {
 					<br/>
 					<div className="botonInteressave">
                         <button className="saveInterest" onClick={e=>{this.saveInterests(e);}}>Save</button>
+                        <div className="loadinOff" id="loading"><Loading/></div>
                         <div className="backInt"><Link to='/profile'>Completar en otro momento</Link></div>
                     </div>
                     <br/>

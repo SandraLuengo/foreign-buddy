@@ -11,7 +11,8 @@ export default class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      redirect: false
+      redirect: false,
+      loggin:false
     };
 
     this.authService = new AuthService();
@@ -22,8 +23,12 @@ export default class Login extends Component {
 
     const { email, password,rol } = this.state;
 
-    this.authService.login(email, password,rol).then(user => {
+    this.authService.login(email, password,rol)
+    .then(user => {
       this.setState({ ...this.state, redirect: true });
+    })
+    .catch(err=>{
+      this.setState({ ...this.state, loggin: true });
     });
   };
 
@@ -39,9 +44,19 @@ export default class Login extends Component {
     return !this.state.redirect ? (
     
       <div className="loginContainer">
-        <NavBar redirect={'/'} back={true} background={'transparent'}/>
-        <div><img src="/images/ilustraciones/loginBackground.svg"/></div>  
-        <form onSubmit={this.handleFormSubmit}>
+        <NavBar redirect={'/'}  back={true}/>
+        {/* <div><img src="/images/ilustraciones/loginBackground.svg"/></div>
+         */}
+        <div className="loginHeader">
+          <div className="loginText">Login</div>
+        </div>
+        <div className="loginImg">
+          <img id="pluma" src="/images/loginBackground/leaf.svg"/>
+          <img id="rama" src="/images/loginBackground/leafTop.svg"/>
+          <img id="oval" src="/images/loginBackground/oval.svg"/>
+          <img id="cuadrado" src="/images/loginBackground/polygon.svg"/>
+        </div>
+        <form className="loginForm" onSubmit={this.handleFormSubmit}>
           <label> Email </label>
           <input
             required
@@ -56,7 +71,8 @@ export default class Login extends Component {
             name="password"
             onChange={e => this.handleChange(e)}
           />
-          <div className="btnContainer"><button type="submit"> Login </button></div>
+          {this.state.loggin&&<div className="logginError">The email or password are not correct</div>}
+          <div className="btnContainer btnLogin"><button type="submit"> Login </button></div>
         </form>
       </div>
     ) : (

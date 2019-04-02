@@ -1,7 +1,5 @@
 import React from 'react';
 import io from 'socket.io-client';
-import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import ChatService from '../ChatServer/ChatService';
 import NavBar from '../NavBar';
 import './ChatWindow.scss';
@@ -140,7 +138,6 @@ export default class ChatWindow extends React.Component {
       </div>
     ) : (
 		<p>load</p>
-    //   <Redirect to="/chat" />
     );
   }
 }

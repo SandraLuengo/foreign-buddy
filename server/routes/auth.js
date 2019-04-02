@@ -10,6 +10,12 @@ const bcryptSalt = 10;
 const { getRol } = require('../utils/authFunctions');
 
 authRoutes.post('/login', (req, res, next) => {
+// var rol='';
+
+// User.find(mail)-->ok rol='user';
+// POrofesrional.find(mail)->rol='profesional'
+// si no --> usuairio no registrafdo
+
 
   getRol(req.body.email)
     .then(rol => {
@@ -113,7 +119,7 @@ authRoutes.get("/logout", (req, res) => {
 });
 
 authRoutes.get('/loggedin', (req, res) => {
-  console.log(req.isAuthenticated())
+  
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
     return;

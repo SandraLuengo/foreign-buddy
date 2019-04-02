@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect,Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import AuthService from '../Auth/AuthService';
 import Loading from '../Loading';
 import NavBar from '../NavBar';
@@ -53,11 +53,10 @@ export default class Buddies extends Component {
         });
       }) 
     })
-    .catch(err=>console.log(err))
+    .catch();
   }
 
   changeWindow = type => {
-    console.log(type)
     this.setState({...this.state,type})
   }
 

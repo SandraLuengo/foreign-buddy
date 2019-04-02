@@ -23,32 +23,33 @@ export default class HomePage extends Component {
 
 	showSlides = () => {
 		var i;
-		var slides = document.getElementsByClassName("mySlides");
-		var dots = document.getElementsByClassName("dot");
+		var slides = document.getElementsByClassName('mySlides');
+		var dots = document.getElementsByClassName('dot');
 		for (i = 0; i < slides.length; i++) {
-			slides[i].style.display = "none";  
+			slides[i].style.display = 'none';  
 		}
 		this.state.slideIndex++;
 		if (this.state.slideIndex > slides.length) {this.state.slideIndex = 1}    
 		for (i = 0; i < dots.length; i++) {
-			dots[i].className = dots[i].className.replace(" active", "");
+			dots[i].className = dots[i].className.replace(' active', '');
 		}
-		slides[this.state.slideIndex-1].style.display = "block";  
-		dots[this.state.slideIndex-1].className += " active";
+		slides[this.state.slideIndex-1].style.display = 'block';  
+		dots[this.state.slideIndex-1].className += ' active';
 		let interval=setTimeout(this.showSlides, 2000); 
 		this.setState({...this.state,interval})
 	}
 	
 	killInterval = () => {
-
-		console.log('entro')
-
 		clearInterval(this.state.interval);
 	}
 
 	render() {
 		return (
-			<div className="homePage">
+				<div className="homePage">
+				<div className="introText">
+					<p>Type something</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adispiscing elit</p>
+				</div>
 				<div className="slideshow-container">
 					<div className="mySlides fade">
 						<img src="/images/ilustraciones/Onboarding/Group.svg"/>
@@ -68,7 +69,7 @@ export default class HomePage extends Component {
 					<span className="dot"></span> 
 					<span className="dot"></span> 
 				</div>
-				<div className="botonosInicio">
+				<div className="botonesInicio">
 					<Buttom clearInterval={this.killInterval} className={'Sigup'} url={'/signup'}>Sign Up</Buttom>
 					<Buttom clearInterval={this.killInterval} className={'Login'} url={'/login'}>Login</Buttom>
 				</div>

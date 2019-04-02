@@ -8,7 +8,6 @@ export default class TabBar extends Component {
   }
   render() {
     let activePage = this.props.path && this.props.path.replace('/', '');
-    console.log(activePage)
     return activePage ? (
       <nav className={`${this.props.showHide} ${activePage}`}>
         <div className="tabBar">

@@ -10,6 +10,7 @@ export default class NavBar extends Component {
     return this.props&& (
       <div className={`navBar ${this.props.background}`} >
         <nav>
+         
           <div className="firstNav"><Link  to={{ pathname:`${this.props.redirect}`, state:{ place: this.props.placeData }}}>
           {this.props.back&&<img className="backArrow" src="/images/icons/Atras.svg"/>}
           </Link>

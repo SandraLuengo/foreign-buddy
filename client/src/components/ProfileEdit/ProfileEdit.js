@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import AuthService from '../Auth/AuthService';
 import ProfileService from '../ProfileServer/ProfileService';
 import languages from '../../languages.json';
@@ -42,10 +41,7 @@ export default class ProfileEdit extends Component {
                 this.setState({...this.state,day,month,year})
             });
             })
-
-            .catch(err => {
-            console.log(err);
-            });
+            .catch();
     };
 
     editPhoto = e => {
@@ -62,6 +58,7 @@ export default class ProfileEdit extends Component {
     }
 
     save = e => {
+        console.log('guardo')
         e.preventDefault();
         if(this.state.file){
             this.profileService.postPhoto(this.state.file,this.state.user._id,this.state.user.rol).then((user)=>{
@@ -87,9 +84,10 @@ export default class ProfileEdit extends Component {
             this.state.description=this.state.user.description;
         }
         this.profileService.editProfileData(this.state.user,this.state.description,age,this.state.spoken_languages1,this.state.spoken_languages2,this.state.friends).then(user=>{
+          
                 this.props.history.push('/profile');
         })
-        .catch(err=>console.log(err))
+        .catch()
     }
 
 	render() {

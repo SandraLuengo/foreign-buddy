@@ -13,7 +13,7 @@ import ChatWindow from './components/ChatWindow';
 import Buddies from './components/Buddies';
 import SpecificService from './components/SpecificService';
 import { Switch, Route } from 'react-router-dom';
-import TabBar from "./components/TabBar";
+import TabBar from './components/TabBar';
 
 
 class App extends Component {

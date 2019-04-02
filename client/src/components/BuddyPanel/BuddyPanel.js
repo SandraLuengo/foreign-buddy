@@ -17,7 +17,7 @@ export default class BuddyPanel extends Component {
             })
         }
        
-    };
+    }
 
     render() {
         return this.state.buddies && this.state.user ?(
@@ -27,7 +27,7 @@ export default class BuddyPanel extends Component {
                     <div className="BoddyPanelFirst">
                         <div className="panelElements profilePhoto"><img className="buddiesImg" src={buddy.image} alt='img'/></div>
                         <div  className="panelElements"><strong>{buddy.username} {buddy.surname}</strong></div>
-                        <div className="arrowFollowing panelElements"><img src="images/icons/Adelante.svg"/></div>
+                        <div className="arrowFollowing panelElements"><img alt="siguiente" src="images/icons/Adelante.svg"/></div>
                     </div>
                     <div className="descriptionBuddyPanel">{buddy.description}</div>
                     <div className="btnContact"><button name="buddy_id" id={buddy._id} value={buddy._id} onClick={e=>this.props.generateBuddy(e)}>Contact</button></div>
